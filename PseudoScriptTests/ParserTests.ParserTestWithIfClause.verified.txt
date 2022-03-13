@@ -1,0 +1,768 @@
+﻿{
+  body: [
+    {
+      variable: {
+        name: params,
+        type: Identifier,
+        start: {
+          line: 1,
+          character: 1
+        },
+        end: {
+          line: 1,
+          character: 7
+        }
+      },
+      init: {
+        fields: [
+          {
+            value: {
+              value: /home/test,
+              raw: "/home/test",
+              type: StringLiteral,
+              start: {
+                line: 1,
+                character: 11
+              },
+              end: {
+                line: 1,
+                character: 23
+              }
+            },
+            type: ListValue,
+            start: {
+              line: 1,
+              character: 11
+            },
+            end: {
+              line: 1,
+              character: 23
+            }
+          },
+          {
+            value: {
+              value: myTestFolder,
+              raw: "myTestFolder",
+              type: StringLiteral,
+              start: {
+                line: 1,
+                character: 25
+              },
+              end: {
+                line: 1,
+                character: 39
+              }
+            },
+            type: ListValue,
+            start: {
+              line: 1,
+              character: 25
+            },
+            end: {
+              line: 1,
+              character: 39
+            }
+          }
+        ],
+        type: ListConstructorExpression,
+        start: {
+          line: 1,
+          character: 10
+        },
+        end: {
+          line: 1,
+          character: 40
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 1,
+        character: 1
+      },
+      end: {
+        line: 1,
+        character: 41
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 3,
+            character: 1
+          },
+          end: {
+            line: 3,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            op: or,
+            left: {
+              op: or,
+              left: {
+                op: !=,
+                left: {
+                  origin: {
+                    origin: {
+                      name: params,
+                      type: Identifier,
+                      start: {
+                        line: 3,
+                        character: 7
+                      },
+                      end: {
+                        line: 3,
+                        character: 13
+                      }
+                    },
+                    indexer: .,
+                    identifier: {
+                      name: len,
+                      type: Identifier,
+                      start: {
+                        line: 3,
+                        character: 14
+                      },
+                      end: {
+                        line: 3,
+                        character: 17
+                      }
+                    },
+                    type: MemberExpression,
+                    start: {
+                      line: 3,
+                      character: 13
+                    },
+                    end: {
+                      line: 3,
+                      character: 18
+                    }
+                  },
+                  type: CallExpression,
+                  start: {
+                    line: 3,
+                    character: 17
+                  },
+                  end: {
+                    line: 3,
+                    character: 22
+                  }
+                },
+                right: {
+                  value: 1.0,
+                  raw: 1,
+                  type: NumericLiteral,
+                  start: {
+                    line: 3,
+                    character: 23
+                  },
+                  end: {
+                    line: 3,
+                    character: 24
+                  }
+                },
+                type: BinaryExpression,
+                start: {
+                  line: 3,
+                  character: 20
+                },
+                end: {
+                  line: 3,
+                  character: 27
+                }
+              },
+              right: {
+                op: ==,
+                left: {
+                  origin: {
+                    name: params,
+                    type: Identifier,
+                    start: {
+                      line: 3,
+                      character: 28
+                    },
+                    end: {
+                      line: 3,
+                      character: 34
+                    }
+                  },
+                  index: {
+                    value: 0.0,
+                    raw: 0,
+                    type: NumericLiteral,
+                    start: {
+                      line: 3,
+                      character: 35
+                    },
+                    end: {
+                      line: 3,
+                      character: 36
+                    }
+                  },
+                  type: IndexExpression,
+                  start: {
+                    line: 3,
+                    character: 35
+                  },
+                  end: {
+                    line: 3,
+                    character: 36
+                  }
+                },
+                right: {
+                  value: -h,
+                  raw: "-h",
+                  type: StringLiteral,
+                  start: {
+                    line: 3,
+                    character: 41
+                  },
+                  end: {
+                    line: 3,
+                    character: 45
+                  }
+                },
+                type: BinaryExpression,
+                start: {
+                  line: 3,
+                  character: 38
+                },
+                end: {
+                  line: 3,
+                  character: 48
+                }
+              },
+              type: LogicalExpression,
+              start: {
+                line: 3,
+                character: 20
+              },
+              end: {
+                line: 3,
+                character: 48
+              }
+            },
+            right: {
+              op: ==,
+              left: {
+                origin: {
+                  name: params,
+                  type: Identifier,
+                  start: {
+                    line: 3,
+                    character: 49
+                  },
+                  end: {
+                    line: 3,
+                    character: 55
+                  }
+                },
+                index: {
+                  value: 0.0,
+                  raw: 0,
+                  type: NumericLiteral,
+                  start: {
+                    line: 3,
+                    character: 56
+                  },
+                  end: {
+                    line: 3,
+                    character: 57
+                  }
+                },
+                type: IndexExpression,
+                start: {
+                  line: 3,
+                  character: 56
+                },
+                end: {
+                  line: 3,
+                  character: 57
+                }
+              },
+              right: {
+                value: --help,
+                raw: "--help",
+                type: StringLiteral,
+                start: {
+                  line: 3,
+                  character: 62
+                },
+                end: {
+                  line: 3,
+                  character: 70
+                }
+              },
+              type: BinaryExpression,
+              start: {
+                line: 3,
+                character: 59
+              },
+              end: {
+                line: 3,
+                character: 71
+              }
+            },
+            type: LogicalExpression,
+            start: {
+              line: 3,
+              character: 20
+            },
+            end: {
+              line: 3,
+              character: 71
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 3,
+          character: 6
+        },
+        end: {
+          line: 3,
+          character: 72
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 3,
+        character: 1
+      },
+      end: {
+        line: 3,
+        character: 72
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 4,
+            character: 1
+          },
+          end: {
+            line: 4,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            op: or,
+            left: {
+              op: or,
+              left: {
+                op: !=,
+                left: {
+                  origin: {
+                    origin: {
+                      name: params,
+                      type: Identifier,
+                      start: {
+                        line: 4,
+                        character: 8
+                      },
+                      end: {
+                        line: 4,
+                        character: 14
+                      }
+                    },
+                    indexer: .,
+                    identifier: {
+                      name: len,
+                      type: Identifier,
+                      start: {
+                        line: 4,
+                        character: 15
+                      },
+                      end: {
+                        line: 4,
+                        character: 18
+                      }
+                    },
+                    type: MemberExpression,
+                    start: {
+                      line: 4,
+                      character: 14
+                    },
+                    end: {
+                      line: 4,
+                      character: 19
+                    }
+                  },
+                  type: CallExpression,
+                  start: {
+                    line: 4,
+                    character: 18
+                  },
+                  end: {
+                    line: 4,
+                    character: 23
+                  }
+                },
+                right: {
+                  value: 1.0,
+                  raw: 1,
+                  type: NumericLiteral,
+                  start: {
+                    line: 4,
+                    character: 24
+                  },
+                  end: {
+                    line: 4,
+                    character: 25
+                  }
+                },
+                type: BinaryExpression,
+                start: {
+                  line: 4,
+                  character: 21
+                },
+                end: {
+                  line: 4,
+                  character: 26
+                }
+              },
+              right: {
+                op: ==,
+                left: {
+                  origin: {
+                    name: params,
+                    type: Identifier,
+                    start: {
+                      line: 4,
+                      character: 31
+                    },
+                    end: {
+                      line: 4,
+                      character: 37
+                    }
+                  },
+                  index: {
+                    value: 0.0,
+                    raw: 0,
+                    type: NumericLiteral,
+                    start: {
+                      line: 4,
+                      character: 38
+                    },
+                    end: {
+                      line: 4,
+                      character: 39
+                    }
+                  },
+                  type: IndexExpression,
+                  start: {
+                    line: 4,
+                    character: 38
+                  },
+                  end: {
+                    line: 4,
+                    character: 39
+                  }
+                },
+                right: {
+                  value: -h,
+                  raw: "-h",
+                  type: StringLiteral,
+                  start: {
+                    line: 4,
+                    character: 44
+                  },
+                  end: {
+                    line: 4,
+                    character: 48
+                  }
+                },
+                type: BinaryExpression,
+                start: {
+                  line: 4,
+                  character: 41
+                },
+                end: {
+                  line: 4,
+                  character: 49
+                }
+              },
+              type: LogicalExpression,
+              start: {
+                line: 4,
+                character: 27
+              },
+              end: {
+                line: 4,
+                character: 52
+              }
+            },
+            right: {
+              op: ==,
+              left: {
+                origin: {
+                  name: params,
+                  type: Identifier,
+                  start: {
+                    line: 4,
+                    character: 54
+                  },
+                  end: {
+                    line: 4,
+                    character: 60
+                  }
+                },
+                index: {
+                  value: 0.0,
+                  raw: 0,
+                  type: NumericLiteral,
+                  start: {
+                    line: 4,
+                    character: 61
+                  },
+                  end: {
+                    line: 4,
+                    character: 62
+                  }
+                },
+                type: IndexExpression,
+                start: {
+                  line: 4,
+                  character: 61
+                },
+                end: {
+                  line: 4,
+                  character: 62
+                }
+              },
+              right: {
+                value: --help,
+                raw: "--help",
+                type: StringLiteral,
+                start: {
+                  line: 4,
+                  character: 67
+                },
+                end: {
+                  line: 4,
+                  character: 75
+                }
+              },
+              type: BinaryExpression,
+              start: {
+                line: 4,
+                character: 64
+              },
+              end: {
+                line: 4,
+                character: 76
+              }
+            },
+            type: LogicalExpression,
+            start: {
+              line: 4,
+              character: 27
+            },
+            end: {
+              line: 4,
+              character: 77
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 4,
+          character: 6
+        },
+        end: {
+          line: 4,
+          character: 77
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 4,
+        character: 1
+      },
+      end: {
+        line: 4,
+        character: 77
+      }
+    }
+  ],
+  namespaces: [
+    params,
+    print,
+    len
+  ],
+  literals: [
+    {
+      value: /home/test,
+      raw: "/home/test",
+      type: StringLiteral,
+      start: {
+        line: 1,
+        character: 11
+      },
+      end: {
+        line: 1,
+        character: 23
+      }
+    },
+    {
+      value: myTestFolder,
+      raw: "myTestFolder",
+      type: StringLiteral,
+      start: {
+        line: 1,
+        character: 25
+      },
+      end: {
+        line: 1,
+        character: 39
+      }
+    },
+    {
+      value: 1.0,
+      raw: 1,
+      type: NumericLiteral,
+      start: {
+        line: 3,
+        character: 23
+      },
+      end: {
+        line: 3,
+        character: 24
+      }
+    },
+    {
+      value: 0.0,
+      raw: 0,
+      type: NumericLiteral,
+      start: {
+        line: 3,
+        character: 35
+      },
+      end: {
+        line: 3,
+        character: 36
+      }
+    },
+    {
+      value: -h,
+      raw: "-h",
+      type: StringLiteral,
+      start: {
+        line: 3,
+        character: 41
+      },
+      end: {
+        line: 3,
+        character: 45
+      }
+    },
+    {
+      value: 0.0,
+      raw: 0,
+      type: NumericLiteral,
+      start: {
+        line: 3,
+        character: 56
+      },
+      end: {
+        line: 3,
+        character: 57
+      }
+    },
+    {
+      value: --help,
+      raw: "--help",
+      type: StringLiteral,
+      start: {
+        line: 3,
+        character: 62
+      },
+      end: {
+        line: 3,
+        character: 70
+      }
+    },
+    {
+      value: 1.0,
+      raw: 1,
+      type: NumericLiteral,
+      start: {
+        line: 4,
+        character: 24
+      },
+      end: {
+        line: 4,
+        character: 25
+      }
+    },
+    {
+      value: 0.0,
+      raw: 0,
+      type: NumericLiteral,
+      start: {
+        line: 4,
+        character: 38
+      },
+      end: {
+        line: 4,
+        character: 39
+      }
+    },
+    {
+      value: -h,
+      raw: "-h",
+      type: StringLiteral,
+      start: {
+        line: 4,
+        character: 44
+      },
+      end: {
+        line: 4,
+        character: 48
+      }
+    },
+    {
+      value: 0.0,
+      raw: 0,
+      type: NumericLiteral,
+      start: {
+        line: 4,
+        character: 61
+      },
+      end: {
+        line: 4,
+        character: 62
+      }
+    },
+    {
+      value: --help,
+      raw: "--help",
+      type: StringLiteral,
+      start: {
+        line: 4,
+        character: 67
+      },
+      end: {
+        line: 4,
+        character: 75
+      }
+    }
+  ],
+  type: Chunk,
+  start: {
+    line: 1,
+    character: 1
+  },
+  end: {
+    line: 4,
+    character: 77
+  }
+}

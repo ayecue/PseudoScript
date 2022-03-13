@@ -1,0 +1,684 @@
+﻿{
+  body: [
+    {
+      variable: {
+        name: test,
+        type: Identifier,
+        start: {
+          line: 1,
+          character: 1
+        },
+        end: {
+          line: 1,
+          character: 5
+        }
+      },
+      init: {
+        body: [
+          {
+            arg: {
+              raw: null,
+              type: NilLiteral,
+              start: {
+                line: 2,
+                character: 9
+              },
+              end: {
+                line: 2,
+                character: 13
+              }
+            },
+            type: ReturnStatement,
+            start: {
+              line: 2,
+              character: 2
+            },
+            end: {
+              line: 3,
+              character: 13
+            }
+          }
+        ],
+        name: anonymous,
+        type: FunctionDeclaration,
+        start: {
+          line: 1,
+          character: 8
+        },
+        end: {
+          line: 3,
+          character: 13
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 1,
+        character: 1
+      },
+      end: {
+        line: 3,
+        character: 14
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 5,
+            character: 1
+          },
+          end: {
+            line: 5,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            op: and,
+            left: {
+              arg: {
+                origin: {
+                  value: was,
+                  raw: "was",
+                  type: StringLiteral,
+                  start: {
+                    line: 5,
+                    character: 11
+                  },
+                  end: {
+                    line: 5,
+                    character: 16
+                  }
+                },
+                indexer: .,
+                identifier: {
+                  name: split,
+                  type: Identifier,
+                  start: {
+                    line: 5,
+                    character: 17
+                  },
+                  end: {
+                    line: 5,
+                    character: 22
+                  }
+                },
+                type: MemberExpression,
+                start: {
+                  line: 5,
+                  character: 16
+                },
+                end: {
+                  line: 5,
+                  character: 26
+                }
+              },
+              type: NegationExpression,
+              start: {
+                line: 5,
+                character: 7
+              },
+              end: {
+                line: 5,
+                character: 26
+              }
+            },
+            right: {
+              op: or,
+              left: {
+                value: false,
+                raw: false,
+                type: BooleanLiteral,
+                start: {
+                  line: 5,
+                  character: 28
+                },
+                end: {
+                  line: 5,
+                  character: 33
+                }
+              },
+              right: {
+                arg: {
+                  value: false,
+                  raw: false,
+                  type: BooleanLiteral,
+                  start: {
+                    line: 5,
+                    character: 41
+                  },
+                  end: {
+                    line: 5,
+                    character: 46
+                  }
+                },
+                type: NegationExpression,
+                start: {
+                  line: 5,
+                  character: 37
+                },
+                end: {
+                  line: 5,
+                  character: 47
+                }
+              },
+              type: LogicalExpression,
+              start: {
+                line: 5,
+                character: 34
+              },
+              end: {
+                line: 5,
+                character: 47
+              }
+            },
+            type: LogicalExpression,
+            start: {
+              line: 5,
+              character: 23
+            },
+            end: {
+              line: 5,
+              character: 48
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 5,
+          character: 6
+        },
+        end: {
+          line: 5,
+          character: 49
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 5,
+        character: 1
+      },
+      end: {
+        line: 5,
+        character: 49
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 6,
+            character: 1
+          },
+          end: {
+            line: 6,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            arg: {
+              op: and,
+              left: {
+                origin: {
+                  value: was,
+                  raw: "was",
+                  type: StringLiteral,
+                  start: {
+                    line: 6,
+                    character: 12
+                  },
+                  end: {
+                    line: 6,
+                    character: 17
+                  }
+                },
+                indexer: .,
+                identifier: {
+                  name: split,
+                  type: Identifier,
+                  start: {
+                    line: 6,
+                    character: 18
+                  },
+                  end: {
+                    line: 6,
+                    character: 23
+                  }
+                },
+                type: MemberExpression,
+                start: {
+                  line: 6,
+                  character: 17
+                },
+                end: {
+                  line: 6,
+                  character: 27
+                }
+              },
+              right: {
+                op: or,
+                left: {
+                  value: false,
+                  raw: false,
+                  type: BooleanLiteral,
+                  start: {
+                    line: 6,
+                    character: 29
+                  },
+                  end: {
+                    line: 6,
+                    character: 34
+                  }
+                },
+                right: {
+                  arg: {
+                    value: false,
+                    raw: false,
+                    type: BooleanLiteral,
+                    start: {
+                      line: 6,
+                      character: 42
+                    },
+                    end: {
+                      line: 6,
+                      character: 47
+                    }
+                  },
+                  type: NegationExpression,
+                  start: {
+                    line: 6,
+                    character: 38
+                  },
+                  end: {
+                    line: 6,
+                    character: 48
+                  }
+                },
+                type: LogicalExpression,
+                start: {
+                  line: 6,
+                  character: 35
+                },
+                end: {
+                  line: 6,
+                  character: 48
+                }
+              },
+              type: LogicalExpression,
+              start: {
+                line: 6,
+                character: 24
+              },
+              end: {
+                line: 6,
+                character: 49
+              }
+            },
+            type: NegationExpression,
+            start: {
+              line: 6,
+              character: 7
+            },
+            end: {
+              line: 6,
+              character: 50
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 6,
+          character: 6
+        },
+        end: {
+          line: 6,
+          character: 51
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 6,
+        character: 1
+      },
+      end: {
+        line: 6,
+        character: 51
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 7,
+            character: 1
+          },
+          end: {
+            line: 7,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            op: +,
+            left: {
+              op: -,
+              arg: {
+                value: 1.0,
+                raw: 1,
+                type: NumericLiteral,
+                start: {
+                  line: 7,
+                  character: 8
+                },
+                end: {
+                  line: 7,
+                  character: 9
+                }
+              },
+              type: BinaryNegatedExpression,
+              start: {
+                line: 7,
+                character: 7
+              },
+              end: {
+                line: 7,
+                character: 11
+              }
+            },
+            right: {
+              value: 2.0,
+              raw: 2,
+              type: NumericLiteral,
+              start: {
+                line: 7,
+                character: 12
+              },
+              end: {
+                line: 7,
+                character: 13
+              }
+            },
+            type: BinaryExpression,
+            start: {
+              line: 7,
+              character: 10
+            },
+            end: {
+              line: 7,
+              character: 14
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 7,
+          character: 6
+        },
+        end: {
+          line: 7,
+          character: 15
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 7,
+        character: 1
+      },
+      end: {
+        line: 7,
+        character: 15
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 8,
+            character: 1
+          },
+          end: {
+            line: 8,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            op: -,
+            arg: {
+              op: +,
+              left: {
+                value: 1.0,
+                raw: 1,
+                type: NumericLiteral,
+                start: {
+                  line: 8,
+                  character: 9
+                },
+                end: {
+                  line: 8,
+                  character: 10
+                }
+              },
+              right: {
+                value: 2.0,
+                raw: 2,
+                type: NumericLiteral,
+                start: {
+                  line: 8,
+                  character: 13
+                },
+                end: {
+                  line: 8,
+                  character: 14
+                }
+              },
+              type: BinaryExpression,
+              start: {
+                line: 8,
+                character: 11
+              },
+              end: {
+                line: 8,
+                character: 15
+              }
+            },
+            type: BinaryNegatedExpression,
+            start: {
+              line: 8,
+              character: 7
+            },
+            end: {
+              line: 8,
+              character: 16
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 8,
+          character: 6
+        },
+        end: {
+          line: 8,
+          character: 17
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 8,
+        character: 1
+      },
+      end: {
+        line: 8,
+        character: 17
+      }
+    }
+  ],
+  namespaces: [
+    test,
+    print,
+    split
+  ],
+  literals: [
+    {
+      raw: null,
+      type: NilLiteral,
+      start: {
+        line: 2,
+        character: 9
+      },
+      end: {
+        line: 2,
+        character: 13
+      }
+    },
+    {
+      value: was,
+      raw: "was",
+      type: StringLiteral,
+      start: {
+        line: 5,
+        character: 11
+      },
+      end: {
+        line: 5,
+        character: 16
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 5,
+        character: 28
+      },
+      end: {
+        line: 5,
+        character: 33
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 5,
+        character: 41
+      },
+      end: {
+        line: 5,
+        character: 46
+      }
+    },
+    {
+      value: was,
+      raw: "was",
+      type: StringLiteral,
+      start: {
+        line: 6,
+        character: 12
+      },
+      end: {
+        line: 6,
+        character: 17
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 6,
+        character: 29
+      },
+      end: {
+        line: 6,
+        character: 34
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 6,
+        character: 42
+      },
+      end: {
+        line: 6,
+        character: 47
+      }
+    },
+    {
+      value: 1.0,
+      raw: 1,
+      type: NumericLiteral,
+      start: {
+        line: 7,
+        character: 8
+      },
+      end: {
+        line: 7,
+        character: 9
+      }
+    },
+    {
+      value: 2.0,
+      raw: 2,
+      type: NumericLiteral,
+      start: {
+        line: 7,
+        character: 12
+      },
+      end: {
+        line: 7,
+        character: 13
+      }
+    },
+    {
+      value: 1.0,
+      raw: 1,
+      type: NumericLiteral,
+      start: {
+        line: 8,
+        character: 9
+      },
+      end: {
+        line: 8,
+        character: 10
+      }
+    },
+    {
+      value: 2.0,
+      raw: 2,
+      type: NumericLiteral,
+      start: {
+        line: 8,
+        character: 13
+      },
+      end: {
+        line: 8,
+        character: 14
+      }
+    }
+  ],
+  type: Chunk,
+  start: {
+    line: 1,
+    character: 1
+  },
+  end: {
+    line: 9,
+    character: 1
+  }
+}

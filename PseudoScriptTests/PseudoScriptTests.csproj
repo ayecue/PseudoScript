@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Verify.MSTest" Version="16.3.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PseudoScript\PseudoScript.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="IntrinsicsTests.RunTestWithSimpleObject.verified.txt">
+      <DependentUpon>IntrinsicsTests.cs</DependentUpon>
+    </None>
+    <None Update="IntrinsicsTests.RunTestWithManipulation.verified.txt">
+      <DependentUpon>IntrinsicsTests.cs</DependentUpon>
+    </None>
+    <None Update="IntrinsicsTests.RunTestWithImport.verified.txt">
+      <DependentUpon>IntrinsicsTests.cs</DependentUpon>
+    </None>
+    <None Update="IntrinsicsTests.RunTestWithFunction.verified.txt">
+      <DependentUpon>IntrinsicsTests.cs</DependentUpon>
+    </None>
+    <None Update="IntrinsicsTests.RunTestWithFloat.verified.txt">
+      <DependentUpon>IntrinsicsTests.cs</DependentUpon>
+    </None>
+    <None Update="IntrinsicsTests.RunTestWithEol.verified.txt">
+      <DependentUpon>IntrinsicsTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithDefaultArgs.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithEol.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithExitInLoop.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithFloat.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithForRange.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithFunction.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithIfClause.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithImport.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithInstances.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithManipulation.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithNegation.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithSimpleObject.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="InterpreterTests.RunTestWithTestInterface.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>InterpreterTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithBinaryExpressions.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithEol.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithIfClause.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithIfShorthand.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithNegation.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithObjInit.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithSimpleObject.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+    <None Update="ParserTests.LexerTestWithUnary.verified.txt">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
+      <DependentUpon>ParserTests.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+
+</Project>

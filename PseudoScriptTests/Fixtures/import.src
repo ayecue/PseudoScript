@@ -1,0 +1,3 @@
+﻿import "./native-import.src"
+
+print(nativeImportFoo)

@@ -1,0 +1,4 @@
+﻿[
+  testInterface,
+  test interface print: my message
+]

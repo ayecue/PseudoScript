@@ -1,0 +1,15 @@
+﻿test = {}
+
+test.classID = "test"
+test.here = "was"
+test.was = function()
+	print(self.here)
+end function
+
+testInstance = new test
+
+testInstance.here = "woo"
+
+print(typeof(test))
+test.was()
+testInstance.was()

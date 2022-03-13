@@ -1,0 +1,14 @@
+﻿test = function(first, second, third)
+
+end function
+
+print(test)
+print(function(inline1, inline2)
+
+end function)
+
+function myFunc(my1, my2, my3)
+
+end function
+
+print(myFunc);

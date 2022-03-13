@@ -1,0 +1,15 @@
+a /= b
+a *= b
+a -= b
+a += b
+a << b
+a >> b
+w = a >>> (b << c) >> a
+a | b
+a & b
+a ^ b
+a and b
+a or b
+a = 0.1
+b = .1
+c = 0.1e

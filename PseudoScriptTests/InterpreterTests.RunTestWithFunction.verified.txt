@@ -1,0 +1,5 @@
+﻿[
+  function anonymous(first, second, third),
+  function anonymous(inline1, inline2),
+  function myFunc(my1, my2, my3)
+]

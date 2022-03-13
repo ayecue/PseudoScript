@@ -1,0 +1,4 @@
+﻿test = get_test_interface()
+
+print(test)
+test.test("my message");

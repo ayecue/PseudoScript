@@ -1,0 +1,1380 @@
+﻿{
+  body: [
+    {
+      clauses: [
+        {
+          condition: {
+            value: true,
+            raw: true,
+            type: BooleanLiteral,
+            start: {
+              line: 1,
+              character: 5
+            },
+            end: {
+              line: 1,
+              character: 9
+            }
+          },
+          body: [
+            {
+              expression: {
+                origin: {
+                  name: print,
+                  type: Identifier,
+                  start: {
+                    line: 1,
+                    character: 16
+                  },
+                  end: {
+                    line: 1,
+                    character: 21
+                  }
+                },
+                arguments: [
+                  {
+                    value: true,
+                    raw: "true",
+                    type: StringLiteral,
+                    start: {
+                      line: 1,
+                      character: 22
+                    },
+                    end: {
+                      line: 1,
+                      character: 28
+                    }
+                  }
+                ],
+                type: CallExpression,
+                start: {
+                  line: 1,
+                  character: 21
+                },
+                end: {
+                  line: 1,
+                  character: 30
+                }
+              },
+              type: CallStatement,
+              start: {
+                line: 1,
+                character: 16
+              },
+              end: {
+                line: 1,
+                character: 30
+              }
+            }
+          ],
+          type: IfClause,
+          start: {
+            line: 1,
+            character: 1
+          },
+          end: {
+            line: 1,
+            character: 30
+          }
+        }
+      ],
+      type: IfStatement,
+      start: {
+        line: 1,
+        character: 1
+      },
+      end: {
+        line: 1,
+        character: 30
+      }
+    },
+    {
+      clauses: [
+        {
+          condition: {
+            value: false,
+            raw: false,
+            type: BooleanLiteral,
+            start: {
+              line: 2,
+              character: 5
+            },
+            end: {
+              line: 2,
+              character: 10
+            }
+          },
+          body: [
+            {
+              expression: {
+                origin: {
+                  name: print,
+                  type: Identifier,
+                  start: {
+                    line: 2,
+                    character: 17
+                  },
+                  end: {
+                    line: 2,
+                    character: 22
+                  }
+                },
+                arguments: [
+                  {
+                    value: true,
+                    raw: "true",
+                    type: StringLiteral,
+                    start: {
+                      line: 2,
+                      character: 23
+                    },
+                    end: {
+                      line: 2,
+                      character: 29
+                    }
+                  }
+                ],
+                type: CallExpression,
+                start: {
+                  line: 2,
+                  character: 22
+                },
+                end: {
+                  line: 2,
+                  character: 35
+                }
+              },
+              type: CallStatement,
+              start: {
+                line: 2,
+                character: 17
+              },
+              end: {
+                line: 2,
+                character: 35
+              }
+            }
+          ],
+          type: IfClause,
+          start: {
+            line: 2,
+            character: 1
+          },
+          end: {
+            line: 2,
+            character: 35
+          }
+        },
+        {
+          body: [
+            {
+              expression: {
+                origin: {
+                  name: print,
+                  type: Identifier,
+                  start: {
+                    line: 2,
+                    character: 36
+                  },
+                  end: {
+                    line: 2,
+                    character: 41
+                  }
+                },
+                arguments: [
+                  {
+                    value: true,
+                    raw: "true",
+                    type: StringLiteral,
+                    start: {
+                      line: 2,
+                      character: 42
+                    },
+                    end: {
+                      line: 2,
+                      character: 48
+                    }
+                  }
+                ],
+                type: CallExpression,
+                start: {
+                  line: 2,
+                  character: 41
+                },
+                end: {
+                  line: 2,
+                  character: 50
+                }
+              },
+              type: CallStatement,
+              start: {
+                line: 2,
+                character: 36
+              },
+              end: {
+                line: 2,
+                character: 50
+              }
+            }
+          ],
+          type: ElseClause,
+          start: {
+            line: 2,
+            character: 36
+          },
+          end: {
+            line: 2,
+            character: 50
+          }
+        }
+      ],
+      type: IfStatement,
+      start: {
+        line: 2,
+        character: 1
+      },
+      end: {
+        line: 2,
+        character: 50
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 3,
+            character: 1
+          },
+          end: {
+            line: 3,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            value: was,
+            raw: "was",
+            type: StringLiteral,
+            start: {
+              line: 3,
+              character: 7
+            },
+            end: {
+              line: 3,
+              character: 12
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 3,
+          character: 6
+        },
+        end: {
+          line: 3,
+          character: 14
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 3,
+        character: 1
+      },
+      end: {
+        line: 3,
+        character: 14
+      }
+    },
+    {
+      clauses: [
+        {
+          condition: {
+            value: false,
+            raw: false,
+            type: BooleanLiteral,
+            start: {
+              line: 4,
+              character: 5
+            },
+            end: {
+              line: 4,
+              character: 10
+            }
+          },
+          body: [
+            {
+              expression: {
+                origin: {
+                  name: print,
+                  type: Identifier,
+                  start: {
+                    line: 5,
+                    character: 2
+                  },
+                  end: {
+                    line: 5,
+                    character: 7
+                  }
+                },
+                arguments: [
+                  {
+                    value: false,
+                    raw: false,
+                    type: BooleanLiteral,
+                    start: {
+                      line: 5,
+                      character: 8
+                    },
+                    end: {
+                      line: 5,
+                      character: 13
+                    }
+                  }
+                ],
+                type: CallExpression,
+                start: {
+                  line: 5,
+                  character: 7
+                },
+                end: {
+                  line: 5,
+                  character: 15
+                }
+              },
+              type: CallStatement,
+              start: {
+                line: 5,
+                character: 2
+              },
+              end: {
+                line: 5,
+                character: 15
+              }
+            }
+          ],
+          type: IfClause,
+          start: {
+            line: 4,
+            character: 1
+          },
+          end: {
+            line: 6,
+            character: 5
+          }
+        },
+        {
+          body: [
+            {
+              expression: {
+                origin: {
+                  name: print,
+                  type: Identifier,
+                  start: {
+                    line: 7,
+                    character: 2
+                  },
+                  end: {
+                    line: 7,
+                    character: 7
+                  }
+                },
+                arguments: [
+                  {
+                    value: true,
+                    raw: true,
+                    type: BooleanLiteral,
+                    start: {
+                      line: 7,
+                      character: 8
+                    },
+                    end: {
+                      line: 7,
+                      character: 12
+                    }
+                  }
+                ],
+                type: CallExpression,
+                start: {
+                  line: 7,
+                  character: 7
+                },
+                end: {
+                  line: 7,
+                  character: 14
+                }
+              },
+              type: CallStatement,
+              start: {
+                line: 7,
+                character: 2
+              },
+              end: {
+                line: 7,
+                character: 14
+              }
+            }
+          ],
+          type: ElseClause,
+          start: {
+            line: 6,
+            character: 5
+          },
+          end: {
+            line: 8,
+            character: 7
+          }
+        }
+      ],
+      type: IfStatement,
+      start: {
+        line: 4,
+        character: 1
+      },
+      end: {
+        line: 8,
+        character: 7
+      }
+    },
+    {
+      variable: {
+        name: i,
+        type: Identifier,
+        start: {
+          line: 10,
+          character: 6
+        },
+        end: {
+          line: 10,
+          character: 7
+        }
+      },
+      iterator: {
+        type: ListConstructorExpression,
+        start: {
+          line: 10,
+          character: 11
+        },
+        end: {
+          line: 10,
+          character: 13
+        }
+      },
+      body: [
+        {
+          expression: {
+            origin: {
+              name: print,
+              type: Identifier,
+              start: {
+                line: 10,
+                character: 15
+              },
+              end: {
+                line: 10,
+                character: 20
+              }
+            },
+            arguments: [
+              {
+                name: i,
+                type: Identifier,
+                start: {
+                  line: 10,
+                  character: 21
+                },
+                end: {
+                  line: 10,
+                  character: 22
+                }
+              }
+            ],
+            type: CallExpression,
+            start: {
+              line: 10,
+              character: 20
+            },
+            end: {
+              line: 10,
+              character: 24
+            }
+          },
+          type: CallStatement,
+          start: {
+            line: 10,
+            character: 15
+          },
+          end: {
+            line: 10,
+            character: 24
+          }
+        }
+      ],
+      type: ForGenericStatement,
+      start: {
+        line: 10,
+        character: 1
+      },
+      end: {
+        line: 10,
+        character: 24
+      }
+    },
+    {
+      variable: {
+        name: b,
+        type: Identifier,
+        start: {
+          line: 11,
+          character: 6
+        },
+        end: {
+          line: 11,
+          character: 7
+        }
+      },
+      iterator: {
+        type: ListConstructorExpression,
+        start: {
+          line: 11,
+          character: 11
+        },
+        end: {
+          line: 11,
+          character: 13
+        }
+      },
+      body: [
+        {
+          expression: {
+            origin: {
+              name: print,
+              type: Identifier,
+              start: {
+                line: 12,
+                character: 2
+              },
+              end: {
+                line: 12,
+                character: 7
+              }
+            },
+            arguments: [
+              {
+                name: b,
+                type: Identifier,
+                start: {
+                  line: 12,
+                  character: 8
+                },
+                end: {
+                  line: 12,
+                  character: 9
+                }
+              }
+            ],
+            type: CallExpression,
+            start: {
+              line: 12,
+              character: 7
+            },
+            end: {
+              line: 12,
+              character: 11
+            }
+          },
+          type: CallStatement,
+          start: {
+            line: 12,
+            character: 2
+          },
+          end: {
+            line: 12,
+            character: 11
+          }
+        }
+      ],
+      type: ForGenericStatement,
+      start: {
+        line: 11,
+        character: 1
+      },
+      end: {
+        line: 13,
+        character: 8
+      }
+    },
+    {
+      condition: {
+        op: <,
+        left: {
+          name: i,
+          type: Identifier,
+          start: {
+            line: 14,
+            character: 8
+          },
+          end: {
+            line: 14,
+            character: 9
+          }
+        },
+        right: {
+          name: b,
+          type: Identifier,
+          start: {
+            line: 14,
+            character: 12
+          },
+          end: {
+            line: 14,
+            character: 13
+          }
+        },
+        type: BinaryExpression,
+        start: {
+          line: 14,
+          character: 10
+        },
+        end: {
+          line: 14,
+          character: 14
+        }
+      },
+      body: [
+        {
+          expression: {
+            variable: {
+              name: i,
+              type: Identifier,
+              start: {
+                line: 14,
+                character: 15
+              },
+              end: {
+                line: 14,
+                character: 16
+              }
+            },
+            init: {
+              op: +=,
+              left: {
+                name: i,
+                type: Identifier,
+                start: {
+                  line: 14,
+                  character: 15
+                },
+                end: {
+                  line: 14,
+                  character: 16
+                }
+              },
+              right: {
+                value: 1.0,
+                raw: 1,
+                type: NumericLiteral,
+                start: {
+                  line: 14,
+                  character: 20
+                },
+                end: {
+                  line: 14,
+                  character: 21
+                }
+              },
+              type: BinaryExpression,
+              start: {
+                line: 14,
+                character: 20
+              },
+              end: {
+                line: 14,
+                character: 22
+              }
+            },
+            type: AssignmentStatement,
+            start: {
+              line: 14,
+              character: 15
+            },
+            end: {
+              line: 14,
+              character: 22
+            }
+          },
+          type: CallStatement,
+          start: {
+            line: 14,
+            character: 15
+          },
+          end: {
+            line: 14,
+            character: 22
+          }
+        }
+      ],
+      type: WhileStatement,
+      start: {
+        line: 14,
+        character: 1
+      },
+      end: {
+        line: 14,
+        character: 22
+      }
+    },
+    {
+      condition: {
+        op: <,
+        left: {
+          name: b,
+          type: Identifier,
+          start: {
+            line: 15,
+            character: 8
+          },
+          end: {
+            line: 15,
+            character: 9
+          }
+        },
+        right: {
+          name: i,
+          type: Identifier,
+          start: {
+            line: 15,
+            character: 12
+          },
+          end: {
+            line: 15,
+            character: 13
+          }
+        },
+        type: BinaryExpression,
+        start: {
+          line: 15,
+          character: 10
+        },
+        end: {
+          line: 15,
+          character: 14
+        }
+      },
+      body: [
+        {
+          expression: {
+            variable: {
+              name: b,
+              type: Identifier,
+              start: {
+                line: 16,
+                character: 2
+              },
+              end: {
+                line: 16,
+                character: 3
+              }
+            },
+            init: {
+              op: +=,
+              left: {
+                name: b,
+                type: Identifier,
+                start: {
+                  line: 16,
+                  character: 2
+                },
+                end: {
+                  line: 16,
+                  character: 3
+                }
+              },
+              right: {
+                value: 1.0,
+                raw: 1,
+                type: NumericLiteral,
+                start: {
+                  line: 16,
+                  character: 7
+                },
+                end: {
+                  line: 16,
+                  character: 8
+                }
+              },
+              type: BinaryExpression,
+              start: {
+                line: 16,
+                character: 7
+              },
+              end: {
+                line: 16,
+                character: 9
+              }
+            },
+            type: AssignmentStatement,
+            start: {
+              line: 16,
+              character: 2
+            },
+            end: {
+              line: 16,
+              character: 9
+            }
+          },
+          type: CallStatement,
+          start: {
+            line: 16,
+            character: 2
+          },
+          end: {
+            line: 16,
+            character: 9
+          }
+        }
+      ],
+      type: WhileStatement,
+      start: {
+        line: 15,
+        character: 1
+      },
+      end: {
+        line: 17,
+        character: 10
+      }
+    },
+    {
+      variable: {
+        name: myFunction,
+        type: Identifier,
+        start: {
+          line: 18,
+          character: 1
+        },
+        end: {
+          line: 18,
+          character: 11
+        }
+      },
+      init: {
+        arguments: [
+          {
+            name: v,
+            type: Identifier,
+            start: {
+              line: 18,
+              character: 23
+            },
+            end: {
+              line: 18,
+              character: 24
+            }
+          }
+        ],
+        body: [
+          {
+            expression: {
+              origin: {
+                name: print,
+                type: Identifier,
+                start: {
+                  line: 18,
+                  character: 26
+                },
+                end: {
+                  line: 18,
+                  character: 31
+                }
+              },
+              arguments: [
+                {
+                  name: v,
+                  type: Identifier,
+                  start: {
+                    line: 18,
+                    character: 32
+                  },
+                  end: {
+                    line: 18,
+                    character: 33
+                  }
+                }
+              ],
+              type: CallExpression,
+              start: {
+                line: 18,
+                character: 31
+              },
+              end: {
+                line: 18,
+                character: 35
+              }
+            },
+            type: CallStatement,
+            start: {
+              line: 18,
+              character: 26
+            },
+            end: {
+              line: 18,
+              character: 35
+            }
+          }
+        ],
+        name: anonymous,
+        type: FunctionDeclaration,
+        start: {
+          line: 18,
+          character: 14
+        },
+        end: {
+          line: 18,
+          character: 35
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 18,
+        character: 1
+      },
+      end: {
+        line: 19,
+        character: 14
+      }
+    },
+    {
+      variable: {
+        name: otherFunction,
+        type: Identifier,
+        start: {
+          line: 19,
+          character: 1
+        },
+        end: {
+          line: 19,
+          character: 14
+        }
+      },
+      init: {
+        arguments: [
+          {
+            name: n,
+            type: Identifier,
+            start: {
+              line: 19,
+              character: 26
+            },
+            end: {
+              line: 19,
+              character: 27
+            }
+          }
+        ],
+        body: [
+          {
+            expression: {
+              origin: {
+                name: print,
+                type: Identifier,
+                start: {
+                  line: 20,
+                  character: 2
+                },
+                end: {
+                  line: 20,
+                  character: 7
+                }
+              },
+              arguments: [
+                {
+                  name: n,
+                  type: Identifier,
+                  start: {
+                    line: 20,
+                    character: 8
+                  },
+                  end: {
+                    line: 20,
+                    character: 9
+                  }
+                }
+              ],
+              type: CallExpression,
+              start: {
+                line: 20,
+                character: 7
+              },
+              end: {
+                line: 20,
+                character: 11
+              }
+            },
+            type: CallStatement,
+            start: {
+              line: 20,
+              character: 2
+            },
+            end: {
+              line: 20,
+              character: 11
+            }
+          }
+        ],
+        name: anonymous,
+        type: FunctionDeclaration,
+        start: {
+          line: 19,
+          character: 17
+        },
+        end: {
+          line: 21,
+          character: 13
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 19,
+        character: 1
+      },
+      end: {
+        line: 21,
+        character: 14
+      }
+    },
+    {
+      arguments: [
+        {
+          name: m,
+          type: Identifier,
+          start: {
+            line: 23,
+            character: 10
+          },
+          end: {
+            line: 23,
+            character: 11
+          }
+        }
+      ],
+      body: [
+        {
+          arg: {
+            value: was,
+            raw: "was",
+            type: StringLiteral,
+            start: {
+              line: 23,
+              character: 20
+            },
+            end: {
+              line: 23,
+              character: 25
+            }
+          },
+          type: ReturnStatement,
+          start: {
+            line: 23,
+            character: 13
+          },
+          end: {
+            line: 23,
+            character: 26
+          }
+        }
+      ],
+      name: anonymous,
+      type: FunctionDeclaration,
+      start: {
+        line: 23,
+        character: 1
+      },
+      end: {
+        line: 23,
+        character: 26
+      }
+    },
+    {
+      arguments: [
+        {
+          name: b,
+          type: Identifier,
+          start: {
+            line: 26,
+            character: 10
+          },
+          end: {
+            line: 26,
+            character: 11
+          }
+        }
+      ],
+      body: [
+        {
+          clauses: [
+            {
+              condition: {
+                name: a,
+                type: Identifier,
+                start: {
+                  line: 27,
+                  character: 6
+                },
+                end: {
+                  line: 27,
+                  character: 7
+                }
+              },
+              body: [
+                {
+                  arg: {
+                    value: foo,
+                    raw: "foo",
+                    type: StringLiteral,
+                    start: {
+                      line: 27,
+                      character: 21
+                    },
+                    end: {
+                      line: 27,
+                      character: 26
+                    }
+                  },
+                  type: ReturnStatement,
+                  start: {
+                    line: 27,
+                    character: 14
+                  },
+                  end: {
+                    line: 27,
+                    character: 27
+                  }
+                }
+              ],
+              type: IfClause,
+              start: {
+                line: 27,
+                character: 2
+              },
+              end: {
+                line: 27,
+                character: 27
+              }
+            }
+          ],
+          type: IfStatement,
+          start: {
+            line: 27,
+            character: 2
+          },
+          end: {
+            line: 27,
+            character: 27
+          }
+        }
+      ],
+      name: anonymous,
+      type: FunctionDeclaration,
+      start: {
+        line: 26,
+        character: 1
+      },
+      end: {
+        line: 28,
+        character: 13
+      }
+    }
+  ],
+  namespaces: [
+    print,
+    i,
+    b,
+    myFunction,
+    v,
+    otherFunction,
+    n,
+    m,
+    a
+  ],
+  literals: [
+    {
+      value: true,
+      raw: true,
+      type: BooleanLiteral,
+      start: {
+        line: 1,
+        character: 5
+      },
+      end: {
+        line: 1,
+        character: 9
+      }
+    },
+    {
+      value: true,
+      raw: "true",
+      type: StringLiteral,
+      start: {
+        line: 1,
+        character: 22
+      },
+      end: {
+        line: 1,
+        character: 28
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 2,
+        character: 5
+      },
+      end: {
+        line: 2,
+        character: 10
+      }
+    },
+    {
+      value: true,
+      raw: "true",
+      type: StringLiteral,
+      start: {
+        line: 2,
+        character: 23
+      },
+      end: {
+        line: 2,
+        character: 29
+      }
+    },
+    {
+      value: true,
+      raw: "true",
+      type: StringLiteral,
+      start: {
+        line: 2,
+        character: 42
+      },
+      end: {
+        line: 2,
+        character: 48
+      }
+    },
+    {
+      value: was,
+      raw: "was",
+      type: StringLiteral,
+      start: {
+        line: 3,
+        character: 7
+      },
+      end: {
+        line: 3,
+        character: 12
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 4,
+        character: 5
+      },
+      end: {
+        line: 4,
+        character: 10
+      }
+    },
+    {
+      value: false,
+      raw: false,
+      type: BooleanLiteral,
+      start: {
+        line: 5,
+        character: 8
+      },
+      end: {
+        line: 5,
+        character: 13
+      }
+    },
+    {
+      value: true,
+      raw: true,
+      type: BooleanLiteral,
+      start: {
+        line: 7,
+        character: 8
+      },
+      end: {
+        line: 7,
+        character: 12
+      }
+    },
+    {
+      value: 1.0,
+      raw: 1,
+      type: NumericLiteral,
+      start: {
+        line: 14,
+        character: 20
+      },
+      end: {
+        line: 14,
+        character: 21
+      }
+    },
+    {
+      value: 1.0,
+      raw: 1,
+      type: NumericLiteral,
+      start: {
+        line: 16,
+        character: 7
+      },
+      end: {
+        line: 16,
+        character: 8
+      }
+    },
+    {
+      value: was,
+      raw: "was",
+      type: StringLiteral,
+      start: {
+        line: 23,
+        character: 20
+      },
+      end: {
+        line: 23,
+        character: 25
+      }
+    },
+    {
+      value: foo,
+      raw: "foo",
+      type: StringLiteral,
+      start: {
+        line: 27,
+        character: 21
+      },
+      end: {
+        line: 27,
+        character: 26
+      }
+    }
+  ],
+  type: Chunk,
+  start: {
+    line: 1,
+    character: 1
+  },
+  end: {
+    line: 28,
+    character: 13
+  }
+}

@@ -1,0 +1,1210 @@
+﻿[
+  {
+    type: Keyword,
+    value: if,
+    line: 1,
+    range: {
+      End: {
+        Value: 2
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 3
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 1,
+    range: {
+      Start: {
+        Value: 3
+      },
+      End: {
+        Value: 4
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 4
+      },
+      End: {
+        Value: 5
+      }
+    }
+  },
+  {
+    type: BooleanLiteral,
+    value: true,
+    line: 1,
+    range: {
+      Start: {
+        Value: 4
+      },
+      End: {
+        Value: 8
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 5
+      },
+      End: {
+        Value: 9
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 1,
+    range: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 9
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 9
+      },
+      End: {
+        Value: 10
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: then,
+    line: 1,
+    range: {
+      Start: {
+        Value: 10
+      },
+      End: {
+        Value: 14
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 11
+      },
+      End: {
+        Value: 15
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 1,
+    range: {
+      Start: {
+        Value: 14
+      },
+      End: {
+        Value: 15
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 15
+      },
+      End: {
+        Value: 16
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 1,
+    range: {
+      Start: {
+        Value: 15
+      },
+      End: {
+        Value: 16
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 16
+      },
+      End: {
+        Value: 17
+      }
+    }
+  },
+  {
+    type: Identifier,
+    value: print,
+    line: 2,
+    lineStart: 17,
+    range: {
+      Start: {
+        Value: 18
+      },
+      End: {
+        Value: 23
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 2
+      },
+      End: {
+        Value: 7
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 2,
+    lineStart: 17,
+    range: {
+      Start: {
+        Value: 23
+      },
+      End: {
+        Value: 24
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 7
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: StringLiteral,
+    value: true,
+    line: 2,
+    lineStart: 17,
+    range: {
+      Start: {
+        Value: 24
+      },
+      End: {
+        Value: 30
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 14
+      }
+    },
+    lastLine: 2,
+    lastLineStart: 17
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 2,
+    lineStart: 17,
+    range: {
+      Start: {
+        Value: 30
+      },
+      End: {
+        Value: 31
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 14
+      },
+      End: {
+        Value: 15
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 2,
+    lineStart: 17,
+    range: {
+      Start: {
+        Value: 31
+      },
+      End: {
+        Value: 32
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 15
+      },
+      End: {
+        Value: 16
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: else,
+    line: 3,
+    lineStart: 33,
+    range: {
+      Start: {
+        Value: 33
+      },
+      End: {
+        Value: 37
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 5
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 3,
+    lineStart: 33,
+    range: {
+      Start: {
+        Value: 37
+      },
+      End: {
+        Value: 38
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 5
+      },
+      End: {
+        Value: 6
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 3,
+    lineStart: 33,
+    range: {
+      Start: {
+        Value: 38
+      },
+      End: {
+        Value: 39
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 6
+      },
+      End: {
+        Value: 7
+      }
+    }
+  },
+  {
+    type: Identifier,
+    value: print,
+    line: 4,
+    lineStart: 40,
+    range: {
+      Start: {
+        Value: 41
+      },
+      End: {
+        Value: 46
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 2
+      },
+      End: {
+        Value: 7
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 4,
+    lineStart: 40,
+    range: {
+      Start: {
+        Value: 46
+      },
+      End: {
+        Value: 47
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 7
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: StringLiteral,
+    value: false,
+    line: 4,
+    lineStart: 40,
+    range: {
+      Start: {
+        Value: 47
+      },
+      End: {
+        Value: 54
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 15
+      }
+    },
+    lastLine: 4,
+    lastLineStart: 40
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 4,
+    lineStart: 40,
+    range: {
+      Start: {
+        Value: 54
+      },
+      End: {
+        Value: 55
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 15
+      },
+      End: {
+        Value: 16
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 4,
+    lineStart: 40,
+    range: {
+      Start: {
+        Value: 55
+      },
+      End: {
+        Value: 56
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 16
+      },
+      End: {
+        Value: 17
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: end if,
+    line: 5,
+    lineStart: 57,
+    range: {
+      Start: {
+        Value: 57
+      },
+      End: {
+        Value: 63
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 7
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 5,
+    lineStart: 57,
+    range: {
+      Start: {
+        Value: 63
+      },
+      End: {
+        Value: 64
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 7
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 5,
+    lineStart: 57,
+    range: {
+      Start: {
+        Value: 64
+      },
+      End: {
+        Value: 65
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 9
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 6,
+    lineStart: 66,
+    range: {
+      Start: {
+        Value: 66
+      },
+      End: {
+        Value: 67
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 2
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: while,
+    line: 7,
+    lineStart: 68,
+    range: {
+      Start: {
+        Value: 68
+      },
+      End: {
+        Value: 73
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 6
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 7,
+    lineStart: 68,
+    range: {
+      Start: {
+        Value: 74
+      },
+      End: {
+        Value: 75
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 7
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: BooleanLiteral,
+    value: false,
+    line: 7,
+    lineStart: 68,
+    range: {
+      Start: {
+        Value: 75
+      },
+      End: {
+        Value: 80
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 13
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 7,
+    lineStart: 68,
+    range: {
+      Start: {
+        Value: 80
+      },
+      End: {
+        Value: 81
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 13
+      },
+      End: {
+        Value: 14
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 7,
+    lineStart: 68,
+    range: {
+      Start: {
+        Value: 81
+      },
+      End: {
+        Value: 82
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 14
+      },
+      End: {
+        Value: 15
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 7,
+    lineStart: 68,
+    range: {
+      Start: {
+        Value: 82
+      },
+      End: {
+        Value: 83
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 15
+      },
+      End: {
+        Value: 16
+      }
+    }
+  },
+  {
+    type: Identifier,
+    value: print,
+    line: 8,
+    lineStart: 84,
+    range: {
+      Start: {
+        Value: 85
+      },
+      End: {
+        Value: 90
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 2
+      },
+      End: {
+        Value: 7
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 8,
+    lineStart: 84,
+    range: {
+      Start: {
+        Value: 90
+      },
+      End: {
+        Value: 91
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 7
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: StringLiteral,
+    value: foo,
+    line: 8,
+    lineStart: 84,
+    range: {
+      Start: {
+        Value: 91
+      },
+      End: {
+        Value: 96
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 13
+      }
+    },
+    lastLine: 8,
+    lastLineStart: 84
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 8,
+    lineStart: 84,
+    range: {
+      Start: {
+        Value: 96
+      },
+      End: {
+        Value: 97
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 13
+      },
+      End: {
+        Value: 14
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 8,
+    lineStart: 84,
+    range: {
+      Start: {
+        Value: 97
+      },
+      End: {
+        Value: 98
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 14
+      },
+      End: {
+        Value: 15
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: end while,
+    line: 9,
+    lineStart: 99,
+    range: {
+      Start: {
+        Value: 99
+      },
+      End: {
+        Value: 108
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 10
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 9,
+    lineStart: 99,
+    range: {
+      Start: {
+        Value: 108
+      },
+      End: {
+        Value: 109
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 10
+      },
+      End: {
+        Value: 11
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 9,
+    lineStart: 99,
+    range: {
+      Start: {
+        Value: 109
+      },
+      End: {
+        Value: 110
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 11
+      },
+      End: {
+        Value: 12
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 10,
+    lineStart: 111,
+    range: {
+      Start: {
+        Value: 111
+      },
+      End: {
+        Value: 112
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 2
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: for,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 113
+      },
+      End: {
+        Value: 116
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 4
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 117
+      },
+      End: {
+        Value: 118
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 5
+      },
+      End: {
+        Value: 6
+      }
+    }
+  },
+  {
+    type: Identifier,
+    value: foo,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 118
+      },
+      End: {
+        Value: 121
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 6
+      },
+      End: {
+        Value: 9
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: in,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 122
+      },
+      End: {
+        Value: 124
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 10
+      },
+      End: {
+        Value: 12
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: [,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 125
+      },
+      End: {
+        Value: 126
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 13
+      },
+      End: {
+        Value: 14
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: ],
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 126
+      },
+      End: {
+        Value: 127
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 14
+      },
+      End: {
+        Value: 15
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 127
+      },
+      End: {
+        Value: 128
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 15
+      },
+      End: {
+        Value: 16
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 128
+      },
+      End: {
+        Value: 129
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 16
+      },
+      End: {
+        Value: 17
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 11,
+    lineStart: 113,
+    range: {
+      Start: {
+        Value: 129
+      },
+      End: {
+        Value: 130
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 17
+      },
+      End: {
+        Value: 18
+      }
+    }
+  },
+  {
+    type: Identifier,
+    value: print,
+    line: 12,
+    lineStart: 131,
+    range: {
+      Start: {
+        Value: 132
+      },
+      End: {
+        Value: 137
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 2
+      },
+      End: {
+        Value: 7
+      }
+    }
+  },
+  {
+    type: Punctuator,
+    value: (,
+    line: 12,
+    lineStart: 131,
+    range: {
+      Start: {
+        Value: 137
+      },
+      End: {
+        Value: 138
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 7
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: StringLiteral,
+    value: foo,
+    line: 12,
+    lineStart: 131,
+    range: {
+      Start: {
+        Value: 138
+      },
+      End: {
+        Value: 143
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 13
+      }
+    },
+    lastLine: 12,
+    lastLineStart: 131
+  },
+  {
+    type: Punctuator,
+    value: ),
+    line: 12,
+    lineStart: 131,
+    range: {
+      Start: {
+        Value: 143
+      },
+      End: {
+        Value: 144
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 13
+      },
+      End: {
+        Value: 14
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 12,
+    lineStart: 131,
+    range: {
+      Start: {
+        Value: 144
+      },
+      End: {
+        Value: 145
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 14
+      },
+      End: {
+        Value: 15
+      }
+    }
+  },
+  {
+    type: Keyword,
+    value: end for,
+    line: 13,
+    lineStart: 146,
+    range: {
+      Start: {
+        Value: 146
+      },
+      End: {
+        Value: 153
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 1
+      },
+      End: {
+        Value: 8
+      }
+    }
+  },
+  {
+    type: EOL,
+    value: ;,
+    line: 13,
+    lineStart: 146,
+    range: {
+      Start: {
+        Value: 153
+      },
+      End: {
+        Value: 154
+      }
+    },
+    lineRange: {
+      Start: {
+        Value: 8
+      },
+      End: {
+        Value: 9
+      }
+    }
+  }
+]

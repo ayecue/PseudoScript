@@ -1,0 +1,8 @@
+﻿[
+  0,
+  test,
+  hello,
+  foo,
+  False,
+  hello
+]

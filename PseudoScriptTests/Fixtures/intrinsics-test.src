@@ -1,0 +1,90 @@
+﻿testString = "  INDEXOF my super .long String For. testing intrinsics. INDEXOF "
+
+print(testString.replace("long"))
+print(testString.trim())
+print(testString.toUpperCase())
+print(testString.toLowerCase())
+print(testString.length())
+print(testString.indexOf("INDEXOF"))
+print(testString.lastIndexOf("INDEXOF"))
+print(testString.contains("testing"))
+print(testString.contains("unknown"))
+print(testString.split("."))
+print(testString.slice(-4))
+print(testString.slice(0))
+
+testMap = { "was": "xx", "foo": "bar", "bar": 123 }
+
+print(testMap.hasIndex("foo"))
+print(testMap.hasIndex("unknown"))
+print(testMap.indexOf(123))
+testMap.forEach(function(item, key)
+	print(item)
+	print(key)
+end function)
+print(testMap.find(function(item, key)
+	return key == "foo"
+end function))
+print(testMap.values())
+print(testMap.keys())
+print(testMap.length())
+
+tempMap = {} + testMap
+
+tempMap.delete("bar")
+print(tempMap.keys())
+print(testMap.keys())
+
+testList = ["bar", "foo"]
+
+print(testList)
+print(testList.length())
+
+testList.push("last")
+print(testList)
+
+testList.unshift("first")
+print(testList)
+
+print(testList.pop())
+print(testList)
+
+print(testList.shift())
+print(testList)
+
+print(testList.find(function(item)
+	return item == "foo"
+end function))
+
+print(testList.indexOf("foo"))
+print(testList.slice(-1))
+print(testList.slice(0))
+print(testList.slice(0, 0))
+print(testList.slice(0, 1))
+
+print(testList.map(function(item, index)
+	return item + index
+end function))
+
+print(testList.reduce(function(result, item, index)
+	result[index] = item
+	return result
+end function, {
+	"was": "foo"
+}))
+
+print(testList.join())
+print(testList.join(" - x - "))
+
+tempList = ["xxx"] + testList
+
+print(tempList.removeAt(-1))
+print(tempList)
+
+print(testList.values())
+print(testList.keys())
+
+testList.forEach(function(item, key)
+	print(item)
+	print(key)
+end function)

@@ -1,0 +1,4 @@
+﻿for i in range(0,100)
+	var = i * 100
+	print(var)
+end for

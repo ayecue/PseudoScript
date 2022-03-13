@@ -1,0 +1,655 @@
+﻿{
+  body: [
+    {
+      variable: {
+        name: valueOfIdentifier,
+        type: Identifier,
+        start: {
+          line: 1,
+          character: 1
+        },
+        end: {
+          line: 1,
+          character: 18
+        }
+      },
+      init: {
+        value: foo,
+        raw: "foo",
+        type: StringLiteral,
+        start: {
+          line: 1,
+          character: 21
+        },
+        end: {
+          line: 1,
+          character: 26
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 1,
+        character: 1
+      },
+      end: {
+        line: 1,
+        character: 27
+      }
+    },
+    {
+      variable: {
+        name: myObject,
+        type: Identifier,
+        start: {
+          line: 3,
+          character: 1
+        },
+        end: {
+          line: 3,
+          character: 9
+        }
+      },
+      init: {
+        fields: [
+          {
+            value: {
+              fields: [
+                {
+                  value: {
+                    value: 123,
+                    raw: "123",
+                    type: StringLiteral,
+                    start: {
+                      line: 5,
+                      character: 14
+                    },
+                    end: {
+                      line: 5,
+                      character: 19
+                    }
+                  },
+                  key: another,
+                  type: MapKeyString,
+                  start: {
+                    line: 5,
+                    character: 3
+                  },
+                  end: {
+                    line: 5,
+                    character: 19
+                  }
+                }
+              ],
+              type: MapConstructorExpression,
+              start: {
+                line: 4,
+                character: 10
+              },
+              end: {
+                line: 6,
+                character: 3
+              }
+            },
+            key: test,
+            type: MapKeyString,
+            start: {
+              line: 4,
+              character: 2
+            },
+            end: {
+              line: 6,
+              character: 3
+            }
+          },
+          {
+            value: {
+              value: 123,
+              raw: "123",
+              type: StringLiteral,
+              start: {
+                line: 7,
+                character: 11
+              },
+              end: {
+                line: 7,
+                character: 16
+              }
+            },
+            key: value,
+            type: MapKeyString,
+            start: {
+              line: 7,
+              character: 2
+            },
+            end: {
+              line: 7,
+              character: 16
+            }
+          },
+          {
+            value: {
+              name: valueOfIdentifier,
+              type: Identifier,
+              start: {
+                line: 8,
+                character: 10
+              },
+              end: {
+                line: 8,
+                character: 27
+              }
+            },
+            key: idtf,
+            type: MapKeyString,
+            start: {
+              line: 8,
+              character: 2
+            },
+            end: {
+              line: 8,
+              character: 27
+            }
+          }
+        ],
+        type: MapConstructorExpression,
+        start: {
+          line: 3,
+          character: 12
+        },
+        end: {
+          line: 9,
+          character: 2
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 3,
+        character: 1
+      },
+      end: {
+        line: 9,
+        character: 3
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 11,
+            character: 1
+          },
+          end: {
+            line: 11,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            fields: [
+              {
+                value: {
+                  origin: {
+                    origin: {
+                      name: myObject,
+                      type: Identifier,
+                      start: {
+                        line: 11,
+                        character: 8
+                      },
+                      end: {
+                        line: 11,
+                        character: 16
+                      }
+                    },
+                    indexer: .,
+                    identifier: {
+                      name: test,
+                      type: Identifier,
+                      start: {
+                        line: 11,
+                        character: 17
+                      },
+                      end: {
+                        line: 11,
+                        character: 21
+                      }
+                    },
+                    type: MemberExpression,
+                    start: {
+                      line: 11,
+                      character: 16
+                    },
+                    end: {
+                      line: 11,
+                      character: 22
+                    }
+                  },
+                  indexer: .,
+                  identifier: {
+                    name: another,
+                    type: Identifier,
+                    start: {
+                      line: 11,
+                      character: 22
+                    },
+                    end: {
+                      line: 11,
+                      character: 29
+                    }
+                  },
+                  type: MemberExpression,
+                  start: {
+                    line: 11,
+                    character: 21
+                  },
+                  end: {
+                    line: 11,
+                    character: 30
+                  }
+                },
+                type: ListValue,
+                start: {
+                  line: 11,
+                  character: 21
+                },
+                end: {
+                  line: 11,
+                  character: 30
+                }
+              },
+              {
+                value: {
+                  origin: {
+                    name: myObject,
+                    type: Identifier,
+                    start: {
+                      line: 11,
+                      character: 31
+                    },
+                    end: {
+                      line: 11,
+                      character: 39
+                    }
+                  },
+                  indexer: .,
+                  identifier: {
+                    name: value,
+                    type: Identifier,
+                    start: {
+                      line: 11,
+                      character: 40
+                    },
+                    end: {
+                      line: 11,
+                      character: 45
+                    }
+                  },
+                  type: MemberExpression,
+                  start: {
+                    line: 11,
+                    character: 39
+                  },
+                  end: {
+                    line: 11,
+                    character: 46
+                  }
+                },
+                type: ListValue,
+                start: {
+                  line: 11,
+                  character: 39
+                },
+                end: {
+                  line: 11,
+                  character: 46
+                }
+              },
+              {
+                value: {
+                  origin: {
+                    name: myObject,
+                    type: Identifier,
+                    start: {
+                      line: 11,
+                      character: 47
+                    },
+                    end: {
+                      line: 11,
+                      character: 55
+                    }
+                  },
+                  indexer: .,
+                  identifier: {
+                    name: idtf,
+                    type: Identifier,
+                    start: {
+                      line: 11,
+                      character: 56
+                    },
+                    end: {
+                      line: 11,
+                      character: 60
+                    }
+                  },
+                  type: MemberExpression,
+                  start: {
+                    line: 11,
+                    character: 55
+                  },
+                  end: {
+                    line: 11,
+                    character: 61
+                  }
+                },
+                type: ListValue,
+                start: {
+                  line: 11,
+                  character: 55
+                },
+                end: {
+                  line: 11,
+                  character: 61
+                }
+              }
+            ],
+            type: ListConstructorExpression,
+            start: {
+              line: 11,
+              character: 7
+            },
+            end: {
+              line: 11,
+              character: 61
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 11,
+          character: 6
+        },
+        end: {
+          line: 11,
+          character: 63
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 11,
+        character: 1
+      },
+      end: {
+        line: 11,
+        character: 63
+      }
+    },
+    {
+      variable: {
+        name: myList,
+        type: Identifier,
+        start: {
+          line: 13,
+          character: 1
+        },
+        end: {
+          line: 13,
+          character: 7
+        }
+      },
+      init: {
+        fields: [
+          {
+            value: {
+              fields: [
+                {
+                  value: {
+                    value: 123,
+                    raw: "123",
+                    type: StringLiteral,
+                    start: {
+                      line: 15,
+                      character: 14
+                    },
+                    end: {
+                      line: 15,
+                      character: 19
+                    }
+                  },
+                  key: another,
+                  type: MapKeyString,
+                  start: {
+                    line: 15,
+                    character: 3
+                  },
+                  end: {
+                    line: 15,
+                    character: 19
+                  }
+                }
+              ],
+              type: MapConstructorExpression,
+              start: {
+                line: 14,
+                character: 2
+              },
+              end: {
+                line: 16,
+                character: 3
+              }
+            },
+            type: ListValue,
+            start: {
+              line: 14,
+              character: 2
+            },
+            end: {
+              line: 16,
+              character: 3
+            }
+          },
+          {
+            value: {
+              value: 123,
+              raw: "123",
+              type: StringLiteral,
+              start: {
+                line: 17,
+                character: 2
+              },
+              end: {
+                line: 17,
+                character: 7
+              }
+            },
+            type: ListValue,
+            start: {
+              line: 17,
+              character: 2
+            },
+            end: {
+              line: 17,
+              character: 7
+            }
+          },
+          {
+            value: {
+              name: valueOfIdentifier,
+              type: Identifier,
+              start: {
+                line: 18,
+                character: 2
+              },
+              end: {
+                line: 18,
+                character: 19
+              }
+            },
+            type: ListValue,
+            start: {
+              line: 18,
+              character: 2
+            },
+            end: {
+              line: 18,
+              character: 19
+            }
+          }
+        ],
+        type: ListConstructorExpression,
+        start: {
+          line: 13,
+          character: 10
+        },
+        end: {
+          line: 19,
+          character: 2
+        }
+      },
+      type: AssignmentStatement,
+      start: {
+        line: 13,
+        character: 1
+      },
+      end: {
+        line: 19,
+        character: 3
+      }
+    },
+    {
+      expression: {
+        origin: {
+          name: print,
+          type: Identifier,
+          start: {
+            line: 21,
+            character: 1
+          },
+          end: {
+            line: 21,
+            character: 6
+          }
+        },
+        arguments: [
+          {
+            name: myList,
+            type: Identifier,
+            start: {
+              line: 21,
+              character: 7
+            },
+            end: {
+              line: 21,
+              character: 13
+            }
+          }
+        ],
+        type: CallExpression,
+        start: {
+          line: 21,
+          character: 6
+        },
+        end: {
+          line: 21,
+          character: 14
+        }
+      },
+      type: CallStatement,
+      start: {
+        line: 21,
+        character: 1
+      },
+      end: {
+        line: 21,
+        character: 14
+      }
+    }
+  ],
+  namespaces: [
+    valueOfIdentifier,
+    myObject,
+    print,
+    test,
+    another,
+    value,
+    idtf,
+    myList
+  ],
+  literals: [
+    {
+      value: foo,
+      raw: "foo",
+      type: StringLiteral,
+      start: {
+        line: 1,
+        character: 21
+      },
+      end: {
+        line: 1,
+        character: 26
+      }
+    },
+    {
+      value: 123,
+      raw: "123",
+      type: StringLiteral,
+      start: {
+        line: 5,
+        character: 14
+      },
+      end: {
+        line: 5,
+        character: 19
+      }
+    },
+    {
+      value: 123,
+      raw: "123",
+      type: StringLiteral,
+      start: {
+        line: 7,
+        character: 11
+      },
+      end: {
+        line: 7,
+        character: 16
+      }
+    },
+    {
+      value: 123,
+      raw: "123",
+      type: StringLiteral,
+      start: {
+        line: 15,
+        character: 14
+      },
+      end: {
+        line: 15,
+        character: 19
+      }
+    },
+    {
+      value: 123,
+      raw: "123",
+      type: StringLiteral,
+      start: {
+        line: 17,
+        character: 2
+      },
+      end: {
+        line: 17,
+        character: 7
+      }
+    }
+  ],
+  type: Chunk,
+  start: {
+    line: 1,
+    character: 1
+  },
+  end: {
+    line: 21,
+    character: 14
+  }
+}

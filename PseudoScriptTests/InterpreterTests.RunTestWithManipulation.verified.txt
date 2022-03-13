@@ -1,0 +1,8 @@
+﻿[
+  { see: 124578, foo: 123, bar: True, lore: moo },
+  [ 123456, xxx, 123, foo ],
+  { foo: 123, bar: True, lore: moo },
+  [ xxx, 123, foo ],
+  { foo: 123, bar: True, lore: moo },
+  [ xxx, 123, foo ]
+]
