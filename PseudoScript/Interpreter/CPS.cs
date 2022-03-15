@@ -59,7 +59,7 @@ namespace PseudoScript.Interpreter
                 case AstProvider.Type.ReturnStatement:
                     return new Return((AstProvider.ReturnStatement)item, context.target).Build((x) => Visit(x));
                 case AstProvider.Type.BreakStatement:
-                    return new Continue((AstProvider.BreakStatement)item, context.target).Build((x) => Visit(x));
+                    return new Break((AstProvider.BreakStatement)item, context.target).Build((x) => Visit(x));
                 case AstProvider.Type.ContinueStatement:
                     return new Continue((AstProvider.ContinueStatement)item, context.target).Build((x) => Visit(x));
                 case AstProvider.Type.CallExpression:
@@ -70,6 +70,11 @@ namespace PseudoScript.Interpreter
                     AstProvider.ImportExpression importExpr = (AstProvider.ImportExpression)item;
                     string target = context.resourceHandler.GetTargetRelativeTo(context.target, importExpr.directory);
                     string code = context.resourceHandler.Get(target);
+
+                    if (code == null)
+                    {
+                        throw new InterpreterException(string.Format("Cannot find import {0}.", context.target));
+                    }
 
                     context.currentTarget = target;
                     Import importStatement = new Import(importExpr, target, code).Build((x) => Visit(x));

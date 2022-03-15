@@ -14,32 +14,44 @@ namespace PseudoScript.Interpreter
         public Dictionary<string, CustomValue> api;
         public List<string> argv;
         public ResourceHandler resourceHandler;
+        public OutputHandler outputHandler;
         public Debugger debugger;
 
-        public Options(string? target, Dictionary<string, CustomValue>? api, List<string>? argv, ResourceHandler? resourceHandler, Debugger? debugger)
+        public Options(string? target, Dictionary<string, CustomValue>? api, List<string>? argv, ResourceHandler? resourceHandler, OutputHandler? outputHandler, Debugger? debugger)
         {
             this.target = target ?? "unknown";
-            this.api = api ?? new Dictionary<string, CustomValue>();
+            this.api = api ?? Intrinsics.Init();
             this.argv = argv ?? new List<string>();
             this.resourceHandler = resourceHandler ?? new DefaultResourceHandler();
+            this.outputHandler = outputHandler ?? new DefaultOutputHandler();
             this.debugger = debugger ?? new Debugger();
         }
     }
 
     public class Interpreter
     {
-        public string target;
-        public Dictionary<string, CustomValue> api;
-        public List<string> argv;
-        public ResourceHandler resourceHandler;
-        public Debugger debugger;
-        public Context apiContext;
-        public Context globalContext;
-        public CPS cps;
+        string target;
+        Dictionary<string, CustomValue> api;
+        List<string> argv;
+        ResourceHandler resourceHandler;
+        OutputHandler outputHandler;
+        Debugger debugger;
+        Context apiContext;
+        Context globalContext;
+        CPS cps;
+
+        public Interpreter() : this(new Options(null, null, null, null, null, null)) { }
+
+        public Interpreter(string target) : this(new Options(target, null, null, null, null, null)) { }
+
+        public Interpreter(Dictionary<string, CustomValue> api) : this(new Options(null, api, null, null, null, null)) { }
+
+        public Interpreter(string target, Dictionary<string, CustomValue> api) : this(new Options(target, api, null, null, null, null)) { }
 
         public Interpreter(Options options)
         {
             resourceHandler = options.resourceHandler;
+            outputHandler = options.outputHandler;
             debugger = options.debugger;
             api = options.api;
             argv = options.argv;
@@ -59,7 +71,7 @@ namespace PseudoScript.Interpreter
             CPS.Context cpsCtx = new(target, resourceHandler);
             cps = new CPS(cpsCtx);
 
-            Context.Options apiCtxOptions = new(target, null, null, null, true, false, debugger, cps, null);
+            Context.Options apiCtxOptions = new(target, null, null, null, true, false, debugger, outputHandler, cps, null);
             apiContext = new Context(apiCtxOptions);
             globalContext = apiContext.Fork(Context.Type.Global, Context.State.Default, null, null);
 
@@ -70,12 +82,50 @@ namespace PseudoScript.Interpreter
         {
             if (apiContext != null && apiContext.IsPending())
             {
-                throw new InterpreterException("You cannot set a debugger while a process is running.");
+                throw new InterpreterException("You cannot set a output handler while a process is running.");
             }
 
             this.debugger = debugger;
             apiContext.debugger = debugger;
             globalContext.debugger = debugger;
+
+            return this;
+        }
+
+        public Interpreter SetResourceHandler(ResourceHandler newResourceHandler)
+        {
+            if (apiContext != null && apiContext.IsPending())
+            {
+                throw new InterpreterException("You cannot set a resource handler while a process is running.");
+            }
+
+            this.resourceHandler = newResourceHandler;
+
+            return this;
+        }
+
+        public Interpreter SetApi(Dictionary<string, CustomValue> newApi)
+        {
+            if (apiContext != null && apiContext.IsPending())
+            {
+                throw new InterpreterException("You cannot set an api while a process is running.");
+            }
+
+            api = newApi;
+
+            return this;
+        }
+
+        public Interpreter SetOutputHandler(OutputHandler outputHandler)
+        {
+            if (apiContext != null && apiContext.IsPending())
+            {
+                throw new InterpreterException("You cannot set a debugger while a process is running.");
+            }
+
+            this.outputHandler = outputHandler;
+            apiContext.outputHandler = outputHandler;
+            globalContext.outputHandler = outputHandler;
 
             return this;
         }
@@ -149,7 +199,7 @@ namespace PseudoScript.Interpreter
                 }
                 catch (Exception err)
                 {
-                    debugger.Raise(err.Message);
+                    debugger.Raise(err.Message + ": " + err.StackTrace);
                 }
                 finally
                 {
@@ -189,6 +239,24 @@ namespace PseudoScript.Interpreter
             {
                 apiContext.Exit();
             }
+        }
+
+        public void SetGlobalVariable(string path, CustomValue value)
+        {
+            if (globalContext != null)
+            {
+                globalContext.Set(path, value);
+            }
+        }
+
+        public CustomValue GetGlobalVariable(string path)
+        {
+            if (globalContext != null)
+            {
+                return globalContext.Get(path);
+            }
+
+            return CustomNil.Void;
         }
     }
 }

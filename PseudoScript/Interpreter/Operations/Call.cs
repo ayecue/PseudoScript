@@ -35,7 +35,7 @@ namespace PseudoScript.Interpreter.Operations
             if (valueRef is CustomFunction)
             {
                 CustomFunction func = (CustomFunction)valueRef;
-                return func.Run(resolveResult.handle, fnArgs);
+                return func.Run(resolveResult.handle, fnArgs, ctx);
             }
 
             return ctx.debugger.Raise("Unexpected handle for function call.");

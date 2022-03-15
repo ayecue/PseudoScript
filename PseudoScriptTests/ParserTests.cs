@@ -65,5 +65,11 @@ namespace ParserTests
         {
             return RunFixture("unary.src");
         }
+
+        [TestMethod()]
+        public Task ParserTestWithScopes()
+        {
+            return RunFixture("scopes.src");
+        }
     }
 }

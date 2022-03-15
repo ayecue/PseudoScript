@@ -97,9 +97,8 @@ namespace PseudoScript.Interpreter.Operations
             Queue<object> segments = new(path);
             Path<string> traversedPath = new();
             CustomValue handle = CustomNil.Void;
-            object current = segments.Dequeue();
 
-            while (current != null)
+            while (segments.TryDequeue(out object current))
             {
                 if (current is OperationSegment)
                 {
@@ -153,8 +152,6 @@ namespace PseudoScript.Interpreter.Operations
 
                     traversedPath = new Path<string>();
                 }
-
-                current = segments.Dequeue();
             }
 
             return new Result(traversedPath, handle);

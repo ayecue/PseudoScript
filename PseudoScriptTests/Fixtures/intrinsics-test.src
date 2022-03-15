@@ -88,3 +88,5 @@ testList.forEach(function(item, key)
 	print(item)
 	print(key)
 end function)
+
+exit("test")

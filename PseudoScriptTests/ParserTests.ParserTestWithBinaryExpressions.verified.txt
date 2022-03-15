@@ -15,7 +15,7 @@
           }
         },
         init: {
-          op: /=,
+          op: /,
           left: {
             name: a,
             type: Identifier,
@@ -85,7 +85,7 @@
           }
         },
         init: {
-          op: *=,
+          op: *,
           left: {
             name: a,
             type: Identifier,
@@ -155,7 +155,7 @@
           }
         },
         init: {
-          op: -=,
+          op: -,
           left: {
             name: a,
             type: Identifier,
@@ -225,7 +225,7 @@
           }
         },
         init: {
-          op: +=,
+          op: +,
           left: {
             name: a,
             type: Identifier,

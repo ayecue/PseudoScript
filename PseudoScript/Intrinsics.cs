@@ -18,7 +18,26 @@ namespace PseudoScript
                 "print",
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
-                    if (arguments.TryGetValue("message", out CustomValue value)) Console.WriteLine(value.ToString());
+                    if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
+                    {
+                        fnCtx.outputHandler.Print(value.ToString());
+                        return CustomNil.Void;
+                    }
+                    return CustomNil.Void;
+                })
+                    .AddArgument("message")
+            );
+
+            apiInterface.Add(
+                "exit",
+                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
+                {
+                    if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
+                    {
+                        fnCtx.outputHandler.Print(value.ToString());
+                        fnCtx.Exit();
+                        return CustomNil.Void;
+                    }
                     return CustomNil.Void;
                 })
                     .AddArgument("message")
@@ -319,11 +338,32 @@ namespace PseudoScript
                 {
                     if (arguments.TryGetValue("value", out CustomValue value) && self is CustomString)
                     {
-                        return new CustomNumber(((CustomString)self).value.IndexOf(value.ToString()));
+                        CustomString selfString = (CustomString)self;
+                        int offset = CustomString.GetCharIndex(selfString, arguments["offset"].ToInt());
+
+                        return new CustomNumber(selfString.value.IndexOf(value.ToString(), offset));
                     }
                     return new CustomNumber(-1);
                 })
                     .AddArgument("value")
+                    .AddArgument("offset", new CustomNumber(0))
+            );
+
+            CustomString.AddIntrinsic(
+                "lastIndexOf",
+                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
+                {
+                    if (arguments.TryGetValue("value", out CustomValue value) && self is CustomString)
+                    {
+                        CustomString selfString = (CustomString)self;
+                        int offset = CustomString.GetCharIndex(selfString, arguments["offset"].ToInt());
+
+                        return new CustomNumber(selfString.value.LastIndexOf(value.ToString(), offset));
+                    }
+                    return new CustomNumber(-1);
+                })
+                    .AddArgument("value")
+                    .AddArgument("offset", new CustomNumber(-1))
             );
 
             CustomString.AddIntrinsic(
@@ -335,19 +375,6 @@ namespace PseudoScript
                         return new CustomBoolean(((CustomString)self).value.Contains(value.ToString()));
                     }
                     return new CustomBoolean(false);
-                })
-                    .AddArgument("value")
-            );
-
-            CustomString.AddIntrinsic(
-                "lastIndexOf",
-                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
-                {
-                    if (arguments.TryGetValue("value", out CustomValue value) && self is CustomString)
-                    {
-                        return new CustomNumber(((CustomString)self).value.LastIndexOf(value.ToString()));
-                    }
-                    return new CustomNumber(-1);
                 })
                     .AddArgument("value")
             );
@@ -682,21 +709,47 @@ namespace PseudoScript
                     if (arguments.TryGetValue("value", out CustomValue value) && self is CustomList)
                     {
                         CustomList selfList = (CustomList)self;
-                        int index = 0;
+                        int index = CustomList.GetItemIndex(selfList, arguments["offset"].ToInt());
 
-                        foreach (var item in selfList.value)
+                        for (; index < selfList.value.Count; index++)
                         {
+                            var item = selfList.value[index];
+
                             if (value.ToString() == item.ToString())
                             {
                                 return new CustomNumber(index);
                             }
-
-                            index++;
                         }
                     }
                     return new CustomNumber(-1);
                 })
                     .AddArgument("value")
+                    .AddArgument("offset", new CustomNumber(0))
+            );
+
+            CustomList.AddIntrinsic(
+                "lastIndexOf",
+                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
+                {
+                    if (arguments.TryGetValue("value", out CustomValue value) && self is CustomList)
+                    {
+                        CustomList selfList = (CustomList)self;
+                        int index = CustomList.GetItemIndex(selfList, arguments["offset"].ToInt());
+
+                        for (; index == 0; --index)
+                        {
+                            var item = selfList.value[index];
+
+                            if (value.ToString() == item.ToString())
+                            {
+                                return new CustomNumber(index);
+                            }
+                        }
+                    }
+                    return new CustomNumber(-1);
+                })
+                    .AddArgument("value")
+                    .AddArgument("offset", new CustomNumber(-1))
             );
 
             CustomList.AddIntrinsic(
@@ -1003,6 +1056,11 @@ namespace PseudoScript
                 })
                     .AddArgument("fn")
             );
+        }
+
+        public static Dictionary<string, CustomValue> Init()
+        {
+            return Init(new Dictionary<string, CustomValue>());
         }
 
         public static Dictionary<string, CustomValue> Init(Dictionary<string, CustomValue> customApi)

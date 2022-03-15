@@ -62,9 +62,9 @@ namespace PseudoScript.Interpreter
                 {
                     return context.api.scope.Get(path);
                 }
-                else if (path.Count == 1 && CustomMap.intrinsics.ContainsKey(current))
+                else if (path.Count == 1 && CustomMap.intrinsics.Has(current))
                 {
-                    return CustomMap.intrinsics[current];
+                    return CustomMap.intrinsics.Get(current);
                 }
                 else if (context.previous != null)
                 {
@@ -88,7 +88,7 @@ namespace PseudoScript.Interpreter
 
             public CustomNil Raise(InterpreterException err)
             {
-                throw err;
+                throw new InterpreterException(err.Message);
             }
 
             public CustomNil Debug(string message)
@@ -161,6 +161,7 @@ namespace PseudoScript.Interpreter
             public bool isProtected;
             public bool injected;
             public Debugger debugger;
+            public OutputHandler outputHandler;
             public CPS cps;
             public ProcessState processState;
 
@@ -172,6 +173,7 @@ namespace PseudoScript.Interpreter
                 bool? isProtected,
                 bool? injected,
                 Debugger? debugger,
+                OutputHandler? outputHandler,
                 CPS? cps,
                 ProcessState? processState
             )
@@ -183,6 +185,7 @@ namespace PseudoScript.Interpreter
                 this.isProtected = isProtected ?? false;
                 this.injected = injected ?? false;
                 this.debugger = debugger ?? new Debugger();
+                this.outputHandler = outputHandler ?? new DefaultOutputHandler();
                 this.cps = cps ?? null;
                 this.processState = processState ?? new ProcessState();
             }
@@ -191,6 +194,7 @@ namespace PseudoScript.Interpreter
         public string target;
         public AstProvider.Base stackItem;
         public Debugger debugger;
+        public OutputHandler outputHandler;
         public Context previous;
         public Type type;
         public State state;
@@ -223,6 +227,7 @@ namespace PseudoScript.Interpreter
             isProtected = options.isProtected;
             injected = options.injected;
             debugger = options.debugger;
+            outputHandler = options.outputHandler;
             cps = options.cps;
             processState = options.processState;
 
@@ -411,6 +416,7 @@ namespace PseudoScript.Interpreter
                 false,
                 injected ?? this.injected,
                 debugger,
+                outputHandler,
                 cps,
                 processState
             );

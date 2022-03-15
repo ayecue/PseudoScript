@@ -39,10 +39,12 @@ namespace PseudoScript.Interpreter.Operations
                 return op switch
                 {
                     Operator.Plus => new CustomString(a.ToString() + b.ToString()),
-                    Operator.GreaterThanOrEqual => new CustomBoolean(a.ToString().CompareTo(b.ToString()) >= 0),
+                    Operator.LessThan => new CustomBoolean(a.ToString().Length < b.ToString().Length),
+                    Operator.GreaterThan => new CustomBoolean(a.ToString().Length > b.ToString().Length),
+                    Operator.GreaterThanOrEqual => new CustomBoolean(a.ToString().Length >= b.ToString().Length),
                     Operator.Equal => new CustomBoolean(a.ToString() == b.ToString()),
-                    Operator.LessThanOrEqual => new CustomBoolean(a.ToString().CompareTo(b.ToString()) <= 0),
-                    Operator.NotEqual => new CustomBoolean(a.ToString().CompareTo(b.ToString()) != 0),
+                    Operator.LessThanOrEqual => new CustomBoolean(a.ToString().Length <= b.ToString().Length),
+                    Operator.NotEqual => new CustomBoolean(a.ToString() != b.ToString()),
                     Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
                     Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
                     _ => CustomNil.Void,
@@ -56,28 +58,42 @@ namespace PseudoScript.Interpreter.Operations
 
             static CustomValue HandleList(string op, CustomValue a, CustomValue b)
             {
-                switch (op)
+                CustomList left = (CustomList)a;
+                CustomList right = b is CustomList ? (CustomList)b : new CustomList();
+
+                return op switch
                 {
-                    case Operator.Plus:
-                        CustomList mergedList = new((CustomList)a);
-                        mergedList.Extend((CustomList)b);
-                        return mergedList;
-                    default:
-                        return CustomNil.Void;
-                }
+                    Operator.Plus => new CustomList(left).Extend(right),
+                    Operator.LessThan => new CustomBoolean(left.value.Count < right.value.Count),
+                    Operator.GreaterThan => new CustomBoolean(left.value.Count > right.value.Count),
+                    Operator.GreaterThanOrEqual => new CustomBoolean(left.value.Count >= right.value.Count),
+                    Operator.Equal => new CustomBoolean(left.value == right.value),
+                    Operator.LessThanOrEqual => new CustomBoolean(left.value.Count <= right.value.Count),
+                    Operator.NotEqual => new CustomBoolean(left.value != right.value),
+                    Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
+                    Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
+                    _ => CustomNil.Void,
+                };
             }
 
             static CustomValue HandleMap(string op, CustomValue a, CustomValue b)
             {
-                switch (op)
+                CustomMap left = (CustomMap)a;
+                CustomMap right = b is CustomMap ? (CustomMap)b : new CustomMap();
+
+                return op switch
                 {
-                    case Operator.Plus:
-                        CustomMap mergedMap = new((CustomMap)a);
-                        mergedMap.Extend((CustomMap)b);
-                        return mergedMap;
-                    default:
-                        return CustomNil.Void;
-                }
+                    Operator.Plus => new CustomMap(left).Extend(right),
+                    Operator.LessThan => new CustomBoolean(left.value.Count < right.value.Count),
+                    Operator.GreaterThan => new CustomBoolean(left.value.Count > right.value.Count),
+                    Operator.GreaterThanOrEqual => new CustomBoolean(left.value.Count >= right.value.Count),
+                    Operator.Equal => new CustomBoolean(left.value == right.value),
+                    Operator.LessThanOrEqual => new CustomBoolean(left.value.Count <= right.value.Count),
+                    Operator.NotEqual => new CustomBoolean(left.value != right.value),
+                    Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
+                    Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
+                    _ => CustomNil.Void,
+                };
             }
 
             public static CustomValue Handle(Context ctx, string op, CustomValue a, CustomValue b)

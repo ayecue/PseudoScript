@@ -14,7 +14,12 @@ namespace PseudoScript.Interpreter
     {
         public override string Get(string target)
         {
-            return File.ReadAllText(target);
+            if (File.Exists(target))
+            {
+                return File.ReadAllText(target);
+            }
+
+            return null;
         }
 
         public override string GetTargetRelativeTo(string source, string target)

@@ -130,12 +130,12 @@ namespace PseudoScript.Parser
         {
             Prefetch();
 
-            if (prefetchedTokens.Count == 0)
+            if (prefetchedTokens.TryDequeue(out Lexer.Token token))
             {
-                return null;
+                return token;
             }
 
-            return prefetchedTokens.Dequeue();
+            return null;
         }
 
         Lexer.Token Prefetch(int offset = 1)
@@ -351,7 +351,7 @@ namespace PseudoScript.Parser
         {
             AstProvider.Position assignmentStart = origin.start;
             AstProvider.Position binaryExpressionStart = new(token.line, token.lineRange.Start.Value);
-            string op = previousToken.value;
+            string op = previousToken.value.First().ToString();
             AstProvider.Base value = ParseSubExpression();
             AstProvider.Position end = new(token.line, token.lineRange.End.Value);
             AstProvider.EvaluationExpression expression = astProvider.CreateEvaluationExpression(

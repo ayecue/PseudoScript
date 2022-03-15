@@ -1,0 +1,30 @@
+﻿a = "moo"
+b = 123
+
+function test()
+	a = "was"
+	b = "foo"
+
+	return function()
+		print(a + b)
+	end function
+end function
+
+test()()
+print(a + b)
+
+function inception()
+	a = "was"
+	b = "foo"
+
+	return function()
+		a = "level - 2 : was"
+		b = "level - 2 : foo"
+
+		return function()
+			print(a + b)
+		end function
+	end function
+end function
+
+inception()()()

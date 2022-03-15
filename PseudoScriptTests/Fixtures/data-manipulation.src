@@ -1,0 +1,117 @@
+﻿str = "foo"
+str += "test"
+print(str)
+str += 1
+print(str)
+str += false
+print(str)
+print("test" == "test")
+print("123" == 123)
+print("test" != "other")
+print("test" < "other")
+print("test" > "other")
+print("test" <= "other")
+print("test" >= "other")
+print("test" and "other")
+print("" and "other")
+print("" or "other")
+
+number = 1
+number += 1
+print(number)
+number -= 1
+print(number)
+number *= 10
+print(number)
+number /= 10
+print(number)
+number = 2 << 10
+print(number)
+number = 2 >> 10
+print(number)
+number = 2 >>> 10
+print(number)
+number = 2 & 10
+print(number)
+number = 2 | 10
+print(number)
+number = 2 % 10
+print(number)
+number = 2 ^ 10
+print(number)
+number = 2 + "4"
+print(number)
+number = 2 + "foo"
+print(number)
+number = 2 + true
+print(number)
+print(10 == 10)
+print(123 == "123")
+print(10 != 11)
+print(10 < 11)
+print(10 > 11)
+print(10 <= 11)
+print(10 >= 11)
+print(10 and 10)
+print(0 and 10)
+print(0 or 10)
+
+boolean = true
+boolean += 1
+print(boolean)
+boolean -= 1
+print(boolean)
+boolean *= 10
+print(boolean)
+boolean /= 10
+print(boolean)
+boolean = true << 10
+print(boolean)
+boolean = true >> 10
+print(boolean)
+boolean = true >>> 10
+print(boolean)
+boolean = true % 10
+print(boolean)
+boolean = true ^ 10
+print(boolean)
+boolean = true + "4"
+print(boolean)
+boolean = 2 + "foo"
+print(boolean)
+boolean = true + true
+print(boolean)
+print(true == true)
+print(true == "1")
+print(true != false)
+print(true < false)
+print(true > false)
+print(true <= false)
+print(true >= false)
+print(true and true)
+print(false and true)
+print(false or true)
+
+list = ["was"]
+print(list + ["foo"])
+print(list == list)
+print(list != ["was"])
+print(list < ["was"])
+print(list > ["was"])
+print(list <= ["was"])
+print(list >= ["was"])
+print(list and ["was"])
+print([] and ["was"])
+print([] or ["was"])
+
+map = {"was": "foo"}
+print(map + {"bar": "moo"})
+print(map == map)
+print(map != {"was": "foo"})
+print(map < {"bar": "moo"})
+print(map > {"bar": "moo"})
+print(map <= {"bar": "moo"})
+print(map >= {"bar": "moo"})
+print(map and {"bar": "moo"})
+print({} and {"bar": "moo"})
+print({} or {"bar": "moo"})

@@ -11,35 +11,35 @@ namespace IntrinsicsTests
     [TestClass()]
     public class IntrinsicsTests : VerifyBase
     {
+        class CustomOutputHandler : OutputHandler
+        {
+            public List<string> output = new();
+
+            public override void Print(string message)
+            {
+                output.Add(message);
+            }
+        }
+
         Task RunFixture(string name)
         {
             string fixturePath = PseudoScriptTests.Utils.GetFixturePath(name);
 
             Dictionary<string, CustomValue> mockedApiInterface = new();
-            List<string> output = new();
-            Interpreter interpreter = null;
-
-            mockedApiInterface.Add(
-                "print",
-                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
-                {
-                    if (arguments.TryGetValue("message", out CustomValue value)) output.Add(value.ToString());
-                    return CustomNil.Void;
-                })
-                    .AddArgument("message")
-            );
 
             Dictionary<string, CustomValue> apiInterface = Intrinsics.Init(mockedApiInterface);
+            Interpreter interpreter = new(fixturePath, apiInterface);
+            CustomOutputHandler outputHandler = new();
 
-            Options options = new(fixturePath, apiInterface, null, null, null);
-            interpreter = new(options);
+            interpreter.SetOutputHandler(outputHandler);
+
             interpreter.Run().Wait();
 
-            return Verify(output);
+            return Verify(outputHandler.output);
         }
 
         [TestMethod()]
-        public Task RunTestWithSimpleObject()
+        public Task RunTestWithIntrinsics()
         {
             return RunFixture("intrinsics-test.src");
         }

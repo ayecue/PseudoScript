@@ -10,19 +10,46 @@ namespace InterpreterTests
     [TestClass()]
     public class InterpreterTests : VerifyBase
     {
+        class CustomOutputHandler : OutputHandler
+        {
+            public List<string> output = new();
+
+            public override void Print(string message)
+            {
+                output.Add(message);
+            }
+        }
+
         Task RunFixture(string name)
         {
             string fixturePath = PseudoScriptTests.Utils.GetFixturePath(name);
 
             Dictionary<string, CustomValue> apiInterface = new();
-            List<string> output = new();
-            Interpreter interpreter = null;
 
             apiInterface.Add(
                 "print",
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
-                    if (arguments.TryGetValue("message", out CustomValue value)) output.Add(value.ToString());
+                    if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
+                    {
+                        fnCtx.outputHandler.Print(value.ToString());
+                        return CustomNil.Void;
+                    }
+                    return CustomNil.Void;
+                })
+                    .AddArgument("message")
+            );
+
+            apiInterface.Add(
+                "exit",
+                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
+                {
+                    if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
+                    {
+                        fnCtx.outputHandler.Print(value.ToString());
+                        fnCtx.Exit();
+                        return CustomNil.Void;
+                    }
                     return CustomNil.Void;
                 })
                     .AddArgument("message")
@@ -36,17 +63,6 @@ namespace InterpreterTests
                     return CustomNil.Void;
                 })
                     .AddArgument("object")
-            );
-
-            apiInterface.Add(
-                "exit",
-                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
-                {
-                    if (arguments.TryGetValue("message", out CustomValue value)) output.Add(value.ToString());
-                    interpreter?.Exit();
-                    return CustomNil.Void;
-                })
-                    .AddArgument("message")
             );
 
             apiInterface.Add(
@@ -85,7 +101,7 @@ namespace InterpreterTests
 
                     itr.AddFunction("test", new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                     {
-                        if (arguments.TryGetValue("message", out CustomValue value)) output.Add("test interface print: " + value.ToString());
+                        if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value)) fnCtx.outputHandler.Print("test interface print: " + value.ToString());
                         return CustomNil.Void;
                     })
                         .AddArgument("message")
@@ -101,11 +117,14 @@ namespace InterpreterTests
                 return new CustomNumber(list.value.Count);
             }));
 
-            Options options = new(fixturePath, apiInterface, null, null, null);
-            interpreter = new(options);
+            Interpreter interpreter = new(fixturePath, apiInterface);
+            CustomOutputHandler outputHandler = new();
+
+            interpreter.SetOutputHandler(outputHandler);
+
             interpreter.Run().Wait();
 
-            return Verify(output);
+            return Verify(outputHandler.output);
         }
 
         [TestMethod()]
@@ -184,6 +203,24 @@ namespace InterpreterTests
         public Task RunTestWithInstances()
         {
             return RunFixture("instances.src");
+        }
+
+        [TestMethod()]
+        public Task RunTestWithDataManipulation()
+        {
+            return RunFixture("data-manipulation.src");
+        }
+
+        [TestMethod()]
+        public Task RunTestWithScopes()
+        {
+            return RunFixture("scopes.src");
+        }
+
+        [TestMethod()]
+        public Task RunTestWithLoops()
+        {
+            return RunFixture("loops.src");
         }
     }
 }

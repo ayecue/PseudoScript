@@ -169,7 +169,7 @@ namespace PseudoScript.Interpreter.CustomTypes
 
             bool IEnumerator.MoveNext()
             {
-                return index++ < value.Length;
+                return ++index < value.Length;
             }
 
             void IEnumerator.Reset()
@@ -186,11 +186,11 @@ namespace PseudoScript.Interpreter.CustomTypes
             return n;
         }
 
-        public static Dictionary<string, CustomFunction> intrinsics = new();
+        public static IntrinsicsContainer intrinsics = new();
 
-        static public void AddIntrinsic(string name, CustomFunction fn)
+        public static void AddIntrinsic(string name, CustomFunction fn)
         {
-            intrinsics[name] = fn;
+            intrinsics.Add(name, fn);
         }
 
         public string value;
@@ -298,9 +298,9 @@ namespace PseudoScript.Interpreter.CustomTypes
                 {
                     return new CustomString(value[currentIndex].ToString());
                 }
-                else if (path.Count == 1 && CustomString.intrinsics.ContainsKey(current))
+                else if (path.Count == 1 && CustomString.intrinsics.Has(current))
                 {
-                    return CustomString.intrinsics[current];
+                    return CustomString.intrinsics.Get(current);
                 }
             }
 
@@ -396,6 +396,11 @@ namespace PseudoScript.Interpreter.CustomTypes
 
         public CustomValue Run(CustomValue self, List<CustomValue> arguments)
         {
+            return Run(self, arguments, null);
+        }
+
+        public CustomValue Run(CustomValue self, List<CustomValue> arguments, Context callContext)
+        {
             Context fnCtx = scope?.Fork(Context.Type.Function, Context.State.Default);
             Dictionary<string, CustomValue> argMap = new();
 
@@ -406,7 +411,7 @@ namespace PseudoScript.Interpreter.CustomTypes
                 argMap[item.name] = arguments.ElementAtOrDefault(index) ?? item.defaultValue.Handle(fnCtx);
             }
 
-            return callback(fnCtx, self, argMap);
+            return callback(fnCtx ?? callContext, self, argMap);
         }
     }
 
@@ -431,7 +436,7 @@ namespace PseudoScript.Interpreter.CustomTypes
             {
                 get
                 {
-                    return value[index];
+                    return new CustomNumber(index);
                 }
             }
 
@@ -454,11 +459,11 @@ namespace PseudoScript.Interpreter.CustomTypes
             return n;
         }
 
-        public static Dictionary<string, CustomFunction> intrinsics = new();
+        public static IntrinsicsContainer intrinsics = new();
 
-        static public void AddIntrinsic(string name, CustomFunction fn)
+        public static void AddIntrinsic(string name, CustomFunction fn)
         {
-            intrinsics[name] = fn;
+            intrinsics.Add(name, fn);
         }
 
         public List<CustomValue> value;
@@ -649,9 +654,9 @@ namespace PseudoScript.Interpreter.CustomTypes
                         return sub;
                     }
                 }
-                else if (path.Count == 1 && CustomList.intrinsics.ContainsKey(current))
+                else if (path.Count == 1 && CustomList.intrinsics.Has(current))
                 {
-                    return CustomList.intrinsics[current];
+                    return CustomList.intrinsics.Get(current);
                 }
             }
 
@@ -698,11 +703,11 @@ namespace PseudoScript.Interpreter.CustomTypes
             }
         }
 
-        public static Dictionary<string, CustomFunction> intrinsics = new();
+        public static IntrinsicsContainer intrinsics = new();
 
-        static public void AddIntrinsic(string name, CustomFunction fn)
+        public static void AddIntrinsic(string name, CustomFunction fn)
         {
-            intrinsics[name] = fn;
+            intrinsics.Add(name, fn);
         }
 
         public Dictionary<string, CustomValue> value;
@@ -859,9 +864,9 @@ namespace PseudoScript.Interpreter.CustomTypes
                         return sub;
                     }
                 }
-                else if (path.Count == 1 && CustomMap.intrinsics.ContainsKey(current))
+                else if (path.Count == 1 && CustomMap.intrinsics.Has(current))
                 {
-                    return CustomMap.intrinsics[current];
+                    return CustomMap.intrinsics.Get(current);
                 }
             }
 
