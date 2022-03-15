@@ -1,5 +1,7 @@
 # PseudoScript
 
+[![PseudoScript](https://circleci.com/gh/ayecue/PseudoScript.svg?style=svg)](https://circleci.com/gh/ayecue/PseudoScript)
+
 Scripting language highly inspired by [Greybel](https://github.com/ayecue/greybel-js) and [MiniScript](https://github.com/JoeStrout/miniscript).
 
 The main purpose of PseudoScript is to create a scripting language which is easy to use and easy to extend.
