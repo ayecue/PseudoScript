@@ -123,7 +123,7 @@ namespace PseudoScript.Interpreter.CustomTypes
 
         public override string ToString()
         {
-            return value.ToString();
+            return value.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public override CustomNumber Fork()
