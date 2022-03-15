@@ -257,7 +257,7 @@
         Value: 23
       },
       End: {
-        Value: 23
+        Value: 24
       }
     },
     lineRange: {
@@ -265,7 +265,7 @@
         Value: 24
       },
       End: {
-        Value: 24
+        Value: 25
       }
     }
   },
@@ -273,13 +273,13 @@
     type: Identifier,
     value: foo,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 24
+        Value: 25
       },
       End: {
-        Value: 27
+        Value: 28
       }
     },
     lineRange: {
@@ -295,13 +295,13 @@
     type: Punctuator,
     value: =,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 28
+        Value: 29
       },
       End: {
-        Value: 29
+        Value: 30
       }
     },
     lineRange: {
@@ -317,13 +317,13 @@
     type: Punctuator,
     value: [,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 30
+        Value: 31
       },
       End: {
-        Value: 31
+        Value: 32
       }
     },
     lineRange: {
@@ -339,13 +339,13 @@
     type: Punctuator,
     value: -,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 31
+        Value: 32
       },
       End: {
-        Value: 32
+        Value: 33
       }
     },
     lineRange: {
@@ -361,13 +361,13 @@
     type: NumericLiteral,
     value: 1,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 32
+        Value: 33
       },
       End: {
-        Value: 33
+        Value: 34
       }
     },
     lineRange: {
@@ -383,13 +383,13 @@
     type: Punctuator,
     value: ,,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 33
+        Value: 34
       },
       End: {
-        Value: 34
+        Value: 35
       }
     },
     lineRange: {
@@ -405,13 +405,13 @@
     type: Punctuator,
     value: -,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 35
+        Value: 36
       },
       End: {
-        Value: 36
+        Value: 37
       }
     },
     lineRange: {
@@ -427,13 +427,13 @@
     type: NumericLiteral,
     value: 2,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 36
+        Value: 37
       },
       End: {
-        Value: 37
+        Value: 38
       }
     },
     lineRange: {
@@ -449,13 +449,13 @@
     type: Punctuator,
     value: +,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 38
+        Value: 39
       },
       End: {
-        Value: 39
+        Value: 40
       }
     },
     lineRange: {
@@ -471,13 +471,13 @@
     type: NumericLiteral,
     value: 4,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 40
+        Value: 41
       },
       End: {
-        Value: 41
+        Value: 42
       }
     },
     lineRange: {
@@ -493,13 +493,13 @@
     type: Punctuator,
     value: ,,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 41
+        Value: 42
       },
       End: {
-        Value: 42
+        Value: 43
       }
     },
     lineRange: {
@@ -515,13 +515,13 @@
     type: Punctuator,
     value: (,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 43
+        Value: 44
       },
       End: {
-        Value: 44
+        Value: 45
       }
     },
     lineRange: {
@@ -537,13 +537,13 @@
     type: Punctuator,
     value: -,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 44
+        Value: 45
       },
       End: {
-        Value: 45
+        Value: 46
       }
     },
     lineRange: {
@@ -559,13 +559,13 @@
     type: NumericLiteral,
     value: 2,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 45
+        Value: 46
       },
       End: {
-        Value: 46
+        Value: 47
       }
     },
     lineRange: {
@@ -581,13 +581,13 @@
     type: Punctuator,
     value: ),
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 46
+        Value: 47
       },
       End: {
-        Value: 47
+        Value: 48
       }
     },
     lineRange: {
@@ -603,13 +603,13 @@
     type: Punctuator,
     value: +,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 48
+        Value: 49
       },
       End: {
-        Value: 49
+        Value: 50
       }
     },
     lineRange: {
@@ -625,13 +625,13 @@
     type: Punctuator,
     value: -,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 50
+        Value: 51
       },
       End: {
-        Value: 51
+        Value: 52
       }
     },
     lineRange: {
@@ -647,13 +647,13 @@
     type: NumericLiteral,
     value: 4,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 51
+        Value: 52
       },
       End: {
-        Value: 52
+        Value: 53
       }
     },
     lineRange: {
@@ -669,13 +669,13 @@
     type: Punctuator,
     value: +,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 53
+        Value: 54
       },
       End: {
-        Value: 54
+        Value: 55
       }
     },
     lineRange: {
@@ -691,13 +691,13 @@
     type: Punctuator,
     value: +,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 55
+        Value: 56
       },
       End: {
-        Value: 56
+        Value: 57
       }
     },
     lineRange: {
@@ -713,13 +713,13 @@
     type: NumericLiteral,
     value: 6,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 56
+        Value: 57
       },
       End: {
-        Value: 57
+        Value: 58
       }
     },
     lineRange: {
@@ -735,13 +735,13 @@
     type: Punctuator,
     value: ],
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 57
+        Value: 58
       },
       End: {
-        Value: 58
+        Value: 59
       }
     },
     lineRange: {
@@ -757,13 +757,13 @@
     type: EOL,
     value: ;,
     line: 2,
-    lineStart: 24,
+    lineStart: 25,
     range: {
       Start: {
-        Value: 58
+        Value: 59
       },
       End: {
-        Value: 58
+        Value: 60
       }
     },
     lineRange: {
@@ -771,7 +771,7 @@
         Value: 35
       },
       End: {
-        Value: 35
+        Value: 36
       }
     }
   },
@@ -779,13 +779,13 @@
     type: EOL,
     value: ;,
     line: 3,
-    lineStart: 59,
+    lineStart: 61,
     range: {
       Start: {
-        Value: 59
+        Value: 61
       },
       End: {
-        Value: 59
+        Value: 62
       }
     },
     lineRange: {
@@ -793,7 +793,7 @@
         Value: 1
       },
       End: {
-        Value: 1
+        Value: 2
       }
     }
   },
@@ -801,13 +801,13 @@
     type: Identifier,
     value: print,
     line: 4,
-    lineStart: 60,
+    lineStart: 63,
     range: {
       Start: {
-        Value: 60
+        Value: 63
       },
       End: {
-        Value: 65
+        Value: 68
       }
     },
     lineRange: {
@@ -823,13 +823,13 @@
     type: Punctuator,
     value: (,
     line: 4,
-    lineStart: 60,
+    lineStart: 63,
     range: {
       Start: {
-        Value: 65
+        Value: 68
       },
       End: {
-        Value: 66
+        Value: 69
       }
     },
     lineRange: {
@@ -845,13 +845,13 @@
     type: Identifier,
     value: test,
     line: 4,
-    lineStart: 60,
+    lineStart: 63,
     range: {
       Start: {
-        Value: 66
+        Value: 69
       },
       End: {
-        Value: 70
+        Value: 73
       }
     },
     lineRange: {
@@ -867,13 +867,13 @@
     type: Punctuator,
     value: ),
     line: 4,
-    lineStart: 60,
+    lineStart: 63,
     range: {
       Start: {
-        Value: 70
+        Value: 73
       },
       End: {
-        Value: 71
+        Value: 74
       }
     },
     lineRange: {
@@ -889,13 +889,13 @@
     type: EOL,
     value: ;,
     line: 4,
-    lineStart: 60,
+    lineStart: 63,
     range: {
       Start: {
-        Value: 71
+        Value: 74
       },
       End: {
-        Value: 71
+        Value: 75
       }
     },
     lineRange: {
@@ -903,7 +903,7 @@
         Value: 12
       },
       End: {
-        Value: 12
+        Value: 13
       }
     }
   },
@@ -911,13 +911,13 @@
     type: Identifier,
     value: print,
     line: 5,
-    lineStart: 72,
+    lineStart: 76,
     range: {
       Start: {
-        Value: 72
+        Value: 76
       },
       End: {
-        Value: 77
+        Value: 81
       }
     },
     lineRange: {
@@ -933,13 +933,13 @@
     type: Punctuator,
     value: (,
     line: 5,
-    lineStart: 72,
+    lineStart: 76,
     range: {
       Start: {
-        Value: 77
+        Value: 81
       },
       End: {
-        Value: 78
+        Value: 82
       }
     },
     lineRange: {
@@ -955,13 +955,13 @@
     type: Identifier,
     value: foo,
     line: 5,
-    lineStart: 72,
+    lineStart: 76,
     range: {
       Start: {
-        Value: 78
+        Value: 82
       },
       End: {
-        Value: 81
+        Value: 85
       }
     },
     lineRange: {
@@ -977,13 +977,13 @@
     type: Punctuator,
     value: ),
     line: 5,
-    lineStart: 72,
+    lineStart: 76,
     range: {
       Start: {
-        Value: 81
+        Value: 85
       },
       End: {
-        Value: 82
+        Value: 86
       }
     },
     lineRange: {
