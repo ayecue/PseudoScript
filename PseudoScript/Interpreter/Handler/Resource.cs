@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace PseudoScript.Interpreter
+namespace PseudoScript.Interpreter.Handler
 {
-    abstract public class ResourceHandler
+    abstract public class Resource
     {
         abstract public string GetTargetRelativeTo(string source, string target);
         abstract public bool Has(string target);
@@ -10,7 +10,7 @@ namespace PseudoScript.Interpreter
         abstract public string Resolve(string target);
     }
 
-    public class DefaultResourceHandler : ResourceHandler
+    public class DefaultResource : Resource
     {
         public override string Get(string target)
         {

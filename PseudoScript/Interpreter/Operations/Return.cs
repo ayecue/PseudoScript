@@ -22,14 +22,11 @@ namespace PseudoScript.Interpreter.Operations
 
         public override CustomValue Handle(Context ctx)
         {
-            if (ctx.functionState == null)
+            if (ctx.functionState != null)
             {
-                return ctx.debugger.Raise("Unexpected return statement.");
+                ctx.functionState.value = arg.Handle(ctx);
+                ctx.functionState.isReturn = true;
             }
-
-            ctx.functionState.value = arg.Handle(ctx);
-            ctx.functionState.isReturn = true;
-
             return CustomNil.Void;
         }
     }

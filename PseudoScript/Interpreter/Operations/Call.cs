@@ -38,7 +38,7 @@ namespace PseudoScript.Interpreter.Operations
                 return func.Run(resolveResult.handle, fnArgs, ctx);
             }
 
-            return ctx.debugger.Raise("Unexpected handle for function call.");
+            return CustomNil.Void;
         }
     }
 }

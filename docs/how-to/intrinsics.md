@@ -8,8 +8,10 @@
 | `wait` | `number time = 1` | `null` |
 | `char` | `number charCode` | `string` |
 | `code` | `string character` | `number` |
-| `str` | `any value` | `string` |
-| `val` | `any value` | `number` |
+| `toString` | `any value` | `string` |
+| `toNumber` | `any value` | `number` |
+| `toInt` | `any value` | `number` |
+| `toBoolean` | `any value` | `boolean` |
 | `range` | `number from`, `number? to`, `number step = 1` | `list` |
 | `rng` | `any? seed` | `number` |
 | `abs` | `number value` | `number` |

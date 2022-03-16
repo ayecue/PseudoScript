@@ -20,13 +20,10 @@ namespace PseudoScript.Interpreter.Operations
 
         public override CustomValue Handle(Context ctx)
         {
-            if (ctx.loopState == null)
+            if (ctx.loopState != null)
             {
-                return ctx.debugger.Raise("Unexpected break statement.");
+                ctx.loopState.isBreak = true;
             }
-
-            ctx.loopState.isBreak = true;
-
             return CustomNil.Void;
         }
     }

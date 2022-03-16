@@ -1,6 +1,6 @@
 # Usage
 
-There are different way on how to initialize the interpreter.
+There are different ways on how to initialize the interpreter.
 
 ## Default
 
@@ -42,8 +42,7 @@ Interpreter.Options options = new(
 	"code-file.src", //file to execute
 	customApiInterface, //custom intrinsics
 	argv, //params field which gets extend to the global context. Type of this field is List<CustomValue>; Specific docs TBD
-	new MyResourceHandler(), //custom resource handler
-	new MyOutputHandler(), //custom output handler; Specific docs TBD
+	new HandlerContainer(), //handler for resource, output and errors
 	new MyDebugger() //implement your own debugger; Specific docs TBD
 );
 Interpreter.Interpreter interpreter = new(options);

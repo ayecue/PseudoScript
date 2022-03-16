@@ -2,6 +2,7 @@
 using PseudoScript;
 using PseudoScript.Interpreter;
 using PseudoScript.Interpreter.CustomTypes;
+using PseudoScript.Interpreter.Handler;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyMSTest;
@@ -11,7 +12,7 @@ namespace IntrinsicsTests
     [TestClass()]
     public class IntrinsicsTests : VerifyBase
     {
-        class CustomOutputHandler : OutputHandler
+        class CustomOutputHandler : Output
         {
             public List<string> output = new();
 
@@ -31,7 +32,7 @@ namespace IntrinsicsTests
             Interpreter interpreter = new(fixturePath, apiInterface);
             CustomOutputHandler outputHandler = new();
 
-            interpreter.SetOutputHandler(outputHandler);
+            interpreter.SetHandler(new HandlerContainer(outputHandler));
 
             interpreter.Run().Wait();
 

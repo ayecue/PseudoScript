@@ -71,7 +71,7 @@ namespace PseudoScript.Interpreter
                     return context.previous.Get(path);
                 }
 
-                return context.debugger.Raise(string.Format("Cannot get path {0}.", path.ToString()));
+                return CustomNil.Void;
             }
         }
 
@@ -80,16 +80,6 @@ namespace PseudoScript.Interpreter
             public bool breakpoint = false;
             public bool nextStep = false;
             public Context lastContext = null;
-
-            public CustomNil Raise(string message)
-            {
-                return Raise(new InterpreterException(message));
-            }
-
-            public CustomNil Raise(InterpreterException err)
-            {
-                throw new InterpreterException(err.Message);
-            }
 
             public CustomNil Debug(string message)
             {
@@ -161,7 +151,7 @@ namespace PseudoScript.Interpreter
             public bool isProtected;
             public bool injected;
             public Debugger debugger;
-            public OutputHandler outputHandler;
+            public HandlerContainer handler;
             public CPS cps;
             public ProcessState processState;
 
@@ -173,7 +163,7 @@ namespace PseudoScript.Interpreter
                 bool? isProtected,
                 bool? injected,
                 Debugger? debugger,
-                OutputHandler? outputHandler,
+                HandlerContainer? handler,
                 CPS? cps,
                 ProcessState? processState
             )
@@ -185,7 +175,7 @@ namespace PseudoScript.Interpreter
                 this.isProtected = isProtected ?? false;
                 this.injected = injected ?? false;
                 this.debugger = debugger ?? new Debugger();
-                this.outputHandler = outputHandler ?? new DefaultOutputHandler();
+                this.handler = handler ?? new HandlerContainer();
                 this.cps = cps ?? null;
                 this.processState = processState ?? new ProcessState();
             }
@@ -194,7 +184,7 @@ namespace PseudoScript.Interpreter
         public string target;
         public AstProvider.Base stackItem;
         public Debugger debugger;
-        public OutputHandler outputHandler;
+        public HandlerContainer handler;
         public Context previous;
         public Type type;
         public State state;
@@ -227,7 +217,7 @@ namespace PseudoScript.Interpreter
             isProtected = options.isProtected;
             injected = options.injected;
             debugger = options.debugger;
-            outputHandler = options.outputHandler;
+            handler = options.handler;
             cps = options.cps;
             processState = options.processState;
 
@@ -416,7 +406,7 @@ namespace PseudoScript.Interpreter
                 false,
                 injected ?? this.injected,
                 debugger,
-                outputHandler,
+                handler,
                 cps,
                 processState
             );

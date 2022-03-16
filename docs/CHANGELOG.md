@@ -22,3 +22,9 @@ All notable changes to this project will be documented in this file.
 - fix call expression which calls return of call expression
 - add more test cases
 - update snapshots
+
+## [0.1.2] - 16-03-2022
+
+- update documentation
+- introduce handler container
+- add tests

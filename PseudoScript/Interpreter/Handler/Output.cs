@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace PseudoScript.Interpreter
+namespace PseudoScript.Interpreter.Handler
 {
-    abstract public class OutputHandler
+    abstract public class Output
     {
         abstract public void Print(string message);
     }
 
-    public class DefaultOutputHandler : OutputHandler
+    public class DefaultOutput : Output
     {
         public override void Print(string message)
         {

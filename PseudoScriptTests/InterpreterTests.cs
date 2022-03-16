@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PseudoScript.Interpreter;
 using PseudoScript.Interpreter.CustomTypes;
+using PseudoScript.Interpreter.Handler;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VerifyMSTest;
@@ -10,7 +11,7 @@ namespace InterpreterTests
     [TestClass()]
     public class InterpreterTests : VerifyBase
     {
-        class CustomOutputHandler : OutputHandler
+        class CustomOutputHandler : Output
         {
             public List<string> output = new();
 
@@ -32,7 +33,7 @@ namespace InterpreterTests
                 {
                     if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
                     {
-                        fnCtx.outputHandler.Print(value.ToString());
+                        fnCtx.handler.outputHandler.Print(value.ToString());
                         return CustomNil.Void;
                     }
                     return CustomNil.Void;
@@ -46,7 +47,7 @@ namespace InterpreterTests
                 {
                     if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
                     {
-                        fnCtx.outputHandler.Print(value.ToString());
+                        fnCtx.handler.outputHandler.Print(value.ToString());
                         fnCtx.Exit();
                         return CustomNil.Void;
                     }
@@ -101,7 +102,7 @@ namespace InterpreterTests
 
                     itr.AddFunction("test", new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                     {
-                        if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value)) fnCtx.outputHandler.Print("test interface print: " + value.ToString());
+                        if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value)) fnCtx.handler.outputHandler.Print("test interface print: " + value.ToString());
                         return CustomNil.Void;
                     })
                         .AddArgument("message")
@@ -120,7 +121,7 @@ namespace InterpreterTests
             Interpreter interpreter = new(fixturePath, apiInterface);
             CustomOutputHandler outputHandler = new();
 
-            interpreter.SetOutputHandler(outputHandler);
+            interpreter.SetHandler(new HandlerContainer(outputHandler));
 
             interpreter.Run().Wait();
 

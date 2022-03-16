@@ -29,7 +29,7 @@ namespace PseudoScript.Interpreter.Operations
                 return ((CustomMap)resolvedArg).CreateInstance();
             }
 
-            return ctx.debugger.Raise("Only maps can be iniated");
+            return CustomNil.Void;
         }
     }
 }

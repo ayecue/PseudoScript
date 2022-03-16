@@ -20,13 +20,10 @@ namespace PseudoScript.Interpreter.Operations
 
         public override CustomValue Handle(Context ctx)
         {
-            if (ctx.loopState == null)
+            if (ctx.loopState != null)
             {
-                return ctx.debugger.Raise("Unexpected continue statement.");
+                ctx.loopState.isContinue = true;
             }
-
-            ctx.loopState.isContinue = true;
-
             return CustomNil.Void;
         }
     }

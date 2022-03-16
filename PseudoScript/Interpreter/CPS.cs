@@ -8,19 +8,19 @@ namespace PseudoScript.Interpreter
         public class Context
         {
             public readonly string target;
-            public readonly ResourceHandler resourceHandler;
+            public readonly HandlerContainer handler;
             public string currentTarget;
 
-            public Context(string target, ResourceHandler resourceHandler)
+            public Context(string target, HandlerContainer handler)
             {
                 this.target = target;
-                this.resourceHandler = resourceHandler;
+                this.handler = handler;
             }
 
-            public Context(string target, ResourceHandler resourceHandler, string currentTarget)
+            public Context(string target, HandlerContainer handler, string currentTarget)
             {
                 this.target = target;
-                this.resourceHandler = resourceHandler;
+                this.handler = handler;
                 this.currentTarget = currentTarget;
             }
         }
@@ -68,8 +68,8 @@ namespace PseudoScript.Interpreter
                     return Visit(((AstProvider.CallStatement)item).expression);
                 case AstProvider.Type.ImportExpression:
                     AstProvider.ImportExpression importExpr = (AstProvider.ImportExpression)item;
-                    string target = context.resourceHandler.GetTargetRelativeTo(context.target, importExpr.directory);
-                    string code = context.resourceHandler.Get(target);
+                    string target = context.handler.resourceHandler.GetTargetRelativeTo(context.target, importExpr.directory);
+                    string code = context.handler.resourceHandler.Get(target);
 
                     if (code == null)
                     {

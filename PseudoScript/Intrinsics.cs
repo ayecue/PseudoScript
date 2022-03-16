@@ -20,7 +20,7 @@ namespace PseudoScript
                 {
                     if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
                     {
-                        fnCtx.outputHandler.Print(value.ToString());
+                        fnCtx.handler.outputHandler.Print(value.ToString());
                         return CustomNil.Void;
                     }
                     return CustomNil.Void;
@@ -34,7 +34,7 @@ namespace PseudoScript
                 {
                     if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
                     {
-                        fnCtx.outputHandler.Print(value.ToString());
+                        fnCtx.handler.outputHandler.Print(value.ToString());
                         fnCtx.Exit();
                         return CustomNil.Void;
                     }
@@ -86,7 +86,7 @@ namespace PseudoScript
             );
 
             apiInterface.Add(
-                "str",
+                "toString",
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomString(value.ToString());
@@ -96,10 +96,30 @@ namespace PseudoScript
             );
 
             apiInterface.Add(
-                "val",
+                "toNumber",
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(value.ToNumber());
+                    return CustomNil.Void;
+                })
+                    .AddArgument("value")
+            );
+
+            apiInterface.Add(
+                "toInt",
+                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
+                {
+                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(value.ToInt());
+                    return CustomNil.Void;
+                })
+                    .AddArgument("value")
+            );
+
+            apiInterface.Add(
+                "toBoolean",
+                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
+                {
+                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomBoolean(value.ToTruthy());
                     return CustomNil.Void;
                 })
                     .AddArgument("value")
@@ -145,7 +165,7 @@ namespace PseudoScript
 
                     if (value != null)
                     {
-                        int seed = value is CustomString ? value.ToString().GetHashCode() : value.ToInt();
+                        int seed = value.ToInt();
 
                         if (randomGeneratorMap.ContainsKey(seed))
                         {

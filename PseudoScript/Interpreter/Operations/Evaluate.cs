@@ -123,7 +123,7 @@ namespace PseudoScript.Interpreter.Operations
                     return CustomNil.Void;
                 }
 
-                return ctx.debugger.Raise("Cannot handle type in evaluation.");
+                return CustomNil.Void;
             }
         }
 

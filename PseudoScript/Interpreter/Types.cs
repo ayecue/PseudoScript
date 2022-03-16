@@ -3,6 +3,7 @@ using PseudoScript.Interpreter.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace PseudoScript.Interpreter.CustomTypes
@@ -217,13 +218,13 @@ namespace PseudoScript.Interpreter.CustomTypes
 
         public override double ToNumber()
         {
-            bool isNumber = double.TryParse(value, out double result);
+            bool isNumber = double.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out double result);
             return isNumber ? result : 0;
         }
 
         public override int ToInt()
         {
-            bool isNumber = int.TryParse(value, out int result);
+            bool isNumber = int.TryParse(value, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out int result);
             return isNumber ? result : 0;
         }
 

@@ -5,7 +5,7 @@ By default it uses `System.IO` to import files. Files will get resolved relative
 ## Create custom resource handler
 
 ```
-class MyResourceHandler : PseudoScript.Interpreter.ResourceHandler
+class MyResourceHandler : PseudoScript.Interpreter.Handler.Resource
 {
 	public override string Get(string target)
     {
@@ -41,8 +41,9 @@ class MyResourceHandler : PseudoScript.Interpreter.ResourceHandler
     }
 }
 
-Interpreter.Interpreter interpreter = new(new Interpreter.Options(null, null, null, new MyResourceHandler(), null));
+HandlerContainer handler = new(new MyResourceHandler());
+Interpreter.Interpreter interpreter = new();
+interpreter.SetHandler(handler);
 Task task = interpreter.Run("import \"my-file.src\"");
-
 task.Wait();
 ```

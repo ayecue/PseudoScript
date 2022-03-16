@@ -13,17 +13,15 @@ namespace PseudoScript.Interpreter
         public string target;
         public Dictionary<string, CustomValue> api;
         public List<string> argv;
-        public ResourceHandler resourceHandler;
-        public OutputHandler outputHandler;
+        public HandlerContainer handler;
         public Debugger debugger;
 
-        public Options(string? target, Dictionary<string, CustomValue>? api, List<string>? argv, ResourceHandler? resourceHandler, OutputHandler? outputHandler, Debugger? debugger)
+        public Options(string? target, Dictionary<string, CustomValue>? api, List<string>? argv, HandlerContainer? handler, Debugger? debugger)
         {
             this.target = target ?? "unknown";
             this.api = api ?? Intrinsics.Init();
             this.argv = argv ?? new List<string>();
-            this.resourceHandler = resourceHandler ?? new DefaultResourceHandler();
-            this.outputHandler = outputHandler ?? new DefaultOutputHandler();
+            this.handler = handler ?? new HandlerContainer();
             this.debugger = debugger ?? new Debugger();
         }
     }
@@ -33,25 +31,23 @@ namespace PseudoScript.Interpreter
         string target;
         Dictionary<string, CustomValue> api;
         List<string> argv;
-        ResourceHandler resourceHandler;
-        OutputHandler outputHandler;
+        HandlerContainer handler;
         Debugger debugger;
         Context apiContext;
         Context globalContext;
         CPS cps;
 
-        public Interpreter() : this(new Options(null, null, null, null, null, null)) { }
+        public Interpreter() : this(new Options(null, null, null, null, null)) { }
 
-        public Interpreter(string target) : this(new Options(target, null, null, null, null, null)) { }
+        public Interpreter(string target) : this(new Options(target, null, null, null, null)) { }
 
-        public Interpreter(Dictionary<string, CustomValue> api) : this(new Options(null, api, null, null, null, null)) { }
+        public Interpreter(Dictionary<string, CustomValue> api) : this(new Options(null, api, null, null, null)) { }
 
-        public Interpreter(string target, Dictionary<string, CustomValue> api) : this(new Options(target, api, null, null, null, null)) { }
+        public Interpreter(string target, Dictionary<string, CustomValue> api) : this(new Options(target, api, null, null, null)) { }
 
         public Interpreter(Options options)
         {
-            resourceHandler = options.resourceHandler;
-            outputHandler = options.outputHandler;
+            handler = options.handler;
             debugger = options.debugger;
             api = options.api;
             argv = options.argv;
@@ -68,10 +64,10 @@ namespace PseudoScript.Interpreter
 
             this.target = target;
 
-            CPS.Context cpsCtx = new(target, resourceHandler);
+            CPS.Context cpsCtx = new(target, handler);
             cps = new CPS(cpsCtx);
 
-            Context.Options apiCtxOptions = new(target, null, null, null, true, false, debugger, outputHandler, cps, null);
+            Context.Options apiCtxOptions = new(target, null, null, null, true, false, debugger, handler, cps, null);
             apiContext = new Context(apiCtxOptions);
             globalContext = apiContext.Fork(Context.Type.Global, Context.State.Default, null, null);
 
@@ -92,18 +88,6 @@ namespace PseudoScript.Interpreter
             return this;
         }
 
-        public Interpreter SetResourceHandler(ResourceHandler newResourceHandler)
-        {
-            if (apiContext != null && apiContext.IsPending())
-            {
-                throw new InterpreterException("You cannot set a resource handler while a process is running.");
-            }
-
-            this.resourceHandler = newResourceHandler;
-
-            return this;
-        }
-
         public Interpreter SetApi(Dictionary<string, CustomValue> newApi)
         {
             if (apiContext != null && apiContext.IsPending())
@@ -116,16 +100,16 @@ namespace PseudoScript.Interpreter
             return this;
         }
 
-        public Interpreter SetOutputHandler(OutputHandler outputHandler)
+        public Interpreter SetHandler(HandlerContainer handler)
         {
             if (apiContext != null && apiContext.IsPending())
             {
-                throw new InterpreterException("You cannot set a debugger while a process is running.");
+                throw new InterpreterException("You cannot set a handler while a process is running.");
             }
 
-            this.outputHandler = outputHandler;
-            apiContext.outputHandler = outputHandler;
-            globalContext.outputHandler = outputHandler;
+            this.handler = handler;
+            apiContext.handler = handler;
+            globalContext.handler = handler;
 
             return this;
         }
@@ -137,9 +121,7 @@ namespace PseudoScript.Interpreter
 
         public Task Inject(string code, Context ctx)
         {
-            Parser.Parser parser = new(code);
-            AstProvider.Base chunk = parser.ParseChunk();
-            Operation top = cps.Visit(chunk);
+            Operation top = Prepare(code);
             Context injectionCtx = ctx.Fork(Context.Type.Call, Context.State.Temporary, null, true);
 
             Task task = new(() =>
@@ -150,7 +132,7 @@ namespace PseudoScript.Interpreter
                 }
                 catch (Exception err)
                 {
-                    debugger.Raise(err.Message);
+                    handler.errorHandler.Raise(new InterpreterException(err.Message + ": " + err.StackTrace));
                 }
             });
 
@@ -171,6 +153,26 @@ namespace PseudoScript.Interpreter
             throw new InterpreterException("Unable to inject into last context.");
         }
 
+        public Operation Prepare(string code)
+        {
+            try
+            {
+                Parser.Parser parser = new(code);
+                AstProvider.Base chunk = parser.ParseChunk();
+                return cps.Visit(chunk);
+            }
+            catch (Exception err)
+            {
+                handler.errorHandler.Raise(err);
+            }
+            finally
+            {
+                apiContext.SetPending(false);
+            }
+
+            return new Noop();
+        }
+
         public Task Run(string code)
         {
             if (apiContext != null && apiContext.IsPending())
@@ -178,9 +180,7 @@ namespace PseudoScript.Interpreter
                 throw new InterpreterException("Process already running.");
             }
 
-            Parser.Parser parser = new(code);
-            AstProvider.Base chunk = parser.ParseChunk();
-            Operation top = cps.Visit(chunk);
+            Operation top = Prepare(code);
 
             apiContext.Extend(api);
 
@@ -199,7 +199,7 @@ namespace PseudoScript.Interpreter
                 }
                 catch (Exception err)
                 {
-                    debugger.Raise(err.Message + ": " + err.StackTrace);
+                    handler.errorHandler.Raise(new InterpreterException(err.Message + ": " + err.StackTrace));
                 }
                 finally
                 {
@@ -214,7 +214,7 @@ namespace PseudoScript.Interpreter
 
         public Task Run()
         {
-            return Run(resourceHandler.Get(target));
+            return Run(handler.resourceHandler.Get(target));
         }
 
         public void Resume()
