@@ -20,6 +20,8 @@ The main purpose of PseudoScript is to create a scripting language which is easy
 
 ## Documentation
 
+[Github Page](https://ayecue.github.io/PseudoScript)
+
 ```
 npm i docsify-cli -g
 docsify serve docs
