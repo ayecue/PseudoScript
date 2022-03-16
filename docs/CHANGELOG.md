@@ -28,3 +28,8 @@ All notable changes to this project will be documented in this file.
 - update documentation
 - introduce handler container
 - add tests
+
+## [0.1.3] - 16-03-2022
+
+- add operation overload to run in interpreter
+- add synchrounus run

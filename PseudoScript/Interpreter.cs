@@ -114,6 +114,40 @@ namespace PseudoScript.Interpreter
             return this;
         }
 
+        public void InjectSynchrounus(string code)
+        {
+            InjectSynchrounus(code, globalContext);
+        }
+
+        public void InjectSynchrounus(string code, Context ctx)
+        {
+            Operation top = Prepare(code);
+            Context injectionCtx = ctx.Fork(Context.Type.Call, Context.State.Temporary, null, true);
+
+            try
+            {
+                top.Handle(globalContext);
+            }
+            catch (Exception err)
+            {
+                handler.errorHandler.Raise(new InterpreterException(err.Message + ": " + err.StackTrace));
+            }
+        }
+
+        public void InjectSynchrounusInLastContext(string code)
+        {
+            Context last = apiContext.GetLastActive();
+
+            if (apiContext != null && apiContext.IsPending())
+            {
+                InjectSynchrounus(code, last);
+            }
+            else
+            {
+                new InterpreterException("Unable to inject into last context.");
+            }
+        }
+
         public Task Inject(string code)
         {
             return Inject(code, globalContext);
@@ -121,19 +155,9 @@ namespace PseudoScript.Interpreter
 
         public Task Inject(string code, Context ctx)
         {
-            Operation top = Prepare(code);
-            Context injectionCtx = ctx.Fork(Context.Type.Call, Context.State.Temporary, null, true);
-
             Task task = new(() =>
             {
-                try
-                {
-                    top.Handle(globalContext);
-                }
-                catch (Exception err)
-                {
-                    handler.errorHandler.Raise(new InterpreterException(err.Message + ": " + err.StackTrace));
-                }
+                InjectSynchrounus(code, ctx);
             });
 
             task.Start();
@@ -175,36 +199,15 @@ namespace PseudoScript.Interpreter
 
         public Task Run(string code)
         {
-            if (apiContext != null && apiContext.IsPending())
-            {
-                throw new InterpreterException("Process already running.");
-            }
-
             Operation top = Prepare(code);
+            return Run(top);
+        }
 
-            apiContext.Extend(api);
-
-            CustomList newArgv = new();
-
-            argv.ForEach(item => newArgv.value.Add(new CustomString(item)));
-
-            globalContext.scope.Set("params", newArgv);
-
+        public Task Run(Operation top)
+        {
             Task task = new(() =>
             {
-                try
-                {
-                    apiContext.SetPending(true);
-                    top.Handle(globalContext);
-                }
-                catch (Exception err)
-                {
-                    handler.errorHandler.Raise(new InterpreterException(err.Message + ": " + err.StackTrace));
-                }
-                finally
-                {
-                    apiContext.SetPending(false);
-                }
+                RunSynchronous(top);
             });
 
             task.Start();
@@ -215,6 +218,47 @@ namespace PseudoScript.Interpreter
         public Task Run()
         {
             return Run(handler.resourceHandler.Get(target));
+        }
+
+        public void RunSynchronous(string code)
+        {
+            Operation top = Prepare(code);
+            RunSynchronous(top);
+        }
+
+        public void RunSynchronous(Operation top)
+        {
+            if (apiContext != null && apiContext.IsPending())
+            {
+                throw new InterpreterException("Process already running.");
+            }
+
+            apiContext.Extend(api);
+
+            CustomList newArgv = new();
+
+            argv.ForEach(item => newArgv.value.Add(new CustomString(item)));
+
+            globalContext.scope.Set("params", newArgv);
+
+            try
+            {
+                apiContext.SetPending(true);
+                top.Handle(globalContext);
+            }
+            catch (Exception err)
+            {
+                handler.errorHandler.Raise(new InterpreterException(err.Message + ": " + err.StackTrace));
+            }
+            finally
+            {
+                apiContext.SetPending(false);
+            }
+        }
+
+        public void RunSynchronous()
+        {
+            RunSynchronous(handler.resourceHandler.Get(target));
         }
 
         public void Resume()
