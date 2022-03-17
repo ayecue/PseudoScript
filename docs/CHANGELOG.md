@@ -37,3 +37,7 @@ All notable changes to this project will be documented in this file.
 ## [0.1.4] - 17-03-2022
 
 - cleanup namespaces
+
+## [0.1.5] - 17-03-2022
+
+- update package properties
