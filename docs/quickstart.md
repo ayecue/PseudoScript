@@ -2,7 +2,7 @@
 
 ## Install
 
-Build `PseudoScript.dll` with Visual Studio and add as reference to your project.
+Visit [nuget.org/packages/PseudoScript/](https://www.nuget.org/packages/PseudoScript/).
 
 ## Run script
 
