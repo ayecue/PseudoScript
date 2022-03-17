@@ -33,3 +33,7 @@ All notable changes to this project will be documented in this file.
 
 - add operation overload to run in interpreter
 - add synchrounus run
+
+## [0.1.4] - 17-03-2022
+
+- cleanup namespaces

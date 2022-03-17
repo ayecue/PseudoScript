@@ -1,5 +1,5 @@
 ﻿using PseudoScript.Interpreter;
-using PseudoScript.Interpreter.CustomTypes;
+using PseudoScript.Interpreter.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace PseudoScript
 {
     public static class Intrinsics
     {
-        static Dictionary<string, CustomValue> GetApi()
+        private static Dictionary<string, CustomValue> GetApi()
         {
             Dictionary<string, CustomValue> apiInterface = new();
 
@@ -21,9 +21,9 @@ namespace PseudoScript
                     if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
                     {
                         fnCtx.handler.outputHandler.Print(value.ToString());
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("message")
             );
@@ -36,9 +36,9 @@ namespace PseudoScript
                     {
                         fnCtx.handler.outputHandler.Print(value.ToString());
                         fnCtx.Exit();
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("message")
             );
@@ -48,9 +48,9 @@ namespace PseudoScript
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("time", out CustomValue value)) Thread.Sleep(value.ToInt());
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
-                    .AddArgument("time", new CustomNumber(1))
+                    .AddArgument("time", Default.PositiveOne)
             );
 
             apiInterface.Add(
@@ -64,7 +64,7 @@ namespace PseudoScript
                             return new CustomString(char.ConvertFromUtf32(value.ToInt()));
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -80,7 +80,7 @@ namespace PseudoScript
                             return new CustomNumber(char.ConvertToUtf32(value.ToString(), 0));
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -90,7 +90,7 @@ namespace PseudoScript
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomString(value.ToString());
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -100,7 +100,7 @@ namespace PseudoScript
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(value.ToNumber());
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -110,7 +110,7 @@ namespace PseudoScript
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(value.ToInt());
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -120,7 +120,7 @@ namespace PseudoScript
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomBoolean(value.ToTruthy());
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -133,10 +133,10 @@ namespace PseudoScript
                     CustomValue from = arguments["from"];
                     CustomValue step = arguments["step"];
 
-                    if (to == CustomNil.Void)
+                    if (to == Default.Void)
                     {
                         to = from;
-                        from = new CustomNumber(0);
+                        from = Default.Zero;
                     }
 
                     CustomList list = new();
@@ -150,7 +150,7 @@ namespace PseudoScript
                 })
                     .AddArgument("from")
                     .AddArgument("to")
-                    .AddArgument("step", new CustomNumber(1))
+                    .AddArgument("step", Default.PositiveOne)
             );
 
             Random defaultRandomGenerator = new Random();
@@ -189,7 +189,7 @@ namespace PseudoScript
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Abs(value.ToNumber()));
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -199,7 +199,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Acos(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -209,7 +209,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Asin(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -219,7 +219,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Atan(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -229,7 +229,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Ceiling(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -239,7 +239,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Cos(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -249,7 +249,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Floor(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -259,7 +259,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Sin(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -269,7 +269,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Sign(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -279,7 +279,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Round(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -289,7 +289,7 @@ namespace PseudoScript
                new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                {
                    if (arguments.TryGetValue("value", out CustomValue value)) return new CustomNumber(Math.Sqrt(value.ToNumber()));
-                   return CustomNil.Void;
+                   return Default.Void;
                })
                    .AddArgument("value")
             );
@@ -312,7 +312,7 @@ namespace PseudoScript
                     {
                         return new CustomString(((CustomString)self).value.Trim());
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
             );
 
@@ -324,7 +324,7 @@ namespace PseudoScript
                     {
                         return new CustomString(((CustomString)self).value.ToUpper());
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
             );
 
@@ -336,7 +336,7 @@ namespace PseudoScript
                     {
                         return new CustomString(((CustomString)self).value.ToLower());
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
             );
 
@@ -348,7 +348,7 @@ namespace PseudoScript
                     {
                         return new CustomNumber(((CustomString)self).value.Length);
                     }
-                    return new CustomNumber(0);
+                    return Default.Zero;
                 })
             );
 
@@ -363,10 +363,10 @@ namespace PseudoScript
 
                         return new CustomNumber(selfString.value.IndexOf(value.ToString(), offset));
                     }
-                    return new CustomNumber(-1);
+                    return Default.NegativeOne;
                 })
                     .AddArgument("value")
-                    .AddArgument("offset", new CustomNumber(0))
+                    .AddArgument("offset", Default.Zero)
             );
 
             CustomString.AddIntrinsic(
@@ -380,10 +380,10 @@ namespace PseudoScript
 
                         return new CustomNumber(selfString.value.LastIndexOf(value.ToString(), offset));
                     }
-                    return new CustomNumber(-1);
+                    return Default.NegativeOne;
                 })
                     .AddArgument("value")
-                    .AddArgument("offset", new CustomNumber(-1))
+                    .AddArgument("offset", Default.NegativeOne)
             );
 
             CustomString.AddIntrinsic(
@@ -394,7 +394,7 @@ namespace PseudoScript
                     {
                         return new CustomBoolean(((CustomString)self).value.Contains(value.ToString()));
                     }
-                    return new CustomBoolean(false);
+                    return Default.False;
                 })
                     .AddArgument("value")
             );
@@ -407,7 +407,7 @@ namespace PseudoScript
                     {
                         return new CustomString(((CustomString)self).value.Replace(value.ToString(), arguments["replaceWith"].ToString()));
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
                     .AddArgument("replaceWith", new CustomString(""))
@@ -419,14 +419,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomString))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomString selfString = (CustomString)self;
                     string[] items = selfString.value.Split(arguments["delimiter"].ToString());
                     CustomList result = new();
 
-                    for (int index = 0; index < items.Count(); index++)
+                    for (int index = 0; index < items.Length; index++)
                     {
                         result.value.Add(new CustomString(items[index].ToString()));
                     }
@@ -442,7 +442,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomString))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomString selfString = (CustomString)self;
@@ -453,7 +453,7 @@ namespace PseudoScript
                     int start = CustomString.GetCharIndex(selfString, from.ToInt());
                     int end;
 
-                    if (to == CustomNil.Void)
+                    if (to == Default.Void)
                     {
                         end = selfString.value.Length - 1;
                     }
@@ -466,24 +466,24 @@ namespace PseudoScript
 
                     if (start < 0 || start >= length)
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (end < 0 || end >= length)
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (start > end)
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     string sliced = selfString.value.Substring(start, end - start + 1);
 
                     return new CustomString(sliced);
                 })
-                    .AddArgument("from", new CustomNumber(0))
+                    .AddArgument("from", Default.Zero)
                     .AddArgument("to")
             );
         }
@@ -498,7 +498,7 @@ namespace PseudoScript
                     {
                         return new CustomBoolean(((CustomList)self).Has(value.ToString()));
                     }
-                    return new CustomBoolean(false);
+                    return Default.False;
                 })
                     .AddArgument("value")
             );
@@ -509,7 +509,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList selfList = (CustomList)self;
@@ -534,9 +534,9 @@ namespace PseudoScript
                     if (arguments.TryGetValue("value", out CustomValue value) && self is CustomList)
                     {
                         ((CustomList)self).value.Add(value);
-                        return new CustomBoolean(true);
+                        return Default.True;
                     }
-                    return new CustomBoolean(false);
+                    return Default.False;
                 })
                     .AddArgument("value")
             );
@@ -548,9 +548,9 @@ namespace PseudoScript
                     if (arguments.TryGetValue("value", out CustomValue value) && self is CustomList)
                     {
                         ((CustomList)self).value.Insert(0, value);
-                        return new CustomBoolean(true);
+                        return Default.True;
                     }
-                    return new CustomBoolean(false);
+                    return Default.False;
                 })
                     .AddArgument("value")
             );
@@ -561,7 +561,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList selfList = (CustomList)self;
@@ -574,7 +574,7 @@ namespace PseudoScript
                     }
 
 
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
             );
 
@@ -584,7 +584,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList selfList = (CustomList)self;
@@ -597,7 +597,7 @@ namespace PseudoScript
                     }
 
 
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
             );
 
@@ -613,10 +613,10 @@ namespace PseudoScript
                        if (index >= 0 && index < selfList.value.Count)
                        {
                            selfList.value.RemoveAt(index);
-                           return new CustomBoolean(true);
+                           return Default.True;
                        }
                    }
-                   return new CustomBoolean(false);
+                   return Default.False;
                })
                     .AddArgument("index")
            );
@@ -629,7 +629,7 @@ namespace PseudoScript
                     {
                         return new CustomNumber(((CustomList)self).value.Count);
                     }
-                    return new CustomNumber(0);
+                    return Default.Zero;
                 })
             );
 
@@ -639,7 +639,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList selfList = (CustomList)self;
@@ -647,7 +647,7 @@ namespace PseudoScript
                     arguments.TryGetValue("from", out CustomValue from);
                     arguments.TryGetValue("to", out CustomValue to);
 
-                    if (to == CustomNil.Void)
+                    if (to == Default.Void)
                     {
                         to = new CustomNumber(selfList.value.Count - 1);
                     }
@@ -658,24 +658,24 @@ namespace PseudoScript
 
                     if (start < 0 || start >= length)
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (end < 0 || end >= length)
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (start > end)
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     List<CustomValue> sliced = selfList.value.GetRange(start, end - start + 1);
 
                     return new CustomList(sliced);
                 })
-                    .AddArgument("from", new CustomNumber(0))
+                    .AddArgument("from", Default.Zero)
                     .AddArgument("to")
             );
 
@@ -685,7 +685,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList result = new();
@@ -706,7 +706,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList result = new();
@@ -741,10 +741,10 @@ namespace PseudoScript
                             }
                         }
                     }
-                    return new CustomNumber(-1);
+                    return Default.NegativeOne;
                 })
                     .AddArgument("value")
-                    .AddArgument("offset", new CustomNumber(0))
+                    .AddArgument("offset", Default.Zero)
             );
 
             CustomList.AddIntrinsic(
@@ -766,10 +766,10 @@ namespace PseudoScript
                             }
                         }
                     }
-                    return new CustomNumber(-1);
+                    return Default.NegativeOne;
                 })
                     .AddArgument("value")
-                    .AddArgument("offset", new CustomNumber(-1))
+                    .AddArgument("offset", Default.NegativeOne)
             );
 
             CustomList.AddIntrinsic(
@@ -778,14 +778,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("fn", out CustomValue fn))
                     {
                         if (!(fn is CustomFunction))
                         {
-                            return CustomNil.Void;
+                            return Default.Void;
                         }
 
                         CustomList selfList = (CustomList)self;
@@ -802,7 +802,7 @@ namespace PseudoScript
                             }
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("fn")
             );
@@ -813,14 +813,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("fn", out CustomValue fn))
                     {
                         if (!(fn is CustomFunction))
                         {
-                            return CustomNil.Void;
+                            return Default.Void;
                         }
 
                         CustomList selfList = (CustomList)self;
@@ -832,7 +832,7 @@ namespace PseudoScript
                             fnRef.Run(self, new List<CustomValue>() { item, new CustomNumber(index++) });
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("fn")
             );
@@ -843,14 +843,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("fn", out CustomValue fn))
                     {
                         if (!(fn is CustomFunction))
                         {
-                            return CustomNil.Void;
+                            return Default.Void;
                         }
 
                         CustomList selfList = (CustomList)self;
@@ -866,7 +866,7 @@ namespace PseudoScript
 
                         return result;
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("fn")
             );
@@ -877,14 +877,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomList))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("fn", out CustomValue fn))
                     {
                         if (!(fn is CustomFunction))
                         {
-                            return CustomNil.Void;
+                            return Default.Void;
                         }
 
                         CustomList selfList = (CustomList)self;
@@ -899,10 +899,10 @@ namespace PseudoScript
 
                         return result;
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("fn")
-                    .AddArgument("initalValue", CustomNil.Void)
+                    .AddArgument("initalValue", Default.Void)
             );
         }
 
@@ -916,7 +916,7 @@ namespace PseudoScript
                     {
                         return new CustomBoolean(((CustomMap)self).Has(value.ToString()));
                     }
-                    return new CustomBoolean(false);
+                    return Default.False;
                 })
                     .AddArgument("value")
             );
@@ -929,7 +929,7 @@ namespace PseudoScript
                     {
                         return new CustomNumber(((CustomMap)self).value.Count);
                     }
-                    return new CustomNumber(0);
+                    return Default.Zero;
                 })
             );
 
@@ -941,7 +941,7 @@ namespace PseudoScript
                     {
                         return new CustomBoolean(((CustomMap)self).value.Remove(value.ToString()));
                     }
-                    return new CustomBoolean(false);
+                    return Default.False;
                 })
                     .AddArgument("key")
             );
@@ -952,7 +952,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomMap))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList result = new();
@@ -973,7 +973,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomMap))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     CustomList result = new();
@@ -994,7 +994,7 @@ namespace PseudoScript
                 {
                     if (!(self is CustomMap))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("value", out CustomValue value) && self is CustomMap)
@@ -1009,7 +1009,7 @@ namespace PseudoScript
                             }
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("value")
             );
@@ -1020,14 +1020,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomMap))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("fn", out CustomValue fn))
                     {
                         if (!(fn is CustomFunction))
                         {
-                            return CustomNil.Void;
+                            return Default.Void;
                         }
 
                         CustomMap selfMap = (CustomMap)self;
@@ -1043,7 +1043,7 @@ namespace PseudoScript
                             }
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("fn")
             );
@@ -1054,14 +1054,14 @@ namespace PseudoScript
                 {
                     if (!(self is CustomMap))
                     {
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
 
                     if (arguments.TryGetValue("fn", out CustomValue fn))
                     {
                         if (!(fn is CustomFunction))
                         {
-                            return CustomNil.Void;
+                            return Default.Void;
                         }
 
                         CustomMap selfMap = (CustomMap)self;
@@ -1072,7 +1072,7 @@ namespace PseudoScript
                             fnRef.Run(self, new List<CustomValue>() { item.Value, new CustomString(item.Key) });
                         }
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("fn")
             );

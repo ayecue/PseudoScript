@@ -18,6 +18,15 @@ The main purpose of PseudoScript is to create a scripting language which is easy
 - inject code into a running script
 - api and intrinsics can be integrated and extended very easily
 
+## Documentation
+
+[Github Page](https://ayecue.github.io/PseudoScript)
+
+```
+npm i docsify-cli -g
+docsify serve docs
+```
+
 ## TODO
 
 - improve docs

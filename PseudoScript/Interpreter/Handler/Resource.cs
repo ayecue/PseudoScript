@@ -10,7 +10,7 @@ namespace PseudoScript.Interpreter.Handler
         abstract public string Resolve(string target);
     }
 
-    public class DefaultResource : Resource
+    internal class DefaultResource : Resource
     {
         public override string Get(string target)
         {

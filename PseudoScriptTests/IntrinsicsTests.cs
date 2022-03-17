@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PseudoScript;
 using PseudoScript.Interpreter;
-using PseudoScript.Interpreter.CustomTypes;
+using PseudoScript.Interpreter.Types;
 using PseudoScript.Interpreter.Handler;
 using System.Collections.Generic;
 using System.Threading.Tasks;

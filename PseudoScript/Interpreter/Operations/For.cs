@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ namespace PseudoScript.Interpreter.Operations
 {
     class For : Operation
     {
-        public new AstProvider.ForGenericStatement item;
+        public readonly new AstProvider.ForGenericStatement item;
         public Block block;
         public Resolve variable;
         public Operation iterator;
@@ -41,14 +41,14 @@ namespace PseudoScript.Interpreter.Operations
             while (enumerator.MoveNext())
             {
                 CustomValue current = (CustomValue)enumerator.Current;
-                forCtx.loopState.isContinue = false;
+                forCtx.loopState.IsContinue = false;
                 forCtx.Set(resolveResult.path, current);
                 block.Handle(forCtx);
-                if (forCtx.loopState.isContinue) continue;
-                if (forCtx.loopState.isBreak || ctx.IsExit()) break;
+                if (forCtx.loopState.IsContinue) continue;
+                if (forCtx.loopState.IsBreak || ctx.IsExit()) break;
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

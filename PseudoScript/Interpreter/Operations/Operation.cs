@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
@@ -6,8 +6,8 @@ namespace PseudoScript.Interpreter.Operations
     abstract public class Operation
     {
         public delegate Operation CPSVisit(AstProvider.Base item);
-        public AstProvider.Base item;
-        public string target;
+        public readonly AstProvider.Base item;
+        public readonly string target;
 
         public Operation(AstProvider.Base item) : this(item, null) { }
 

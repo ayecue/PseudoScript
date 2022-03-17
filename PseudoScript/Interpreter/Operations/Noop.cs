@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
@@ -16,7 +16,7 @@ namespace PseudoScript.Interpreter.Operations
 
         public override CustomNil Handle(Context ctx)
         {
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

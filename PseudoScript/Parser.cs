@@ -28,7 +28,15 @@ namespace PseudoScript.Parser
 
     public class Parser
     {
-        static int GetPrecedence(string op)
+        private static class Patterns
+        {
+            internal static readonly string[] MAP_OR_LIST_NEXT = new string[] { ",", ";" };
+            internal static readonly string[] MAP_OR_LIST_START = new string[] { "{", "[" };
+            internal static readonly string[] BLOCK_EXPECTED_EOL = new string[] { ";", "<eof>" };
+            internal static readonly string[] IF_SHORTCUT_CONSUME_EOL = new string[] { "end if", ";", "<eof>" };
+        }
+
+        private static int GetPrecedence(string op)
         {
             return op switch
             {
@@ -43,27 +51,21 @@ namespace PseudoScript.Parser
             };
         }
 
-        readonly string content;
-        readonly Lexer.Lexer lexer;
-        readonly List<Lexer.Token> history;
-        readonly Queue<Lexer.Token> prefetchedTokens;
-        Lexer.Token? token;
-        Lexer.Token? previousToken;
-        readonly List<string> nativeImports;
-        readonly HashSet<string> namespaces;
-        readonly List<AstProvider.Base> literals;
-        readonly Validator validator;
-        readonly AstProvider astProvider;
-        readonly bool force;
-        readonly List<Exception> errors;
+        private readonly string content;
+        private readonly Lexer.Lexer lexer;
+        private readonly List<Lexer.Token> history;
+        private readonly Queue<Lexer.Token> prefetchedTokens;
+        private Lexer.Token? token;
+        private Lexer.Token? previousToken;
+        private readonly List<string> nativeImports;
+        private readonly HashSet<string> namespaces;
+        private readonly List<AstProvider.Base> literals;
+        private readonly Validator validator;
+        private readonly AstProvider astProvider;
+        private readonly bool force;
+        private readonly List<Exception> errors;
 
-        //Pre allocated patterns
-        static readonly string[] mapConstructorConsumeEOLPattern = new string[] { "}", "<eof>" };
-        static readonly string[] parsePrimaryExpressionMapConsumePattern = new string[] { "{", "[" };
-        static readonly string[] parseWhileStatementExpectedEOLPattern = new string[] { ";", "<eof>" };
-        static readonly string[] parseIfShortcutStatementConsumeEOLPattern = new string[] { "end if", ";", "<eof>" };
-        static readonly string[] parseForStatementExpectedEOLPattern = new string[] { ";", "<eof>" };
-        static readonly string[] parseFunctionDeclarationExpectedEOLPattern = new string[] { ";", "<eof>" };
+        public Parser(string content) : this(content, new Options(null, null, null, null, null, null)) { }
 
         public Parser(string content, Options options)
         {
@@ -86,9 +88,7 @@ namespace PseudoScript.Parser
             errors = new List<Exception>();
         }
 
-        public Parser(string content) : this(content, new Options(null, null, null, null, null, null)) { }
-
-        Parser Next()
+        private Parser Next()
         {
             if (previousToken != null)
             {
@@ -101,7 +101,7 @@ namespace PseudoScript.Parser
             return this;
         }
 
-        bool IsBlockFollow(Lexer.Token token)
+        private bool IsBlockFollow(Lexer.Token token)
         {
             string type = token.type;
             string value = token.value;
@@ -110,7 +110,7 @@ namespace PseudoScript.Parser
             return value.StartsWith("else") || value.StartsWith("end");
         }
 
-        bool Consume(string value)
+        private bool Consume(string value)
         {
             if (token == null)
             {
@@ -126,7 +126,7 @@ namespace PseudoScript.Parser
             return false;
         }
 
-        Lexer.Token Fetch()
+        private Lexer.Token Fetch()
         {
             Prefetch();
 
@@ -138,7 +138,7 @@ namespace PseudoScript.Parser
             return null;
         }
 
-        Lexer.Token Prefetch(int offset = 1)
+        private Lexer.Token Prefetch(int offset = 1)
         {
 
             int offsetIndex = offset - 1;
@@ -159,7 +159,7 @@ namespace PseudoScript.Parser
             return prefetchedTokens.ElementAt(offsetIndex);
         }
 
-        bool ConsumeMany(string[] values)
+        private bool ConsumeMany(string[] values)
         {
             if (values.Contains(token.value) && Lexer.Token.Type.StringLiteral != token.type)
             {
@@ -170,7 +170,7 @@ namespace PseudoScript.Parser
             return false;
         }
 
-        void Expect(string value)
+        private void Expect(string value)
         {
             if (value == token.value && Lexer.Token.Type.StringLiteral != token.type)
             {
@@ -182,7 +182,7 @@ namespace PseudoScript.Parser
             }
         }
 
-        void ExpectMany(string[] values)
+        private void ExpectMany(string[] values)
         {
 
 
@@ -196,7 +196,7 @@ namespace PseudoScript.Parser
             }
         }
 
-        bool IsUnary(Lexer.Token token)
+        private bool IsUnary(Lexer.Token token)
         {
             string type = token.type;
             string value = token.value;
@@ -209,7 +209,7 @@ namespace PseudoScript.Parser
             };
         }
 
-        AstProvider.InvalidCodeExpression Raise(Exception err)
+        private AstProvider.InvalidCodeExpression Raise(Exception err)
         {
             errors.Add(err);
 
@@ -235,7 +235,7 @@ namespace PseudoScript.Parser
             return origin;
         }
 
-        AstProvider.Base ParseIdentifier()
+        private AstProvider.Base ParseIdentifier()
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             AstProvider.Position end = new(token.line, token.lineRange.End.Value);
@@ -253,7 +253,7 @@ namespace PseudoScript.Parser
             return astProvider.CreateIdentifier(identifier, start, end);
         }
 
-        AstProvider.MapConstructorExpression ParseMapConstructor()
+        private AstProvider.MapConstructorExpression ParseMapConstructor()
         {
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
             List<AstProvider.Base> fields = new();
@@ -277,19 +277,19 @@ namespace PseudoScript.Parser
                         value.end
                     ));
                 }
-
-                if (ConsumeMany(mapConstructorConsumeEOLPattern))
+                if (ConsumeMany(Patterns.MAP_OR_LIST_NEXT))
                 {
-                    break;
+                    continue;
                 }
-
-                Next();
+                break;
             }
+
+            Expect("}");
 
             return astProvider.CreateMapConstructorExpression(fields, start, new AstProvider.Position(token.line, token.lineRange.Start.Value));
         }
 
-        AstProvider.ListConstructorExpression ParseListConstructor()
+        private AstProvider.ListConstructorExpression ParseListConstructor()
         {
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
             List<AstProvider.Base> fields = new();
@@ -299,9 +299,8 @@ namespace PseudoScript.Parser
             {
                 value = ParseExpression();
                 if (value != null) fields.Add(astProvider.CreateListValue(value, value.start, value.end));
-                if (token.value == "," || token.value == ";")
+                if (ConsumeMany(Patterns.MAP_OR_LIST_NEXT))
                 {
-                    Next();
                     continue;
                 }
                 break;
@@ -312,7 +311,7 @@ namespace PseudoScript.Parser
             return astProvider.CreateListConstructorExpression(fields, start, new AstProvider.Position(token.line, token.lineRange.Start.Value));
         }
 
-        AstProvider.Base ParseRighthandExpressionGreedy(AstProvider.Base origin)
+        private AstProvider.Base ParseRighthandExpressionGreedy(AstProvider.Base origin)
         {
             while (true)
             {
@@ -326,7 +325,7 @@ namespace PseudoScript.Parser
             return origin;
         }
 
-        AstProvider.Base ParseRighthandExpression()
+        private AstProvider.Base ParseRighthandExpression()
         {
             AstProvider.Base origin;
 
@@ -347,7 +346,7 @@ namespace PseudoScript.Parser
             return ParseRighthandExpressionGreedy(origin);
         }
 
-        AstProvider.AssignmentStatement ParseAssignmentShorthandOperator(AstProvider.Base origin)
+        private AstProvider.AssignmentStatement ParseAssignmentShorthandOperator(AstProvider.Base origin)
         {
             AstProvider.Position assignmentStart = origin.start;
             AstProvider.Position binaryExpressionStart = new(token.line, token.lineRange.Start.Value);
@@ -370,7 +369,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.IndexExpression ParseIndexExpression(AstProvider.Base origin)
+        private AstProvider.IndexExpression ParseIndexExpression(AstProvider.Base origin)
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             Lexer.Token currentToken = token;
@@ -381,7 +380,7 @@ namespace PseudoScript.Parser
             return astProvider.CreateIndexExpression(origin, expression, start, new AstProvider.Position(currentToken.line, currentToken.lineRange.End.Value));
         }
 
-        AstProvider.Base ParseRighthandExpressionPart(AstProvider.Base origin)
+        private AstProvider.Base ParseRighthandExpressionPart(AstProvider.Base origin)
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             AstProvider.Base identifier;
@@ -427,7 +426,7 @@ namespace PseudoScript.Parser
             return null;
         }
 
-        AstProvider.Base ParseCallExpression(AstProvider.Base origin)
+        private AstProvider.Base ParseCallExpression(AstProvider.Base origin)
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             string value = token.value;
@@ -464,12 +463,12 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.Base ParseFloatExpression()
+        private AstProvider.Base ParseFloatExpression()
         {
             return ParseFloatExpression(0);
         }
 
-        AstProvider.Base ParseFloatExpression(double baseValue)
+        private AstProvider.Base ParseFloatExpression(double baseValue)
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
 
@@ -492,7 +491,7 @@ namespace PseudoScript.Parser
             return origin;
         }
 
-        AstProvider.Base ParsePrimaryExpression()
+        private AstProvider.Base ParsePrimaryExpression()
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             object value = token.value;
@@ -547,7 +546,7 @@ namespace PseudoScript.Parser
                 Next();
                 return ParseFunctionDeclaration();
             }
-            else if (ConsumeMany(parsePrimaryExpressionMapConsumePattern))
+            else if (ConsumeMany(Patterns.MAP_OR_LIST_START))
             {
                 AstProvider.Base origin;
                 if ("{" == previousToken.value)
@@ -567,7 +566,7 @@ namespace PseudoScript.Parser
             return null;
         }
 
-        AstProvider.Base ParseBinaryExpression(AstProvider.Base expression, int minPrecedence = 0)
+        private AstProvider.Base ParseBinaryExpression(AstProvider.Base expression, int minPrecedence = 0)
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             int precedence;
@@ -608,7 +607,7 @@ namespace PseudoScript.Parser
             return expression;
         }
 
-        AstProvider.Base ParseSubExpression(int minPrecedence = 0)
+        private AstProvider.Base ParseSubExpression(int minPrecedence = 0)
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             string op = token.value;
@@ -647,7 +646,7 @@ namespace PseudoScript.Parser
             return expression;
         }
 
-        AstProvider.Base ParseImportStatement()
+        private AstProvider.Base ParseImportStatement()
         {
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
 
@@ -672,7 +671,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.WhileStatement ParseWhileStatement()
+        private AstProvider.WhileStatement ParseWhileStatement()
         {
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
             AstProvider.Base condition = ParseExpectedExpression();
@@ -687,7 +686,7 @@ namespace PseudoScript.Parser
             else
             {
                 body = ParseBlockShortcut();
-                ExpectMany(parseWhileStatementExpectedEOLPattern);
+                ExpectMany(Patterns.BLOCK_EXPECTED_EOL);
             }
 
             return astProvider.CreateWhileStatement(
@@ -698,12 +697,12 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.Base ParseExpression()
+        private AstProvider.Base ParseExpression()
         {
             return ParseSubExpression();
         }
 
-        AstProvider.Base ParseExpectedExpression()
+        private AstProvider.Base ParseExpectedExpression()
         {
             AstProvider.Base expression = ParseExpression();
 
@@ -715,7 +714,7 @@ namespace PseudoScript.Parser
             return expression;
         }
 
-        AstProvider.Base ParseIfShortcutStatement(AstProvider.Base condition, AstProvider.Position start)
+        private AstProvider.Base ParseIfShortcutStatement(AstProvider.Base condition, AstProvider.Position start)
         {
             List<AstProvider.Base> clauses = new();
             AstProvider.Position statementStart;
@@ -761,7 +760,7 @@ namespace PseudoScript.Parser
                 Consume(";");
             }
 
-            ConsumeMany(parseIfShortcutStatementConsumeEOLPattern);
+            ConsumeMany(Patterns.IF_SHORTCUT_CONSUME_EOL);
 
             return astProvider.CreateIfStatement(
                 clauses,
@@ -770,7 +769,7 @@ namespace PseudoScript.Parser
             ); ;
         }
 
-        AstProvider.Base ParseIfStatement()
+        private AstProvider.Base ParseIfStatement()
         {
             List<AstProvider.Base> clauses = new();
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
@@ -811,7 +810,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.ReturnStatement ParseReturnStatement(bool isShortcutStatement = false)
+        private AstProvider.ReturnStatement ParseReturnStatement(bool isShortcutStatement = false)
         {
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
             AstProvider.Base expression = ParseExpression();
@@ -825,7 +824,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.Base ParseAssignmentOrCallStatement()
+        private AstProvider.Base ParseAssignmentOrCallStatement()
         {
             AstProvider.Position start = new(token.line, token.lineRange.Start.Value);
             AstProvider.Base origin;
@@ -897,7 +896,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.ForGenericStatement ParseForStatement()
+        private AstProvider.ForGenericStatement ParseForStatement()
         {
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
 
@@ -921,7 +920,7 @@ namespace PseudoScript.Parser
             else
             {
                 body = ParseBlockShortcut();
-                ExpectMany(parseForStatementExpectedEOLPattern);
+                ExpectMany(Patterns.BLOCK_EXPECTED_EOL);
             }
 
             return astProvider.CreateForGenericStatement(
@@ -933,7 +932,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.Base ParseFunctionDeclaration()
+        private AstProvider.Base ParseFunctionDeclaration()
         {
 
             AstProvider.Position start = new(previousToken.line, previousToken.lineRange.Start.Value);
@@ -991,7 +990,7 @@ namespace PseudoScript.Parser
             else
             {
                 body = ParseBlockShortcut();
-                ExpectMany(parseFunctionDeclarationExpectedEOLPattern);
+                ExpectMany(Patterns.BLOCK_EXPECTED_EOL);
             }
 
             if (name != null)
@@ -1008,7 +1007,7 @@ namespace PseudoScript.Parser
             );
         }
 
-        AstProvider.Base ParseStatement(bool isShortcutStatement = false)
+        private AstProvider.Base ParseStatement(bool isShortcutStatement = false)
         {
 
 
@@ -1058,7 +1057,7 @@ namespace PseudoScript.Parser
             return ParseAssignmentOrCallStatement();
         }
 
-        List<AstProvider.Base> ParseBlockShortcut()
+        private List<AstProvider.Base> ParseBlockShortcut()
         {
 
             List<AstProvider.Base> block = new();
@@ -1077,7 +1076,7 @@ namespace PseudoScript.Parser
             return block;
         }
 
-        List<AstProvider.Base> ParseBlock()
+        private List<AstProvider.Base> ParseBlock()
         {
             List<AstProvider.Base> block = new();
 

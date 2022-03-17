@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace PseudoScript.Interpreter.CustomTypes
+namespace PseudoScript.Interpreter.Types
 {
     public abstract class CustomValue
     {
@@ -33,8 +33,6 @@ namespace PseudoScript.Interpreter.CustomTypes
 
     public class CustomNil : CustomValue
     {
-        static public readonly CustomNil Void = new();
-
         public override string GetCustomType()
         {
             return "null";
@@ -68,7 +66,7 @@ namespace PseudoScript.Interpreter.CustomTypes
 
     public class CustomBoolean : CustomValue
     {
-        public bool value;
+        public readonly bool value;
 
         public CustomBoolean(bool value)
         {
@@ -108,7 +106,7 @@ namespace PseudoScript.Interpreter.CustomTypes
 
     public class CustomNumber : CustomValue
     {
-        public double value;
+        public readonly double value;
 
         public CustomNumber(int value) : this((double)value) { }
 
@@ -152,8 +150,8 @@ namespace PseudoScript.Interpreter.CustomTypes
     {
         public class Enumerator : IEnumerator
         {
-            readonly string value;
-            int index = -1;
+            private readonly string value;
+            private int index = -1;
 
             public Enumerator(string value)
             {
@@ -187,14 +185,22 @@ namespace PseudoScript.Interpreter.CustomTypes
             return n;
         }
 
-        public static IntrinsicsContainer intrinsics = new();
+        private static IntrinsicsContainer intrinsics = new();
+
+        public static IntrinsicsContainer Intrinsics
+        {
+            get
+            {
+                return intrinsics;
+            }
+        }
 
         public static void AddIntrinsic(string name, CustomFunction fn)
         {
             intrinsics.Add(name, fn);
         }
 
-        public string value;
+        public readonly string value;
 
         public CustomString(string value)
         {
@@ -305,20 +311,20 @@ namespace PseudoScript.Interpreter.CustomTypes
                 }
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 
-    public delegate CustomValue CustomFunctionCallback(Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments);
-
     public class CustomFunction : CustomValue
     {
-        public class Argument
-        {
-            public string name;
-            public Operation defaultValue;
+        public delegate CustomValue Callback(Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments);
 
-            public Argument(string name) : this(name, CustomNil.Void) { }
+        private class Argument
+        {
+            public readonly string name;
+            public readonly Operation defaultValue;
+
+            public Argument(string name) : this(name, Default.Void) { }
             public Argument(string name, CustomValue defaultValue) : this(name, new Reference(defaultValue)) { }
 
             public Argument(string name, Operation defaultValue)
@@ -328,16 +334,16 @@ namespace PseudoScript.Interpreter.CustomTypes
             }
         }
 
-        public Context? scope;
-        public string name;
-        public CustomFunctionCallback callback;
-        public List<Argument> argumentDefs;
+        private readonly Context? scope;
+        private readonly string name;
+        private readonly Callback callback;
+        private readonly List<Argument> argumentDefs;
 
-        public CustomFunction(CustomFunctionCallback callback) : this(null, "anonymous", callback) { }
+        public CustomFunction(Callback callback) : this(null, "anonymous", callback) { }
 
-        public CustomFunction(string name, CustomFunctionCallback callback) : this(null, name, callback) { }
+        public CustomFunction(string name, Callback callback) : this(null, name, callback) { }
 
-        public CustomFunction(Context scope, string name, CustomFunctionCallback callback)
+        public CustomFunction(Context scope, string name, Callback callback)
         {
             this.scope = scope;
             this.name = name;
@@ -347,7 +353,7 @@ namespace PseudoScript.Interpreter.CustomTypes
 
         public CustomFunction AddArgument(string name)
         {
-            argumentDefs.Add(new Argument(name, CustomNil.Void));
+            argumentDefs.Add(new Argument(name, Default.Void));
             return this;
         }
 
@@ -460,14 +466,22 @@ namespace PseudoScript.Interpreter.CustomTypes
             return n;
         }
 
-        public static IntrinsicsContainer intrinsics = new();
+        private static IntrinsicsContainer intrinsics = new();
+
+        public static IntrinsicsContainer Intrinsics
+        {
+            get
+            {
+                return intrinsics;
+            }
+        }
 
         public static void AddIntrinsic(string name, CustomFunction fn)
         {
             intrinsics.Add(name, fn);
         }
 
-        public List<CustomValue> value;
+        public readonly List<CustomValue> value;
 
         public CustomList() : this(new List<CustomValue>()) { }
         public CustomList(CustomList list) : this(list.value) { }
@@ -516,7 +530,7 @@ namespace PseudoScript.Interpreter.CustomTypes
 
         public CustomList Extend(List<CustomValue> list)
         {
-            value = value.Concat(list).ToList();
+            list.ForEach((item) => value.Add(item));
             return this;
         }
 
@@ -661,7 +675,7 @@ namespace PseudoScript.Interpreter.CustomTypes
                 }
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 
@@ -669,9 +683,9 @@ namespace PseudoScript.Interpreter.CustomTypes
     {
         public class Enumerator : IEnumerator
         {
-            readonly Dictionary<string, CustomValue> value;
-            readonly List<string> keys;
-            int index = -1;
+            private readonly Dictionary<string, CustomValue> value;
+            private readonly List<string> keys;
+            private int index = -1;
 
             public Enumerator(Dictionary<string, CustomValue> value)
             {
@@ -704,15 +718,23 @@ namespace PseudoScript.Interpreter.CustomTypes
             }
         }
 
-        public static IntrinsicsContainer intrinsics = new();
+        private static IntrinsicsContainer intrinsics = new();
+
+        public static IntrinsicsContainer Intrinsics
+        {
+            get
+            {
+                return intrinsics;
+            }
+        }
 
         public static void AddIntrinsic(string name, CustomFunction fn)
         {
             intrinsics.Add(name, fn);
         }
 
-        public Dictionary<string, CustomValue> value;
-        public bool isInstance = false;
+        public readonly Dictionary<string, CustomValue> value;
+        private bool isInstance = false;
 
         public CustomMap() : this(new Dictionary<string, CustomValue>()) { }
         public CustomMap(CustomMap map) : this(map.value) { }
@@ -871,7 +893,7 @@ namespace PseudoScript.Interpreter.CustomTypes
                 }
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
 
         public CustomMap CreateInstance()
@@ -892,7 +914,7 @@ namespace PseudoScript.Interpreter.CustomTypes
             {
                 get
                 {
-                    return CustomNil.Void;
+                    return Default.Void;
                 }
             }
 
@@ -904,8 +926,8 @@ namespace PseudoScript.Interpreter.CustomTypes
             void IEnumerator.Reset() { }
         }
 
-        Dictionary<string, CustomFunction> interfaceFns;
-        string type;
+        private readonly Dictionary<string, CustomFunction> interfaceFns;
+        private readonly string type;
 
         public CustomInterface(string type)
         {
@@ -999,7 +1021,7 @@ namespace PseudoScript.Interpreter.CustomTypes
                 }
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
 
         public CustomInterface AddFunction(string name, CustomFunction fn)
@@ -1007,5 +1029,15 @@ namespace PseudoScript.Interpreter.CustomTypes
             interfaceFns[name] = fn;
             return this;
         }
+    }
+
+    static public class Default
+    {
+        static public readonly CustomNil Void = new();
+        static public readonly CustomBoolean True = new(true);
+        static public readonly CustomBoolean False = new(false);
+        static public readonly CustomNumber NegativeOne = new(-1);
+        static public readonly CustomNumber PositiveOne = new(1);
+        static public readonly CustomNumber Zero = new(0);
     }
 }

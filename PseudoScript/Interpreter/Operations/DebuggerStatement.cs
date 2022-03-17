@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class DebuggerStatement : Operation
     {
-        public new AstProvider.Base item;
+        public readonly new AstProvider.Base item;
 
         public DebuggerStatement(AstProvider.Base item) : this(item, null) { }
         public DebuggerStatement(AstProvider.Base item, string target) : base(null, target)
@@ -21,7 +21,7 @@ namespace PseudoScript.Interpreter.Operations
         public override CustomValue Handle(Context ctx)
         {
             ctx.debugger.SetBreakpoint(true);
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

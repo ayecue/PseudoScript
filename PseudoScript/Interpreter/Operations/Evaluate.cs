@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
@@ -30,7 +30,7 @@ namespace PseudoScript.Interpreter.Operations
                     Operator.NotEqual => new CustomBoolean(a.ToNumber() != b.ToNumber()),
                     Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
                     Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
-                    _ => CustomNil.Void,
+                    _ => Default.Void,
                 };
             }
 
@@ -47,7 +47,7 @@ namespace PseudoScript.Interpreter.Operations
                     Operator.NotEqual => new CustomBoolean(a.ToString() != b.ToString()),
                     Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
                     Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
-                    _ => CustomNil.Void,
+                    _ => Default.Void,
                 };
             }
 
@@ -72,7 +72,7 @@ namespace PseudoScript.Interpreter.Operations
                     Operator.NotEqual => new CustomBoolean(left.value != right.value),
                     Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
                     Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
-                    _ => CustomNil.Void,
+                    _ => Default.Void,
                 };
             }
 
@@ -92,7 +92,7 @@ namespace PseudoScript.Interpreter.Operations
                     Operator.NotEqual => new CustomBoolean(left.value != right.value),
                     Operator.And => new CustomBoolean(a.ToTruthy() && b.ToTruthy()),
                     Operator.Or => new CustomBoolean(a.ToTruthy() || b.ToTruthy()),
-                    _ => CustomNil.Void,
+                    _ => Default.Void,
                 };
             }
 
@@ -120,18 +120,18 @@ namespace PseudoScript.Interpreter.Operations
                 }
                 else if (a is CustomNil)
                 {
-                    return CustomNil.Void;
+                    return Default.Void;
                 }
 
-                return CustomNil.Void;
+                return Default.Void;
             }
         }
 
-        public new AstProvider.EvaluationExpression item;
-        string type;
-        string op;
-        Operation left;
-        Operation right;
+        public readonly new AstProvider.EvaluationExpression item;
+        public string type;
+        public string op;
+        public Operation left;
+        public Operation right;
 
         public Evaluate(AstProvider.EvaluationExpression item) : this(item, null) { }
         public Evaluate(AstProvider.EvaluationExpression item, string target) : base(null, target)

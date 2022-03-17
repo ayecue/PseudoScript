@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using System.Collections.Generic;
 
 namespace PseudoScript.Interpreter
 {
     public class IntrinsicsContainer
     {
-        Dictionary<string, CustomFunction> intrinsics = new();
+        private readonly Dictionary<string, CustomFunction> intrinsics = new();
 
         public IntrinsicsContainer Add(string name, CustomFunction fn)
         {

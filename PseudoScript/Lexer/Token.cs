@@ -17,17 +17,17 @@ namespace PseudoScript.Lexer
             public const string EOL = "EOL";
         }
 
-        public string type;
-        public string value;
+        public readonly string type;
+        public readonly string value;
 
-        public int line;
-        public int lineStart;
+        public readonly int line;
+        public readonly int lineStart;
 
-        public Range range;
-        public Range lineRange;
+        public readonly Range range;
+        public readonly Range lineRange;
 
-        public int? lastLine;
-        public int? lastLineStart;
+        public readonly int? lastLine;
+        public readonly int? lastLineStart;
 
         public Token(
             string type,

@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System.Collections.Generic;
 
@@ -18,7 +18,7 @@ namespace PseudoScript.Interpreter.Operations
             }
         }
 
-        public new AstProvider.IfStatement item;
+        public readonly new AstProvider.IfStatement item;
         public List<Clause> clauses;
 
         public IfStatement(AstProvider.IfStatement item) : this(item, null) { }
@@ -79,7 +79,7 @@ namespace PseudoScript.Interpreter.Operations
                 }
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

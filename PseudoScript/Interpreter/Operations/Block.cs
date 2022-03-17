@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using System.Collections.Generic;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Block : Operation
     {
-        public List<Operation> stack;
+        public readonly List<Operation> stack;
         public delegate bool IsEOL();
 
         public Block(List<Operation> stack) : base(null, "block")
@@ -24,11 +24,11 @@ namespace PseudoScript.Interpreter.Operations
 
             if (ctx.type == Context.Type.Loop)
             {
-                isEOL = () => ctx.loopState.isBreak || ctx.loopState.isContinue;
+                isEOL = () => ctx.loopState.IsBreak || ctx.loopState.IsContinue;
             }
             else if (ctx.type == Context.Type.Function)
             {
-                isEOL = () => ctx.functionState.isReturn;
+                isEOL = () => ctx.functionState.IsReturn;
             }
 
             foreach (Operation entity in stack)
@@ -42,7 +42,7 @@ namespace PseudoScript.Interpreter.Operations
                 }
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

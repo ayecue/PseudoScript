@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ namespace PseudoScript.Interpreter.Operations
 {
     class Map : Operation
     {
-        public new AstProvider.MapConstructorExpression item;
+        public readonly new AstProvider.MapConstructorExpression item;
         public Dictionary<string, Operation> fields;
 
         public Map(AstProvider.MapConstructorExpression item) : base(item) { }

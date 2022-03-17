@@ -9,13 +9,9 @@ namespace PseudoScript.Interpreter
         {
             public readonly string target;
             public readonly HandlerContainer handler;
-            public string currentTarget;
+            public string currentTarget { get; internal set; }
 
-            public Context(string target, HandlerContainer handler)
-            {
-                this.target = target;
-                this.handler = handler;
-            }
+            public Context(string target, HandlerContainer handler) : this(target, handler, null) { }
 
             public Context(string target, HandlerContainer handler, string currentTarget)
             {
@@ -25,7 +21,7 @@ namespace PseudoScript.Interpreter
             }
         }
 
-        readonly Context context;
+        private readonly Context context;
 
         public CPS(Context context)
         {

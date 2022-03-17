@@ -47,8 +47,8 @@ namespace PseudoScript.Parser
 
         public class Position
         {
-            public int line;
-            public int character;
+            public readonly int line;
+            public readonly int character;
 
             public Position(int line, int character)
             {
@@ -59,9 +59,9 @@ namespace PseudoScript.Parser
 
         public class Base
         {
-            public string type;
-            public Position start;
-            public Position end;
+            public readonly string type;
+            public readonly Position start;
+            public readonly Position end;
 
             public Base(string type, Position start, Position end)
             {
@@ -108,8 +108,8 @@ namespace PseudoScript.Parser
 
         public class IfClause : Base
         {
-            public Base condition;
-            public List<Base> body;
+            public readonly Base condition;
+            public readonly List<Base> body;
 
             public IfClause(Base condition, List<Base> body, Position start, Position end) : base(Type.IfClause, start, end)
             {
@@ -120,8 +120,8 @@ namespace PseudoScript.Parser
 
         public class ElseifClause : Base
         {
-            public Base condition;
-            public List<Base> body;
+            public readonly Base condition;
+            public readonly List<Base> body;
 
             public ElseifClause(Base condition, List<Base> body, Position start, Position end) : base(Type.ElseifClause, start, end)
             {
@@ -132,7 +132,7 @@ namespace PseudoScript.Parser
 
         public class ElseClause : Base
         {
-            public List<Base> body;
+            public readonly List<Base> body;
 
             public ElseClause(List<Base> body, Position start, Position end) : base(Type.ElseClause, start, end)
             {
@@ -142,8 +142,8 @@ namespace PseudoScript.Parser
 
         public class WhileStatement : Base
         {
-            public Base condition;
-            public List<Base> body;
+            public readonly Base condition;
+            public readonly List<Base> body;
 
             public WhileStatement(Base condition, List<Base> body, Position start, Position end) : base(Type.WhileStatement, start, end)
             {
@@ -154,8 +154,8 @@ namespace PseudoScript.Parser
 
         public class AssignmentStatement : Base
         {
-            public Base variable;
-            public Base init;
+            public readonly Base variable;
+            public readonly Base init;
 
             public AssignmentStatement(Base variable, Base init, Position start, Position end) : base(Type.AssignmentStatement, start, end)
             {
@@ -166,7 +166,7 @@ namespace PseudoScript.Parser
 
         public class CallStatement : Base
         {
-            public Base expression;
+            public readonly Base expression;
 
             public CallStatement(Base expression, Position start, Position end) : base(Type.CallStatement, start, end)
             {
@@ -176,9 +176,9 @@ namespace PseudoScript.Parser
 
         public class FunctionDeclaration : Base
         {
-            public List<Base> arguments;
-            public List<Base> body;
-            public string name;
+            public readonly List<Base> arguments;
+            public readonly List<Base> body;
+            public readonly string name;
 
             public FunctionDeclaration(string name, List<Base> arguments, List<Base> body, Position start, Position end) : base(Type.FunctionDeclaration, start, end)
             {
@@ -190,9 +190,9 @@ namespace PseudoScript.Parser
 
         public class ForGenericStatement : Base
         {
-            public Base variable;
-            public Base iterator;
-            public List<Base> body;
+            public readonly Base variable;
+            public readonly Base iterator;
+            public readonly List<Base> body;
 
             public ForGenericStatement(Base variable, Base iterator, List<Base> body, Position start, Position end) : base(Type.ForGenericStatement, start, end)
             {
@@ -204,10 +204,10 @@ namespace PseudoScript.Parser
 
         public class Chunk : Base
         {
-            public List<Base> body;
-            public List<string> imports;
-            public HashSet<string> namespaces;
-            public List<Base> literals;
+            public readonly List<Base> body;
+            public readonly List<string> imports;
+            public readonly HashSet<string> namespaces;
+            public readonly List<Base> literals;
 
             public Chunk(List<Base> body, List<string> imports, HashSet<string> namespaces, List<Base> literals, Position start, Position end) : base(Type.Chunk, start, end)
             {
@@ -220,7 +220,7 @@ namespace PseudoScript.Parser
 
         public class Identifier : Base
         {
-            public string name;
+            public readonly string name;
 
             public Identifier(string name, Position start, Position end) : base(Type.Identifier, start, end)
             {
@@ -230,8 +230,8 @@ namespace PseudoScript.Parser
 
         public class Literal : Base
         {
-            public object value;
-            public string raw;
+            public readonly object value;
+            public readonly string raw;
 
             public Literal(string type, object value, string raw, Position start, Position end) : base(type, start, end)
             {
@@ -242,9 +242,9 @@ namespace PseudoScript.Parser
 
         public class MemberExpression : Base
         {
-            public Base origin;
-            public string indexer;
-            public Base identifier;
+            public readonly Base origin;
+            public readonly string indexer;
+            public readonly Base identifier;
 
             public MemberExpression(Base origin, string indexer, Base identifier, Position start, Position end) : base(Type.MemberExpression, start, end)
             {
@@ -256,8 +256,8 @@ namespace PseudoScript.Parser
 
         public class CallExpression : Base
         {
-            public Base origin;
-            public List<Base> arguments;
+            public readonly Base origin;
+            public readonly List<Base> arguments;
 
             public CallExpression(Base origin, List<Base> arguments, Position start, Position end) : base(Type.CallExpression, start, end)
             {
@@ -268,8 +268,8 @@ namespace PseudoScript.Parser
 
         public class Comment : Base
         {
-            public string value;
-            public string raw;
+            public readonly string value;
+            public readonly string raw;
 
             public Comment(string value, string raw, Position start, Position end) : base(Type.Comment, start, end)
             {
@@ -280,8 +280,8 @@ namespace PseudoScript.Parser
 
         public class UnaryExpression : Base
         {
-            public string? op;
-            public Base arg;
+            public readonly string? op;
+            public readonly Base arg;
 
             public UnaryExpression(string type, string op, Base arg, Position start, Position end) : base(type, start, end)
             {
@@ -292,8 +292,8 @@ namespace PseudoScript.Parser
 
         public class MapKeyString : Base
         {
-            public Base value;
-            public string key;
+            public readonly Base value;
+            public readonly string key;
 
             public MapKeyString(string key, Base value, Position start, Position end) : base(Type.MapKeyString, start, end)
             {
@@ -304,7 +304,7 @@ namespace PseudoScript.Parser
 
         public class ListValue : Base
         {
-            public Base value;
+            public readonly Base value;
 
             public ListValue(Base value, Position start, Position end) : base(Type.ListValue, start, end)
             {
@@ -314,7 +314,7 @@ namespace PseudoScript.Parser
 
         public class MapConstructorExpression : Base
         {
-            public List<Base> fields;
+            public readonly List<Base> fields;
 
             public MapConstructorExpression(List<Base> fields, Position start, Position end) : base(Type.MapConstructorExpression, start, end)
             {
@@ -324,7 +324,7 @@ namespace PseudoScript.Parser
 
         public class ListConstructorExpression : Base
         {
-            public List<Base> fields;
+            public readonly List<Base> fields;
 
             public ListConstructorExpression(List<Base> fields, Position start, Position end) : base(Type.ListConstructorExpression, start, end)
             {
@@ -344,8 +344,8 @@ namespace PseudoScript.Parser
 
         public class IndexExpression : Base
         {
-            public Base origin;
-            public Base index;
+            public readonly Base origin;
+            public readonly Base index;
 
             public IndexExpression(Base origin, Base index, Position start, Position end) : base(Type.IndexExpression, start, end)
             {
@@ -356,9 +356,9 @@ namespace PseudoScript.Parser
 
         public class EvaluationExpression : Base
         {
-            public string op;
-            public Base left;
-            public Base right;
+            public readonly string op;
+            public readonly Base left;
+            public readonly Base right;
 
             public EvaluationExpression(string type, string op, Base left, Base right, Position start, Position end) : base(type, start, end)
             {
@@ -370,7 +370,7 @@ namespace PseudoScript.Parser
 
         public class ImportExpression : Base
         {
-            public string directory;
+            public readonly string directory;
 
             public ImportExpression(string directory, Position start, Position end) : base(Type.ImportExpression, start, end)
             {

@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Return : Operation
     {
-        public new AstProvider.ReturnStatement item;
+        public readonly new AstProvider.ReturnStatement item;
         Operation arg;
 
         public Return(AstProvider.ReturnStatement item) : this(item, null) { }
@@ -24,10 +24,10 @@ namespace PseudoScript.Interpreter.Operations
         {
             if (ctx.functionState != null)
             {
-                ctx.functionState.value = arg.Handle(ctx);
-                ctx.functionState.isReturn = true;
+                ctx.functionState.Value = arg.Handle(ctx);
+                ctx.functionState.IsReturn = true;
             }
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

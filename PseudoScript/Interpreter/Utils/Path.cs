@@ -19,7 +19,6 @@ namespace PseudoScript.Interpreter.Utils
             this.path = new List<T>(path);
         }
 
-
         public T Next()
         {
             if (path.Count == 0)

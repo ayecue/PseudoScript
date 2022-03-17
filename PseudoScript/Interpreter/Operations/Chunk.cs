@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace PseudoScript.Interpreter.Operations
 {
     class Chunk : Operation
     {
-        public new AstProvider.Chunk item;
+        public readonly new AstProvider.Chunk item;
         public Block block;
 
         public Chunk(AstProvider.Chunk item) : this(item, null) { }

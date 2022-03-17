@@ -19,18 +19,20 @@ namespace PseudoScript.Lexer
 
     public class Lexer
     {
-        readonly string content;
-        readonly int length;
-        int index;
-        int tokenStart;
-        int line;
-        int lineStart;
-        int offset;
-        readonly int tabWidth;
+        private readonly string content;
+        private readonly int length;
+        private int index;
+        private int tokenStart;
+        private int line;
+        private int lineStart;
+        private int offset;
+        private readonly int tabWidth;
 
-        readonly Validator validator;
-        readonly bool force;
-        readonly List<Exception> errors;
+        private readonly Validator validator;
+        private readonly bool force;
+        private readonly List<Exception> errors;
+
+        public Lexer(string content) : this(content, new Options(null, null, null)) { }
 
         public Lexer(string content, Options? options)
         {
@@ -47,9 +49,7 @@ namespace PseudoScript.Lexer
             errors = new List<Exception>();
         }
 
-        public Lexer(string content) : this(content, new Options(null, null, null)) { }
-
-        public Token Scan(CharacterCode code, CharacterCode? nextCode, CharacterCode? lastCode)
+        private Token Scan(CharacterCode code, CharacterCode? nextCode, CharacterCode? lastCode)
         {
             switch (code)
             {
@@ -120,18 +120,18 @@ namespace PseudoScript.Lexer
             }
         }
 
-        bool IsNotEOF()
+        private bool IsNotEOF()
         {
             return index < length;
         }
 
-        int NextIndex(int value = 1)
+        private int NextIndex(int value = 1)
         {
             index += value;
             return index;
         }
 
-        CharacterCode CodeAt(int codeOffset = 0)
+        private CharacterCode CodeAt(int codeOffset = 0)
         {
             int position = index + codeOffset;
 
@@ -144,17 +144,17 @@ namespace PseudoScript.Lexer
         }
 
 
-        int NextLine()
+        private int NextLine()
         {
             return ++line;
         }
 
-        bool IsStringEscaped()
+        private bool IsStringEscaped()
         {
             return CharacterCode.QUOTE == CodeAt(1);
         }
 
-        Token CreateEOL()
+        private Token CreateEOL()
         {
             return new Token(
                 Token.Type.EOL,
@@ -171,7 +171,7 @@ namespace PseudoScript.Lexer
             );
         }
 
-        Token ScanStringLiteral()
+        private Token ScanStringLiteral()
         {
             int beginLine = line;
             int beginLineStart = lineStart;
@@ -218,7 +218,7 @@ namespace PseudoScript.Lexer
             );
         }
 
-        Token ScanNumericLiteral()
+        private Token ScanNumericLiteral()
         {
             while (validator.IsDecDigit(CodeAt())) NextIndex();
 
@@ -250,7 +250,7 @@ namespace PseudoScript.Lexer
             );
         }
 
-        Token ScanPunctuator(string value)
+        private Token ScanPunctuator(string value)
         {
             index += value.Length;
 
@@ -267,7 +267,7 @@ namespace PseudoScript.Lexer
             );
         }
 
-        void SkipToNextLine()
+        private void SkipToNextLine()
         {
             CharacterCode code = CodeAt();
 
@@ -283,7 +283,7 @@ namespace PseudoScript.Lexer
             Next();
         }
 
-        void SkipWhiteSpace()
+        private void SkipWhiteSpace()
         {
             while (IsNotEOF())
             {
@@ -304,7 +304,7 @@ namespace PseudoScript.Lexer
             }
         }
 
-        Token ScanIdentifierOrKeyword()
+        private Token ScanIdentifierOrKeyword()
         {
             NextIndex();
 
@@ -387,7 +387,7 @@ namespace PseudoScript.Lexer
             );
         }
 
-        void ScanComment()
+        private void ScanComment()
         {
             while (IsNotEOF())
             {
@@ -452,7 +452,7 @@ namespace PseudoScript.Lexer
             return null;
         }
 
-        void Raise(Exception err)
+        private void Raise(Exception err)
         {
             errors.Add(err);
 
@@ -460,10 +460,11 @@ namespace PseudoScript.Lexer
             {
                 SkipToNextLine();
                 Next();
-                return;
             }
-
-            throw err;
+            else
+            {
+                throw err;
+            }
         }
     }
 }

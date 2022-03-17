@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Continue : Operation
     {
-        public new AstProvider.Base item;
+        public readonly new AstProvider.Base item;
 
         public Continue(AstProvider.Base item) : this(item, null) { }
         public Continue(AstProvider.Base item, string target) : base(null, target)
@@ -22,9 +22,9 @@ namespace PseudoScript.Interpreter.Operations
         {
             if (ctx.loopState != null)
             {
-                ctx.loopState.isContinue = true;
+                ctx.loopState.IsContinue = true;
             }
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

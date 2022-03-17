@@ -5,7 +5,7 @@ namespace PseudoScript.Parser
 {
     public class Validator
     {
-        static readonly string[] breakingBlockShortcutKeywords = {
+        private static readonly string[] breakingBlockShortcutKeywords = {
             "if",
             "else",
             "else if",
@@ -16,20 +16,20 @@ namespace PseudoScript.Parser
             "end if"
         };
 
-        static readonly string[] nonNilLiterals = {
+        private static readonly string[] nonNilLiterals = {
             Lexer.Token.Type.StringLiteral,
             Lexer.Token.Type.NumericLiteral,
             Lexer.Token.Type.BooleanLiteral
         };
 
-        static readonly string[] literals = {
+        private static readonly string[] literals = {
             Lexer.Token.Type.StringLiteral,
             Lexer.Token.Type.NumericLiteral,
             Lexer.Token.Type.BooleanLiteral,
             Lexer.Token.Type.NilLiteral
         };
 
-        static readonly string[] expressionOperators = {
+        private static readonly string[] expressionOperators = {
                 Operator.Plus,
                 Operator.Asterik,
                 Operator.Minus,

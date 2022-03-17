@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Interpreter.Utils;
 using PseudoScript.Parser;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace PseudoScript.Interpreter.Operations
 {
     class Function : Operation
     {
-        public new AstProvider.FunctionDeclaration item;
+        public readonly new AstProvider.FunctionDeclaration item;
         public Operation block;
         public Dictionary<string, Operation> arguments;
 
@@ -35,7 +35,7 @@ namespace PseudoScript.Interpreter.Operations
                         break;
                     case AstProvider.Type.Identifier:
                         AstProvider.Identifier identifierKey = (AstProvider.Identifier)child;
-                        arguments[identifierKey.name] = new Reference(CustomNil.Void);
+                        arguments[identifierKey.name] = new Reference(Default.Void);
                         break;
                     default:
                         throw new InterpreterException("Unexpected operation in arguments.");
@@ -55,7 +55,7 @@ namespace PseudoScript.Interpreter.Operations
 
                 block.Handle(fnCtx);
 
-                return fnCtx.functionState.value;
+                return fnCtx.functionState.Value;
             });
 
             if (item.name != "anonymous")

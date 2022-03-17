@@ -30,7 +30,9 @@ task.Wait();
 - use custom resource handler
 
 ```
-Interpreter.Interpreter interpreter = new(new Interpreter.Options(null, null, null, new MyResourceHandler(), null));
+HandlerContainer handler = new(new MyResourceHandler());
+Interpreter.Interpreter interpreter = new();
+interpreter.SetHandler(handler);
 Task task = interpreter.Run();
 task.Wait();
 ```

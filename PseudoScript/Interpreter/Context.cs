@@ -1,5 +1,5 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
-using PseudoScript.Interpreter.Operations;
+﻿using PseudoScript.Interpreter.Operations;
+using PseudoScript.Interpreter.Types;
 using PseudoScript.Interpreter.Utils;
 using PseudoScript.Parser;
 using System;
@@ -28,7 +28,7 @@ namespace PseudoScript.Interpreter
 
         public class Scope : CustomMap
         {
-            readonly Context context;
+            private readonly Context context;
 
             public Scope(Context context) : base()
             {
@@ -62,29 +62,41 @@ namespace PseudoScript.Interpreter
                 {
                     return context.api.scope.Get(path);
                 }
-                else if (path.Count == 1 && CustomMap.intrinsics.Has(current))
+                else if (path.Count == 1 && CustomMap.Intrinsics.Has(current))
                 {
-                    return CustomMap.intrinsics.Get(current);
+                    return CustomMap.Intrinsics.Get(current);
                 }
                 else if (context.previous != null)
                 {
                     return context.previous.Get(path);
                 }
 
-                return CustomNil.Void;
+                return Default.Void;
             }
         }
 
         public class Debugger
         {
-            public bool breakpoint = false;
-            public bool nextStep = false;
-            public Context lastContext = null;
+            private bool breakpoint = false;
+            private bool nextStep = false;
+            private Context lastContext = null;
+
+            public Context LastContext
+            {
+                get
+                {
+                    return lastContext;
+                }
+                internal set
+                {
+                    lastContext = value;
+                }
+            }
 
             public CustomNil Debug(string message)
             {
                 Console.WriteLine(message);
-                return CustomNil.Void;
+                return Default.Void;
             }
 
             public Debugger SetBreakpoint(bool breakpoint)
@@ -125,21 +137,105 @@ namespace PseudoScript.Interpreter
 
         public class ProcessState
         {
-            public bool exit = false;
-            public bool pending = false;
-            public Context last = null;
+            private bool exit = false;
+            private bool pending = false;
+            private Context last = null;
+
+            public bool IsExit
+            {
+                get
+                {
+                    return exit;
+                }
+                internal set
+                {
+                    exit = value;
+                }
+            }
+
+            public bool IsPending
+            {
+                get
+                {
+                    return pending;
+                }
+                internal set
+                {
+                    pending = value;
+                }
+            }
+
+            public Context Last
+            {
+                get
+                {
+                    return last;
+                }
+                internal set
+                {
+                    last = value;
+                }
+            }
         }
 
         public class LoopState
         {
-            public bool isBreak = false;
-            public bool isContinue = false;
+            private bool isBreak = false;
+            private bool isContinue = false;
+
+            public bool IsBreak
+            {
+                get
+                {
+                    return isBreak;
+                }
+                internal set
+                {
+                    isBreak = value;
+                }
+            }
+
+            public bool IsContinue
+            {
+                get
+                {
+                    return isContinue;
+                }
+                internal set
+                {
+                    isContinue = value;
+                }
+            }
         }
 
         public class FunctionState
         {
-            public CustomValue value = CustomNil.Void;
-            public bool isReturn = false;
+            private CustomValue value = Default.Void;
+            private bool isReturn = false;
+
+            public CustomValue Value
+            {
+                get
+                {
+                    return value;
+                }
+                internal set
+                {
+                    this.value = value;
+                }
+            }
+
+            public bool IsReturn
+            {
+                get
+                {
+                    return isReturn;
+                }
+                internal set
+                {
+                    isReturn = value;
+                }
+            }
         }
 
         public class Options
@@ -181,30 +277,31 @@ namespace PseudoScript.Interpreter
             }
         }
 
-        public string target;
-        public AstProvider.Base stackItem;
-        public Debugger debugger;
-        public HandlerContainer handler;
-        public Context previous;
-        public Type type;
-        public State state;
-        public Scope scope;
-        public CPS cps;
+        public string target { get; private set; }
+        public AstProvider.Base stackItem { get; private set; }
+        public Debugger debugger { get; internal set; }
+        public HandlerContainer handler { get; internal set; }
+        public Context previous { get; private set; }
 
-        public ProcessState processState;
-        public LoopState loopState;
-        public FunctionState functionState;
+        public readonly Type type;
+        public readonly State state;
+        public readonly Scope scope;
+        public readonly CPS cps;
 
-        public bool isProtected;
-        public bool injected;
+        public readonly ProcessState processState;
+        public LoopState loopState { get; internal set; }
+        public FunctionState functionState { get; internal set; }
 
-        public Context api;
-        public Context locals;
-        public Context globals;
+        public bool isProtected { get; private set; }
+        public bool injected { get; private set; }
 
-        public readonly static List<Type> lookupApiType = new() { Type.Api };
-        public readonly static List<Type> lookupGlobalsType = new() { Type.Global };
-        public readonly static List<Type> lookupLocalsType = new() { Type.Global, Type.Function };
+        private readonly Context api;
+        private readonly Context locals;
+        private readonly Context globals;
+
+        private readonly static List<Type> lookupApiType = new() { Type.Api };
+        private readonly static List<Type> lookupGlobalsType = new() { Type.Global };
+        private readonly static List<Type> lookupLocalsType = new() { Type.Global, Type.Function };
 
         public Context(Options options)
         {
@@ -226,7 +323,7 @@ namespace PseudoScript.Interpreter
             locals = LookupLocals() ?? this;
         }
 
-        public void Step(Operation entity)
+        internal void Step(Operation entity)
         {
             if (!injected)
             {
@@ -243,41 +340,41 @@ namespace PseudoScript.Interpreter
             }
         }
 
-        public Context SetLastActive(Context ctx)
+        internal Context SetLastActive(Context ctx)
         {
             if (!ctx.injected)
             {
-                processState.last = ctx;
+                processState.Last = ctx;
             }
             return this;
         }
 
         public Context GetLastActive()
         {
-            return processState.last;
+            return processState.Last;
         }
 
         public bool IsExit()
         {
-            return processState.exit;
+            return processState.IsExit;
         }
 
         public bool IsPending()
         {
-            return processState.pending;
+            return processState.IsPending;
         }
 
-        public Context SetPending(bool pending)
+        internal Context SetPending(bool pending)
         {
-            processState.pending = pending;
+            processState.IsPending = pending;
             return this;
         }
 
         public void Exit()
         {
-            if (processState.pending)
+            if (processState.IsPending)
             {
-                processState.exit = true;
+                processState.IsExit = true;
                 return;
             }
 
@@ -321,7 +418,7 @@ namespace PseudoScript.Interpreter
             return LookupType(lookupLocalsType);
         }
 
-        public Context Extend(Dictionary<string, CustomValue> map)
+        internal Context Extend(Dictionary<string, CustomValue> map)
         {
             if (state == State.Temporary)
             {
@@ -396,7 +493,17 @@ namespace PseudoScript.Interpreter
             return Fork(type, state, null, null);
         }
 
-        public Context Fork(Type type, State state, string? target, bool? injected)
+        public Context Fork(Type type, State state, bool injected)
+        {
+            return Fork(type, state, null, true);
+        }
+
+        public Context Fork(Type type, State state, string target)
+        {
+            return Fork(type, state, target, null);
+        }
+
+        private Context Fork(Type type, State state, string? target, bool? injected)
         {
             Options options = new(
                 target ?? this.target,

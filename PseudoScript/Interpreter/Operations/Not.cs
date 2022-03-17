@@ -1,12 +1,12 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Not : Operation
     {
-        public new AstProvider.UnaryExpression item;
-        Operation arg;
+        public readonly new AstProvider.UnaryExpression item;
+        public Operation arg;
 
         public Not(AstProvider.UnaryExpression item) : this(item, null) { }
         public Not(AstProvider.UnaryExpression item, string target) : base(null, target)

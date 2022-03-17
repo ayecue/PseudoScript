@@ -7,7 +7,7 @@ namespace PseudoScript.Interpreter.Handler
         abstract public void Print(string message);
     }
 
-    public class DefaultOutput : Output
+    internal class DefaultOutput : Output
     {
         public override void Print(string message)
         {

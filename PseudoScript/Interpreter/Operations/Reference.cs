@@ -1,10 +1,10 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Reference : Operation
     {
-        public CustomValue value;
+        public readonly CustomValue value;
 
         public Reference(CustomValue value) : base(null, "native")
         {

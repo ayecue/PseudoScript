@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace PseudoScript.Interpreter.Operations
 {
     class Call : Operation
     {
-        public new AstProvider.CallExpression item;
+        public readonly new AstProvider.CallExpression item;
         public Resolve fnRef;
         public List<Operation> arguments;
 
@@ -38,7 +38,7 @@ namespace PseudoScript.Interpreter.Operations
                 return func.Run(resolveResult.handle, fnArgs, ctx);
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

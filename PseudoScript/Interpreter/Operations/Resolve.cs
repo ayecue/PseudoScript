@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Interpreter.Utils;
 using PseudoScript.Parser;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace PseudoScript.Interpreter.Operations
             }
         }
 
-        public new AstProvider.Base item;
+        public readonly new AstProvider.Base item;
         public List<object> path;
 
         public Resolve(AstProvider.Base item) : this(item, null) { }
@@ -96,7 +96,7 @@ namespace PseudoScript.Interpreter.Operations
         {
             Queue<object> segments = new(path);
             Path<string> traversedPath = new();
-            CustomValue handle = CustomNil.Void;
+            CustomValue handle = Default.Void;
 
             while (segments.TryDequeue(out object current))
             {
@@ -116,7 +116,7 @@ namespace PseudoScript.Interpreter.Operations
                         break;
                     }
 
-                    if (handle != CustomNil.Void)
+                    if (handle != Default.Void)
                     {
                         CustomValueWithIntrinsics customValueCtx = (CustomValueWithIntrinsics)handle;
                         handle = customValueCtx.Get(traversedPath);
@@ -140,7 +140,7 @@ namespace PseudoScript.Interpreter.Operations
                         break;
                     }
 
-                    if (handle != CustomNil.Void)
+                    if (handle != Default.Void)
                     {
                         CustomValueWithIntrinsics customValueCtx = (CustomValueWithIntrinsics)handle;
                         handle = customValueCtx.Get(traversedPath);
@@ -165,7 +165,7 @@ namespace PseudoScript.Interpreter.Operations
 
         public CustomValue Handle(Context ctx, Result result)
         {
-            if (result.handle != CustomNil.Void)
+            if (result.handle != Default.Void)
             {
                 if (result.path.Count == 0)
                 {

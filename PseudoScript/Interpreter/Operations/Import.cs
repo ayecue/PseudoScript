@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Import : Operation
     {
-        public new AstProvider.ImportExpression item;
+        public readonly new AstProvider.ImportExpression item;
         public string code;
         public AstProvider.Base chunk;
         public Operation top;
@@ -26,7 +26,7 @@ namespace PseudoScript.Interpreter.Operations
 
         public override CustomValue Handle(Context ctx)
         {
-            Context importCtx = ctx.Fork(Context.Type.External, Context.State.Temporary, target, null);
+            Context importCtx = ctx.Fork(Context.Type.External, Context.State.Temporary, target);
             return top.Handle(importCtx);
         }
     }

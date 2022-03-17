@@ -1,5 +1,5 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
-using PseudoScript.Interpreter.Operations;
+﻿using PseudoScript.Interpreter.Operations;
+using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System;
 using System.Collections.Generic;
@@ -28,14 +28,14 @@ namespace PseudoScript.Interpreter
 
     public class Interpreter
     {
-        string target;
-        Dictionary<string, CustomValue> api;
-        List<string> argv;
-        HandlerContainer handler;
-        Debugger debugger;
-        Context apiContext;
-        Context globalContext;
-        CPS cps;
+        private string target;
+        private Dictionary<string, CustomValue> api;
+        private readonly List<string> argv;
+        private HandlerContainer handler;
+        private Debugger debugger;
+        private Context apiContext;
+        private Context globalContext;
+        private CPS cps;
 
         public Interpreter() : this(new Options(null, null, null, null, null)) { }
 
@@ -69,7 +69,7 @@ namespace PseudoScript.Interpreter
 
             Context.Options apiCtxOptions = new(target, null, null, null, true, false, debugger, handler, cps, null);
             apiContext = new Context(apiCtxOptions);
-            globalContext = apiContext.Fork(Context.Type.Global, Context.State.Default, null, null);
+            globalContext = apiContext.Fork(Context.Type.Global, Context.State.Default);
 
             return this;
         }
@@ -122,11 +122,11 @@ namespace PseudoScript.Interpreter
         public void InjectSynchrounus(string code, Context ctx)
         {
             Operation top = Prepare(code);
-            Context injectionCtx = ctx.Fork(Context.Type.Call, Context.State.Temporary, null, true);
+            Context injectionCtx = ctx.Fork(Context.Type.Call, Context.State.Temporary, true);
 
             try
             {
-                top.Handle(globalContext);
+                top.Handle(injectionCtx);
             }
             catch (Exception err)
             {
@@ -144,7 +144,7 @@ namespace PseudoScript.Interpreter
             }
             else
             {
-                new InterpreterException("Unable to inject into last context.");
+                throw new InterpreterException("Unable to inject into last context.");
             }
         }
 
@@ -300,7 +300,7 @@ namespace PseudoScript.Interpreter
                 return globalContext.Get(path);
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PseudoScript.Interpreter;
-using PseudoScript.Interpreter.CustomTypes;
+using PseudoScript.Interpreter.Types;
 using PseudoScript.Interpreter.Handler;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -34,9 +34,9 @@ namespace InterpreterTests
                     if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value))
                     {
                         fnCtx.handler.outputHandler.Print(value.ToString());
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("message")
             );
@@ -49,9 +49,9 @@ namespace InterpreterTests
                     {
                         fnCtx.handler.outputHandler.Print(value.ToString());
                         fnCtx.Exit();
-                        return CustomNil.Void;
+                        return Default.Void;
                     }
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("message")
             );
@@ -61,7 +61,7 @@ namespace InterpreterTests
                 new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                 {
                     if (arguments.TryGetValue("object", out CustomValue value)) return new CustomString(value.GetCustomType());
-                    return CustomNil.Void;
+                    return Default.Void;
                 })
                     .AddArgument("object")
             );
@@ -74,7 +74,7 @@ namespace InterpreterTests
                     CustomValue from = arguments["from"];
                     CustomValue step = arguments["step"];
 
-                    if (to == CustomNil.Void)
+                    if (to == Default.Void)
                     {
                         to = from;
                         from = new CustomNumber(0);
@@ -103,7 +103,7 @@ namespace InterpreterTests
                     itr.AddFunction("test", new CustomFunction((Context fnCtx, CustomValue self, Dictionary<string, CustomValue> arguments) =>
                     {
                         if (fnCtx is Context && arguments.TryGetValue("message", out CustomValue value)) fnCtx.handler.outputHandler.Print("test interface print: " + value.ToString());
-                        return CustomNil.Void;
+                        return Default.Void;
                     })
                         .AddArgument("message")
                     );

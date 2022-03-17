@@ -1,12 +1,12 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class NegatedBinary : Operation
     {
-        public new AstProvider.UnaryExpression item;
-        Operation arg;
+        public readonly new AstProvider.UnaryExpression item;
+        public Operation arg;
 
         public NegatedBinary(AstProvider.UnaryExpression item) : this(item, null) { }
         public NegatedBinary(AstProvider.UnaryExpression item, string target) : base(null, target)

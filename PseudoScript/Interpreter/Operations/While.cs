@@ -1,4 +1,4 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace PseudoScript.Interpreter.Operations
 {
     class While : Operation
     {
-        public new AstProvider.WhileStatement item;
+        public readonly new AstProvider.WhileStatement item;
         public Block block;
         public Operation condition;
 
@@ -33,13 +33,13 @@ namespace PseudoScript.Interpreter.Operations
 
             while (condition.Handle(whileCtx).ToTruthy())
             {
-                whileCtx.loopState.isContinue = false;
+                whileCtx.loopState.IsContinue = false;
                 block.Handle(whileCtx);
-                if (whileCtx.loopState.isContinue) continue;
-                if (whileCtx.loopState.isBreak || ctx.IsExit()) break;
+                if (whileCtx.loopState.IsContinue) continue;
+                if (whileCtx.loopState.IsBreak || ctx.IsExit()) break;
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using PseudoScript.Interpreter.CustomTypes;
+﻿using PseudoScript.Interpreter.Types;
 using PseudoScript.Parser;
 
 namespace PseudoScript.Interpreter.Operations
 {
     class Assign : Operation
     {
-        public new AstProvider.AssignmentStatement item;
+        public readonly new AstProvider.AssignmentStatement item;
         public Resolve left;
         public Operation right;
 
@@ -27,7 +27,7 @@ namespace PseudoScript.Interpreter.Operations
             Resolve.Result resolveResult = left.GetResult(ctx);
             CustomValue rightValue = right.Handle(ctx);
 
-            if (resolveResult.handle != CustomNil.Void)
+            if (resolveResult.handle != Default.Void)
             {
                 CustomValueWithIntrinsics resultValueCtx = (CustomValueWithIntrinsics)resolveResult.handle;
                 resultValueCtx.Set(resolveResult.path, rightValue);
@@ -37,7 +37,7 @@ namespace PseudoScript.Interpreter.Operations
                 ctx.Set(resolveResult.path, rightValue);
             }
 
-            return CustomNil.Void;
+            return Default.Void;
         }
     }
 }
